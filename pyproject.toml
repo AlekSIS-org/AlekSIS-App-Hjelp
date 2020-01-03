@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "BiscuIT-App-Hjelp"
+version = "1.0a4dev0"
+packages = [
+    { include = "biscuit" }
+]
+readme = "README.rst"
+
+description = "BiscuIT School Information System (SIS) - App Hjelp (FAQ and support)"
+authors = ["Silas Della Contrada <s.developer@4-dc.de>", "Julian Leucker <leuckeju@katharineum.de>", "Frank Poetzsch-Heffter <p-h@katharineum.de>", "Jonathan Weth <wethjo@katharineum.de>", "Hangzhi Yu <yuha@katharineum.de>"]
+license = "EUPL-1.2"
+homepage = "https://biscuit.edugit.io/"
+repository = "https://edugit.org/BiscuIT/BiscuIT-App-Hjelp"
+documentation = "https://biscuit.edugit.io/BiscuIT-ng/docs/html/"
+classifiers = [
+    "Environment :: Web Environment",
+    "Intended Audience :: Education",
+    "Topic :: Education"
+]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+BiscuIT-ng = { path = "../../.." }
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
