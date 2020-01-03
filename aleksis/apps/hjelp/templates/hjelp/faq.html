@@ -35,7 +35,7 @@
 
     <p class="flow-text">
 	{% blocktrans %}
-	    Deine Frage war nicht dabei?
+	    Your question is not listed above?
 	{% enblocktrans %}
     </p>
     <p>
@@ -48,9 +48,19 @@
             </a>
         {% else %}
 	    {% blocktrans %}
-                Schreibe uns an
-                <a href="mailto:support@katharineum.de">support@katharineum.de</a> und wir versuchen, deine Frage zu
-                beantworten.
+                If you have a question please ask one of you site administrators:
+                <ul>
+                    {% for admin in ADMINS %}
+                        <li>
+                           {{ admin.0 }}
+                            &lt;
+                            <a href="mailto:{{ admin.1 }}">
+                                {{ admin.1 }}
+                            </a>
+                            &gt;
+                        </li>
+                    {% endfor %}
+                </ul>
 	    {% endblocktrans %}
         {% endif %}
     </p>
