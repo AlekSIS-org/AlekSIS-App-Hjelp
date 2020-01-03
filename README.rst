@@ -1,5 +1,5 @@
-AlekSIS (School Information System) - App Hjelp (FAQ and support)
-======================================================================
+AlekSIS (School Information System) — App Hjelp (FAQ and support)
+=================================================================
 
 AlekSIS
 -------
