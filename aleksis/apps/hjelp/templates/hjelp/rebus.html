@@ -3,7 +3,7 @@
 
 <main>
 
-    <h5>{% blocktrans %}Fehler melden – REBUS – REport-A-Bug-System{% endblocktrans %}</h5>
+    <h5>{% blocktrans %}Report a bug – REBUS – REport-A-Bug-System{% endblocktrans %}</h5>
 
     <form method="post" id="rebus-form">
         {% csrf_token %}
@@ -19,8 +19,7 @@
             <div class="input-field col s12 support-input-mobile">
                 <i class="material-icons prefix">help</i>
                 {{ form.short_description }}
-                <label for="{{ form.short_description.id_for_label }}">{% blocktrans %}Bitte beschreibe dein Problem<strong> in
-                    einem Satz</strong>{% endblocktrans %}</label>
+                <label for="{{ form.short_description.id_for_label }}">{% blocktrans %}Please describe your issue in<strong>one</strong> sentence{% endblocktrans %}</label>
             </div>
         </div>
 
@@ -32,14 +31,14 @@
                           class="materialize-textarea">
                 </textarea>
 
-                <label for="{{ form.long_description.id_for_label }}">{% blocktrans %}Bitte beschreibe dein Problem
-                    <strong>genauer</strong> (optional){% endblocktrans %}
+                <label for="{{ form.long_description.id_for_label }}">{% blocktrans %}Please describe your issue
+                    <strong>more detailed</strong> (optional){% endblocktrans %}
                 </label>
             </div>
         </div>
 
         <button type="submit" name="go" id="go" class="btn waves-effect waves-light green">
-            {% blocktrans %}Problem-/Fehlermeldung einreichen{% endblocktrans %}
+            {% blocktrans %}Submit bugreport{% endblocktrans %}
             <i class="material-icons right">send</i>
         </button>
     </form>

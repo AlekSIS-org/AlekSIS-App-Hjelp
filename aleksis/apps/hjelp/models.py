@@ -6,17 +6,17 @@ from django.utils.translation import ugettext_lazy as _
 from .model_helper import COLORS, ICONS
 
 class MailSettings(dbsettings.Group):
-    mail_rebus = dbsettings.EmailValue("Email address for REBUS")
-    mail_feedback = dbsettings.EmailValue("Email address for Feedback")
-    mail_questions = dbsettings.EmailValue("Email address for questions/help")
+    mail_rebus = dbsettings.EmailValue(_("Email address for REBUS"))
+    mail_feedback = dbsettings.EmailValue(_("Email address for Feedback"))
+    mail_questions = dbsettings.EmailValue(_("Email address for questions/help"))
 
 
 
 class Support(models.Model):
     class Meta:
         permissions = (
-            ('use_rebus', 'Can use REBUS'),
-            ('send_feedback', 'Can send feedback')
+            ("use_rebus", _("Can use REBUS")),
+            ("send_feedback", _("Can send feedback"))
         )
 
 
@@ -45,14 +45,14 @@ class FAQQuestion(models.Model):
                                              "CSS-Klasse <em>browser-default</em> besitzen!"), verbose_name=_("Answer"))
 
     section = models.ForeignKey(FAQSection, on_delete=models.CASCADE, blank=True, related_name="questions",
-                                verbose_name="Section")
+                                verbose_name=_("Section"))
 
     def __str__(self):
         return self.question_text
 
     class Meta:
-        verbose_name = "FAQ questions"
-        verbose_name_plural = "FAQ questions"
+        verbose_name = _("FAQ questions")
+        verbose_name_plural = _("FAQ questions")
 
 
-mail_settings = MailSettings("Mail adresses")
+mail_settings = MailSettings(_("Mail adresses"))
