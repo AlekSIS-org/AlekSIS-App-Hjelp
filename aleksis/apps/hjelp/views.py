@@ -1,12 +1,58 @@
-from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
+from django.utils.translation import ugettext_lazy as _
+from .models import FAQSection, FAQQuestion, mail_settings
+from .forms import FAQForm, REBUSForm, FeedbackForm
+
+from datetime import datetime
+
+from dashboard.models import Activity
 
 from mailer import send_mail_with_template
-from support.models import mail_settings
+
 from untisconnect.api import get_all_rooms
-from .forms import REBUSForm
-from .forms import FeedbackForm
 from dashboard.models import Activity
+
+
+def create_info(text):
+    return '<div class="alert success"> <p> <i class="material-icons left">info</i>' + text + '</p> </div>'
+
+
+def faq(request):
+    """ Shows the FAQ site, also if not logged in"""
+    context = {
+        "questions": FAQQuestion.objects.filter(show=True),
+        "sections": FAQSection.objects.all(),
+    }
+    return render(request, 'hjelp/faq.html', context)
+
+
+@login_required
+def ask(request):
+    if request.method == 'POST':
+        form = FAQForm(request.POST)
+        if form.is_valid():
+            # Read out form data
+            question = form.cleaned_data['question']
+
+           act = Activity(title=_("Du hast uns eine Frage gestellt."), description=question, app="Hjelp",
+                          user=request.user)
+            act.save()
+
+            context = {
+                "question": question,
+                "user": request.user
+            }
+            send_mail_with_template("[FAQ QUESTION] {}".format(question), [mail_settings.mail_questions],
+                                    "hjelp/mail/question.txt",
+                                    "hjelp/mail/question.html", context,
+                                    "{} <{}>".format(request.user.get_full_name(), request.user.email))
+
+            return render(request, 'hjelp/question_submitted.html')
+    else:
+        form = FAQForm()
+
+    return render(request, "hjelp/ask.html", {"form": form})
 
 
 def add_arrows(array: list):
@@ -27,7 +73,7 @@ def rebus(request):
 
             # Register activity
             desc_act = "{} | {}".format(add_arrows([a, b, c]), short_description)
-            act = Activity(title="Du hast uns ein Problem gemeldet.", description=desc_act, app="REBUS",
+            act = Activity(title=_("Du hast uns ein Problem gemeldet."), description=desc_act, app="Hjelp",
                            user=request.user)
             act.save()
 
@@ -39,17 +85,17 @@ def rebus(request):
                 "user": request.user
             }
             send_mail_with_template("[REBUS] {}".format(short_description), [mail_settings.mail_rebus],
-                                    "support/mail/rebus.txt",
-                                    "support/mail/rebus.html", context,
+                                    "hjelp/mail/rebus.txt",
+                                    "hjelp/mail/rebus.html", context,
                                     "{} <{}>".format(request.user.get_full_name(), request.user.email))
 
-            return render(request, 'support/rebus_submitted.html')
+            return render(request, 'hjelp/rebus_submitted.html')
     else:
         form = REBUSForm()
 
     rooms = [room.name for room in get_all_rooms()]
 
-    return render(request, 'support/rebus.html', {'form': form, "props": {"rooms": rooms}})
+    return render(request, 'hjelp/rebus.html', {'form': form, "props": {"rooms": "rooms"}})
 
 
 @login_required
@@ -67,8 +113,8 @@ def feedback(request):
             apps = form.cleaned_data["apps"]
 
             # Register activity
-            act = Activity(title="Du hast uns Feedback gegeben.",
-                           description="Du hast SchoolApps mit {} von 5 Sternen bewertet.".format(
+            act = Activity(title=_("Du hast uns Feedback gegeben."),
+                           description=_("Du hast SchoolApps mit {} von 5 Sternen bewertet.").format(
                                overall_rating), app="Feedback",
                            user=request.user)
             act.save()
@@ -84,14 +130,14 @@ def feedback(request):
                 "ideas": ideas,
                 "user": request.user
             }
-            send_mail_with_template("Feedback von {}".format(request.user.username),
+            send_mail_with_template(_("Feedback von {}").format(request.user.username),
                                     [mail_settings.mail_feedback],
-                                    "support/mail/feedback.txt",
-                                    "support/mail/feedback.html", context,
+                                    "hjelp/mail/feedback.txt",
+                                    "hjelp/mail/feedback.html", context,
                                     "{} <{}>".format(request.user.get_full_name(), request.user.email))
 
-            return render(request, 'support/feedback_submitted.html')
+            return render(request, 'hjelp/feedback_submitted.html')
     else:
         form = FeedbackForm()
 
-    return render(request, 'support/feedback.html', {'form': form})
+    return render(request, 'hjelp/feedback.html', {'form': form})
