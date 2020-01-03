@@ -7,14 +7,14 @@ def show(modeladmin, request, queryset):
     queryset.update(show=True)
 
 
-show.short_description = _("Ausgewählte Fragen veröffentlichen")
+show.short_description = _("Publish selected questions")
 
 
 def hide(modeladmin, request, queryset):
     queryset.update(show=False)
 
 
-hide.short_description = _("Ausgewählte Fragen nicht mehr veröffentlichen")
+hide.short_description = _("Unpublish selected questions")
 
 
 class FAQSectionAdmin(admin.ModelAdmin):
