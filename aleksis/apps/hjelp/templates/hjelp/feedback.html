@@ -1,11 +1,13 @@
 {% include 'partials/header.html' %}
-{% load material_form %}
+{% load material_form i18n %}
 
 
 <main>
 
     <p class="flow-text">
-        Bitte gib uns ein ausführliches und ehrliches Feedback, damit wir SchoolApps noch besser machen können!
+	{% blocktrans %}
+            Bitte gib uns ein ausführliches und ehrliches Feedback, damit wir SchoolApps noch besser machen können!
+	{% endblocktrans %}
     </p>
 
     <form method="post">

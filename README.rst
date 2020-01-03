@@ -1,10 +1,10 @@
-BiscuIT School Information System (SIS) - App Hjelp (FAQ and support)
+AlekSIS School Information System (SIS) - App Hjelp (FAQ and support)
 ======================================================================
 
-BiscuIT
+AlekSIS
 -------
 
-This is an application for use with the `BiscuIT-ng`_ platform.
+This is an application for use with the `AlekSIS`_ platform.
 
 Features
 --------
@@ -29,4 +29,4 @@ full licence text or on the `Europen Union Public Licence`_ website
 https://joinup.ec.europa.eu/collection/eupl/guidelines-users-and-developers
 (including all other official language versions).
 
-.. _BiscuIT-ng: https://edugit.org/BiscuIT/BiscuIT-ng
+.. _AlekSIS: https://edugit.org/AlekSIS/AlekSIS

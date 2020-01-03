@@ -1,5 +1,5 @@
 from django.contrib import admin
-from faq.models import FAQQuestion, FAQSection
+from .models import FAQQuestion, FAQSection
 from django.utils.html import format_html
 
 
@@ -7,14 +7,14 @@ def show(modeladmin, request, queryset):
     queryset.update(show=True)
 
 
-show.short_description = "Ausgewählte Fragen veröffentlichen"
+show.short_description = _("Ausgewählte Fragen veröffentlichen")
 
 
 def hide(modeladmin, request, queryset):
     queryset.update(show=False)
 
 
-hide.short_description = "Ausgewählte Fragen nicht mehr veröffentlichen"
+hide.short_description = _("Ausgewählte Fragen nicht mehr veröffentlichen")
 
 
 class FAQSectionAdmin(admin.ModelAdmin):
