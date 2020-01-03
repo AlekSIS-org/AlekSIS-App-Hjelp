@@ -1,4 +1,4 @@
-AlekSIS School Information System (SIS) - App Hjelp (FAQ and support)
+AlekSIS (School Information System) - App Hjelp (FAQ and support)
 ======================================================================
 
 AlekSIS
