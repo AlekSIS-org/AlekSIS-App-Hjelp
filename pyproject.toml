@@ -1,0 +1,28 @@
+[tool.poetry]
+name = "AlekSIS-App-Hjelp"
+version = "1.0a4dev0"
+packages = [
+    { include = "aleksis" }
+]
+readme = "README.rst"
+
+description = "AlekSIS School Information System (SIS) - App Hjelp (FAQ and Support)"
+authors = ["Hangzhi Yu <mailto:yuha@katharineum.de>", "Julian Leucker <mailto:leuckeju@katharineum.de>", "Jonathan Weth <mailto:wethjo@katharineum.de>", "Frank Poetzsch-Heffter <mailto:p-h@katharineum.de>"]
+license = "EUPL-1.2"
+homepage = "https://aleksis.edugit.io/"
+repository = "https://edugit.org/AlekSIS/AlekSIS-App-Hjelp"
+documentation = "https://aleksis.edugit.io/AlekSIS-ng/docs/html/"
+classifiers = [
+    "Environment :: Web Environment",
+    "Intended Audience :: Education",
+    "Topic :: Education"
+]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+AlekSIS-ng = { path = "../../.." }
+mailer = "^0.8.1"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
