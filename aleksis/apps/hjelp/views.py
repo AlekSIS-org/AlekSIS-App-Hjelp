@@ -35,7 +35,7 @@ def ask(request):
             # Read out form data
             question = form.cleaned_data['question']
 
-           act = Activity(title=_("Du hast uns eine Frage gestellt."), description=question, app="Hjelp",
+           act = Activity(title=_("You have submitted a question."), description=question, app="Hjelp",
                           user=request.user)
             act.save()
 
@@ -73,7 +73,7 @@ def rebus(request):
 
             # Register activity
             desc_act = "{} | {}".format(add_arrows([a, b, c]), short_description)
-            act = Activity(title=_("Du hast uns ein Problem gemeldet."), description=desc_act, app="Hjelp",
+            act = Activity(title=_("You reported a problem."), description=desc_act, app="Hjelp",
                            user=request.user)
             act.save()
 
@@ -113,8 +113,8 @@ def feedback(request):
             apps = form.cleaned_data["apps"]
 
             # Register activity
-            act = Activity(title=_("Du hast uns Feedback gegeben."),
-                           description=_("Du hast SchoolApps mit {} von 5 Sternen bewertet.").format(
+            act = Activity(title=_("You submitted feedback."),
+                           description=_("You rated AlekSIS with {} from 5 stars.").format(
                                overall_rating), app="Feedback",
                            user=request.user)
             act.save()
@@ -130,7 +130,7 @@ def feedback(request):
                 "ideas": ideas,
                 "user": request.user
             }
-            send_mail_with_template(_("Feedback von {}").format(request.user.username),
+            send_mail_with_template(_("Feedback from {}").format(request.user.username),
                                     [mail_settings.mail_feedback],
                                     "hjelp/mail/feedback.txt",
                                     "hjelp/mail/feedback.html", context,
