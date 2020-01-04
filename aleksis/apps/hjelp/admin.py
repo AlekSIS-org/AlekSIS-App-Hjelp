@@ -1,6 +1,7 @@
 from django.contrib import admin
 from .models import FAQQuestion, FAQSection
 from django.utils.html import format_html
+from django.utils.translation import ugettext_lazy as _
 
 
 def show(modeladmin, request, queryset):
