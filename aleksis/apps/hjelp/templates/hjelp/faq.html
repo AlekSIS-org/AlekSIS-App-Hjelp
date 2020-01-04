@@ -50,6 +50,7 @@
         {% else %}
 	    {% blocktrans %}
                 If you have a question please ask one of you site administrators:
+            {% endblocktrans %}
                 <ul>
                     {% for admin in ADMINS %}
                         <li>
@@ -62,7 +63,6 @@
                         </li>
                     {% endfor %}
                 </ul>
-	    {% endblocktrans %}
         {% endif %}
     </p>
 
