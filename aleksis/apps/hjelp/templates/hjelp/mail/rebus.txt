@@ -7,4 +7,4 @@
 Übermittelt von {{ user.get_full_name }} ({{ user.username }})
 
 
-Der Fehlerbericht wurde über REBUS in SchoolApps übermittelt.
+Der Fehlerbericht wurde über REBUS in AlekSIS übermittelt.
