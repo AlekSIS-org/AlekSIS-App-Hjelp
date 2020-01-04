@@ -1,7 +1,7 @@
-{% include 'partials/header.html' %}
 {% load i18n %}
 
-<main>
+
+{% block content %}
 
     <p class="flow-text">
         <i class="material-icons">done_all</i>
@@ -23,6 +23,4 @@
 	{% endblocktrans %}
     </a>
 
-</main>
-
-{% include 'partials/footer.html' %}
+{% endblock %}

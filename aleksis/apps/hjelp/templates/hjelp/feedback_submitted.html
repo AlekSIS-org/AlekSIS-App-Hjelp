@@ -1,8 +1,7 @@
-{% include 'partials/header.html' %}
 {% load i18n %}
 
-<main>
 
+{% block content %}
     <p class="flow-text">
 	{% blocktrans %}
             Thank you for your feedback. It was successfully submitted.
@@ -14,6 +13,4 @@
 	{% blocktrans %}
 	    Back to landing page</a>
         {% endblocktrans %}
-</main>
-
-{% include 'partials/footer.html' %}
+{% endblock %}

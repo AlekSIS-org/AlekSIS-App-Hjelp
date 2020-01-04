@@ -1,7 +1,7 @@
 {% load widget_tweaks i18n %}
-{% include 'partials/header.html' %}
 
-<main>
+
+{% block content %}
     <h4 class="h-with-subtitle">{% blocktrans %}You have a question?{% endblocktrans %}</h4>
     <p class="flow-text">
 	{% blocktrans %}
@@ -23,5 +23,4 @@
         </button>
 
     </form>
-</main>
-{% include 'partials/footer.html' %}
+{% endblock %}

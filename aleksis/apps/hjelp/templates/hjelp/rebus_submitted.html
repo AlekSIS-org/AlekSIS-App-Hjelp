@@ -1,7 +1,5 @@
-{% include 'partials/header.html' %}
-
-<main>
-
+{% load i18n %}
+{% block content %}
     <p class="flow-text">
         <i class="material-icons left">check</i>
 	{% blocktrans %}
@@ -15,7 +13,4 @@
 	    Back to home
 	{% endblocktrans %}
     </a>
-
-</main>
-
-{% include 'partials/footer.html' %}
+{% endblock %}

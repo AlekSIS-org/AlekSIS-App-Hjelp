@@ -1,8 +1,7 @@
-{% include 'partials/header.html' %}
 {% load material_form static i18n %}
 
-<main>
 
+{% block content %}
     <h5>{% blocktrans %}Report a bug – REBUS – REport-A-Bug-System{% endblocktrans %}</h5>
 
     <form method="post" id="rebus-form">
@@ -64,5 +63,4 @@
     {% include "components/react.html" %}
     <script src="{% static "js/rebus.js" %}"></script>
 
-</main>
-{% include 'partials/footer.html' %}
+{% endblock %}
