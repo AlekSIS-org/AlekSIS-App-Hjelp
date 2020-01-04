@@ -6,12 +6,11 @@ from .forms import FAQForm, REBUSForm, FeedbackForm
 
 from datetime import datetime
 
-from dashboard.models import Activity
 
 from .mailer import send_mail_with_template
 
 from untisconnect.api import get_all_rooms
-from dashboard.models import Activity
+from aleksis.core.models import Activity
 
 
 def create_info(text):
