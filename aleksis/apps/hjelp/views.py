@@ -8,7 +8,7 @@ from datetime import datetime
 
 from dashboard.models import Activity
 
-from mailer import send_mail_with_template
+from .mailer import send_mail_with_template
 
 from untisconnect.api import get_all_rooms
 from dashboard.models import Activity
