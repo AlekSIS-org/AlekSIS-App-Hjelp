@@ -1,9 +1,10 @@
 {% extends 'core/base.html' %}
-{% load material_form i18n %}
+{% load material_form i18n static %}
 
 
 {% block content %}
-
+    <link rel="stylesheet" type="text/css" href="{% static "css/hjelp.css" %}" />
+  
     <p class="flow-text">
 	{% blocktrans %}
             Please give us detailed and honest feedback so that we can make AlekSIS even better!
