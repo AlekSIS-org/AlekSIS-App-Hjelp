@@ -21,7 +21,6 @@ classifiers = [
 [tool.poetry.dependencies]
 python = "^3.7"
 AlekSIS = { path = "../../.." }
-mailer = "^0.8.1"
 
 [build-system]
 requires = ["poetry>=0.12"]
