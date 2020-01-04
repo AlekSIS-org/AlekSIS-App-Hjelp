@@ -45,35 +45,19 @@ function _inherits(subClass, superClass) {
 }
 
 /*
- * This file is part of SchoolApps.
+ * This file is part of AlekSIS.
  *
- * SchoolApps is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License.
+ * AlekSIS is free software: you can redistribute it and/or modify
+ * it under the terms of the EUPL as published by
+ * the European Commission, either version 1.2 of the License.
  *
- * SchoolApps is distributed in the hope that it will be useful,
+ * AlekSIS is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
+ * EUPL for more details.
  *
- * You should have received a copy of the GNU General Public License
- * along with SchoolApps.  If not, see <http://www.gnu.org/licenses/>.
- */
-
-/*
- * This file is part of SchoolApps.
- *
- * SchoolApps is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License.
- *
- * SchoolApps is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with SchoolApps.  If not, see <http://www.gnu.org/licenses/>.
+ * You should have received a copy of the EUPL
+ * along with AlekSIS.  If not, see <https://eupl.eu/1.2/en/>.
  */
 
 var OPTIONS_ONLINE_COMMON = ["Portal ist nicht erreichbar", "Fehlermeldung(en) tauchen auf", "Anmeldung funktioniert nicht", "Zugangsdaten vergessen"];
@@ -114,8 +98,8 @@ var BASIC_OPTIONS = [{
         name: "Webmail/Mailserver",
         options: OPTIONS_ONLINE_COMMON.concat(["Mein E-Mail-Programm funktioniert mit meiner …@katharineum.de-Adresse nicht.", "Ich bekomme keine E-Mails bzw. kann keine senden."])
     }, {
-        id: "schoolapps",
-        name: "SchoolApps",
+        id: "aleksis",
+        name: "AlekSIS",
         options: OPTIONS_ONLINE_COMMON.concat(["Der Stundenplan/Vertretungsplan ist falsch.", "Ich bin der falschen Klasse zugeordnet.", "Ich habe einen Fehler gefunden."])
     }, {
         id: "subOrMenu",
