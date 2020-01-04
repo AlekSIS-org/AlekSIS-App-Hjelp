@@ -35,7 +35,7 @@ def ask(request):
             # Read out form data
             question = form.cleaned_data['question']
 
-           act = Activity(title=_("You have submitted a question."), description=question, app="Hjelp",
+            act = Activity(title=_("You have submitted a question."), description=question, app="Hjelp",
                           user=request.user)
             act.save()
 
