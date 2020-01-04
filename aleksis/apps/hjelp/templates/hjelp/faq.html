@@ -1,6 +1,7 @@
 {% load i18n %}
-{% include 'partials/header.html' %}
-<main>
+
+
+{% block content %}
     <h3>FAQ (Frequently Asked Questions)</h3>
     {% for section in sections %}
         <section>
@@ -65,5 +66,4 @@
         {% endif %}
     </p>
 
-</main>
-{% include 'partials/footer.html' %}
+{% endblock %}

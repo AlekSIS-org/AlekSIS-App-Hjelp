@@ -1,8 +1,7 @@
-{% include 'partials/header.html' %}
 {% load material_form i18n %}
 
 
-<main>
+{% block content %}
 
     <p class="flow-text">
 	{% blocktrans %}
@@ -102,5 +101,4 @@
     </form>
 
 
-</main>
-{% include 'partials/footer.html' %}
+{% endblock %}
