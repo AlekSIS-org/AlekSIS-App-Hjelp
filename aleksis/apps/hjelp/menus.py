@@ -5,7 +5,7 @@ MENUS = {
         {
             "name": _("Support"),
             "url": "#",
-            "icon": "help-circle",
+            "icon": "help_circle",
             "root": True,
             "validators": [
                 "menu_generator.validators.is_authenticated",
@@ -15,19 +15,19 @@ MENUS = {
                 {
                     "name": _("Report a Bug"),
                     "url": "rebus",
-                    "icon": "bug",
+                    "icon": "bug_report",
                     "validators": ["menu_generator.validators.is_authenticated"],
                 },
                 {
                     "name": _("Feedback"),
                     "url": "feedback",
-                    "icon": "message-alert",
+                    "icon": "message_alert",
                     "validators": ["menu_generator.validators.is_authenticated"],
                 },
                 {
                     "name": _("FAQ"),
                     "url": "faq",
-                    "icon": "frequently-asked-questions",
+                    "icon": "question_answer",
                     "validators": ["menu_generator.validators.is_superuser"],
                 },
             ],
