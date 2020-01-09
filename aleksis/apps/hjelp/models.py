@@ -4,6 +4,8 @@ from django.utils.translation import ugettext_lazy as _
 
 from .model_helper import COLORS, ICONS
 
+from ckeditor.fields import RichTextField
+
 
 class Support(models.Model):
     class Meta:
@@ -34,11 +36,7 @@ class FAQQuestion(models.Model):
                             verbose_name=_("Symbol"))
 
     show = models.BooleanField(verbose_name=_("Published"), default=False)
-    answer_text = models.TextField(blank=True,
-                                   help_text=_("You can use HTML syntax in the FAQ-answers!<br> Because of "
-                                               "our CSS framework all <strong>&lt;ul&gt;</strong>-Elements "
-                                               "must have the CSS class <em>browser-default</em>!"),
-                                   verbose_name=_("Answer"))
+    answer_text = RichTextField()
 
     section = models.ForeignKey(FAQSection, on_delete=models.CASCADE, blank=True, related_name="questions",
                                 verbose_name=_("Section"))
