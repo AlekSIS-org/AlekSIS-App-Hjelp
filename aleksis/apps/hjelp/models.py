@@ -35,9 +35,9 @@ class FAQQuestion(models.Model):
 
     show = models.BooleanField(verbose_name=_("Published"), default=False)
     answer_text = models.TextField(blank=True,
-                                   help_text=_("You can use HTML-syntax in the FAQ-answers!<br> Because of "
-                                               "our CSS-framework all <strong>&lt;ul&gt;</strong>-Elements "
-                                               "must have the CSS-class <em>browser-default</em>!"),
+                                   help_text=_("You can use HTML syntax in the FAQ-answers!<br> Because of "
+                                               "our CSS framework all <strong>&lt;ul&gt;</strong>-Elements "
+                                               "must have the CSS class <em>browser-default</em>!"),
                                    verbose_name=_("Answer"))
 
     section = models.ForeignKey(FAQSection, on_delete=models.CASCADE, blank=True, related_name="questions",
