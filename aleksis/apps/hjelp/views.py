@@ -10,7 +10,7 @@ from constance import config
 
 from .mailer import send_mail_with_template
 
-from untisconnect.api import get_all_rooms
+from aleksis.apps.chronos.models import Room
 from aleksis.core.models import Activity
 
 
@@ -93,7 +93,7 @@ def rebus(request):
     else:
         form = REBUSForm()
 
-    rooms = [room.name for room in get_all_rooms()]
+    rooms = [room.name for room in Room.objects.all()]
 
     return render(request, 'hjelp/rebus.html', {'form': form, "props": {"rooms": "rooms"}})
 
