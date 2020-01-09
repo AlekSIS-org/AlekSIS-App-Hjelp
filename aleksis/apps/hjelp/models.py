@@ -45,6 +45,3 @@ class FAQQuestion(models.Model):
     class Meta:
         verbose_name = _("FAQ questions")
         verbose_name_plural = _("FAQ questions")
-
-
-mail_settings = MailSettings(_("Mail adresses"))
