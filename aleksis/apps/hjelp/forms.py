@@ -1,5 +1,7 @@
 from django import forms
 from django.utils.translation import ugettext_lazy as _
+from django_select2.forms import Select2Widget
+from .models import REBUSSelectModel
 
 
 class FAQForm(forms.Form):
@@ -7,7 +9,7 @@ class FAQForm(forms.Form):
                                label=_("Your questions"), required=True)
 
 
-class REBUSForm(forms.Form):
+class REBUSForm_old(forms.Form):
     a = forms.CharField(label=_("Category A"), required=True)
     b = forms.CharField(label=_("Category B"), required=False)
     c = forms.CharField(label=_("Category C"), required=False)
@@ -54,3 +56,22 @@ class FeedbackForm(forms.Form):
         label=_("Do you have some Ideas what we could implement in AlekSIS?"),
         required=False,
         widget=forms.Textarea)
+
+
+class REBUSForm(forms.Form):
+    selects = []
+    for select in REBUSSelectModel.objects.filter(toplevel=True):
+        choices = []
+
+        for s in select.children:
+            choices.append(s.name)
+
+        choice_field = forms.ChoiceField(
+            label=_(select.name),
+            widget=Select2Widget(),
+            choices=choices,
+        )
+
+    short_description = forms.CharField(label=_("Please describe the error in one sentence."), required=True)
+    long_description = forms.CharField(widget=forms.Textarea, label=_("Please describe the error more detailed."),
+                                       required=False)
