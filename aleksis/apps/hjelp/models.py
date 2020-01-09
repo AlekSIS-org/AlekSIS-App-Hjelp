@@ -53,7 +53,7 @@ class FAQQuestion(models.Model):
 
 class BugReportSelectModel(models.Model):
     name = models.CharField(max_length=40, verbose_name=_("Category name"))
-    icon = models.CharField(max_length=50, verbose_name=_("icon"), blank=True)
+    icon = models.CharField(max_length=50, verbose_name=_("Icon"), blank=True)
     parent = models.ForeignKey("self", related_name="children", on_delete=models.CASCADE)
 
     toplevel = models.BooleanField(verbose_name=_("Top-level select or optgroup"), null=True, blank=True)
