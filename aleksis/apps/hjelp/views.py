@@ -93,7 +93,7 @@ def rebus(request):
     else:
         form = REBUSForm()
 
-    rooms = [room.name for room in get_all_rooms()]
+    rooms = [room.name for room in Room.objects.all()]
 
     return render(request, 'hjelp/rebus.html', {'form': form, "props": {"rooms": "rooms"}})
 
