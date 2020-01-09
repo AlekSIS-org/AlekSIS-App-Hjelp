@@ -56,4 +56,4 @@ class BugReportSelectModel(models.Model):
     icon = models.CharField(max_length=50, verbose_name=_("icon"), blank=True)
     parent = models.ForeignKey("self", related_name="children", on_delete=models.CASCADE)
 
-    toplevel = models.BooleanField(verbose_name=_("toplevel select or optgroup"), null=True, blank=True)
+    toplevel = models.BooleanField(verbose_name=_("Top-level select or optgroup"), null=True, blank=True)
