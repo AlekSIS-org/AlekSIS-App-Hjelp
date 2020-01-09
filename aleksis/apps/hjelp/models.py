@@ -5,11 +5,11 @@ from django.utils.translation import ugettext_lazy as _
 
 from .model_helper import COLORS, ICONS
 
-
 class MailSettings(dbsettings.Group):
     mail_rebus = dbsettings.EmailValue(_("Email address for REBUS"))
     mail_feedback = dbsettings.EmailValue(_("Email address for Feedback"))
     mail_questions = dbsettings.EmailValue(_("Email address for questions/help"))
+
 
 
 class Support(models.Model):
