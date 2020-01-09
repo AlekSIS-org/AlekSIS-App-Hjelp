@@ -1,10 +1,11 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.utils.translation import ugettext_lazy as _
-from .models import FAQSection, FAQQuestion, mail_settings
+from .models import FAQSection, FAQQuestion
 from .forms import FAQForm, REBUSForm, FeedbackForm
 
 from datetime import datetime
+from constance import config
 
 
 from .mailer import send_mail_with_template
@@ -42,7 +43,7 @@ def ask(request):
                 "question": question,
                 "user": request.user
             }
-            send_mail_with_template("[FAQ QUESTION] {}".format(question), [mail_settings.mail_questions],
+            send_mail_with_template("[FAQ QUESTION] {}".format(question), [config.MAIL_QUESTIONS],
                                     "hjelp/mail/question.txt",
                                     "hjelp/mail/question.html", context,
                                     "{} <{}>".format(request.user.get_full_name(), request.user.email))
@@ -83,7 +84,7 @@ def rebus(request):
                 "long_desc": long_description,
                 "user": request.user
             }
-            send_mail_with_template("[REBUS] {}".format(short_description), [mail_settings.mail_rebus],
+            send_mail_with_template("[REBUS] {}".format(short_description), [config.MAIL_REBUS],
                                     "hjelp/mail/rebus.txt",
                                     "hjelp/mail/rebus.html", context,
                                     "{} <{}>".format(request.user.get_full_name(), request.user.email))
@@ -130,7 +131,7 @@ def feedback(request):
                 "user": request.user
             }
             send_mail_with_template(_("Feedback from {}").format(request.user.username),
-                                    [mail_settings.mail_feedback],
+                                    [config.MAIL_FEEDBACK],
                                     "hjelp/mail/feedback.txt",
                                     "hjelp/mail/feedback.html", context,
                                     "{} <{}>".format(request.user.get_full_name(), request.user.email))
