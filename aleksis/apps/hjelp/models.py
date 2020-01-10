@@ -36,7 +36,10 @@ class FAQQuestion(models.Model):
                             verbose_name=_("Symbol"))
 
     show = models.BooleanField(verbose_name=_("Published"), default=False)
-    answer_text = RichTextField(help_text="")
+    answer_text = RichTextField(help_text="Aus Gründen des "
+                                        "verwendeten CSS-Frameworks muss der Tag <strong>&lt;ul&gt;</strong> die "
+                                        "CSS-Klasse <em>browser-default</em> besitzen! "
+                                        "Bitte verwende hierzu den manuellen Bearbeitungsmodus.")
 
     section = models.ForeignKey(FAQSection, on_delete=models.CASCADE, blank=True, related_name="questions",
                                 verbose_name=_("Section"))
