@@ -4,6 +4,9 @@ from django.utils.translation import ugettext_lazy as _
 
 from .model_helper import COLORS, ICONS
 
+from ckeditor.fields import RichTextField
+
+
 class Support(models.Model):
     class Meta:
         permissions = (
@@ -15,7 +18,8 @@ class Support(models.Model):
 class FAQSection(models.Model):
     name = models.CharField(max_length=200, verbose_name=_("Name"))
 
-    icon = models.CharField(max_length=50, blank=True, default="question_answer", choices=ICONS, verbose_name=_("Symbol"))
+    icon = models.CharField(max_length=50, blank=True, default="question_answer", choices=ICONS,
+                            verbose_name=_("Symbol"))
     icon_color = models.CharField(max_length=20, default="black", choices=COLORS, verbose_name=_("Symbol colour"))
 
     def __str__(self):
@@ -28,13 +32,11 @@ class FAQSection(models.Model):
 
 class FAQQuestion(models.Model):
     question_text = models.TextField(verbose_name=_("Question"))
-    icon = models.CharField(max_length=50, blank=True, default="question_answer", choices=ICONS, verbose_name=_("Symbol"))
+    icon = models.CharField(max_length=50, blank=True, default="question_answer", choices=ICONS,
+                            verbose_name=_("Symbol"))
 
     show = models.BooleanField(verbose_name=_("Published"), default=False)
-    answer_text = models.TextField(blank=True,
-                                   help_text=_("Bei den Antworten funktioniert auch HTML-Syntax!<br> Aus Gründen des "
-                                             "verwendeten CSS-Frameworks muss der Tag <strong>&lt;ul&gt;</strong> die "
-                                             "CSS-Klasse <em>browser-default</em> besitzen!"), verbose_name=_("Answer"))
+    answer_text = RichTextField(help_text="")
 
     section = models.ForeignKey(FAQSection, on_delete=models.CASCADE, blank=True, related_name="questions",
                                 verbose_name=_("Section"))
@@ -45,3 +47,11 @@ class FAQQuestion(models.Model):
     class Meta:
         verbose_name = _("FAQ questions")
         verbose_name_plural = _("FAQ questions")
+
+
+class BugReportSelectModel(models.Model):
+    name = models.CharField(max_length=40, verbose_name=_("Category name"))
+    icon = models.CharField(max_length=50, verbose_name=_("Icon"), blank=True)
+    parent = models.ForeignKey("self", related_name="children", on_delete=models.CASCADE)
+
+    toplevel = models.BooleanField(verbose_name=_("Top-level select or optgroup"), null=True, blank=True)

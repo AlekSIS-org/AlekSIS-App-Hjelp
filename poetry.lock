@@ -1,6 +1,7 @@
 [[package]]
 category = "main"
 description = ""
+develop = true
 name = "aleksis"
 optional = false
 python-versions = "^3.7"
@@ -399,10 +400,6 @@ version = "3.0.1"
 [package.dependencies]
 Django = ">=1.11.3"
 babel = "*"
-
-[package.dependencies.phonenumbers]
-optional = true
-version = ">=7.0.2"
 
 [package.extras]
 phonenumbers = ["phonenumbers (>=7.0.2)"]
@@ -812,7 +809,7 @@ description = "Twilio API client and TwiML generator"
 name = "twilio"
 optional = false
 python-versions = "*"
-version = "6.35.1"
+version = "6.35.2"
 
 [package.dependencies]
 PyJWT = ">=1.4.2"
@@ -1179,7 +1176,7 @@ tqdm = [
     {file = "tqdm-4.41.1.tar.gz", hash = "sha256:4789ccbb6fc122b5a6a85d512e4e41fc5acad77216533a6f2b8ce51e0f265c23"},
 ]
 twilio = [
-    {file = "twilio-6.35.1.tar.gz", hash = "sha256:c784e55d150ebeb2ba837afbab7168edfb91db57e77a9da49f2a1892688a1930"},
+    {file = "twilio-6.35.2.tar.gz", hash = "sha256:a086443642c0e1f13c8f8f087b426ca81ec883efbe496d8279180a49bb9287bc"},
 ]
 urllib3 = [
     {file = "urllib3-1.25.7-py2.py3-none-any.whl", hash = "sha256:a8a318824cc77d1fd4b2bec2ded92646630d7fe8619497b142c84a9e6f5a7293"},
