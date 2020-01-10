@@ -36,7 +36,7 @@ class FAQQuestion(models.Model):
                             verbose_name=_("Symbol"))
 
     show = models.BooleanField(verbose_name=_("Published"), default=False)
-    answer_text = RichTextField()
+    answer_text = RichTextField(help_text="")
 
     section = models.ForeignKey(FAQSection, on_delete=models.CASCADE, blank=True, related_name="questions",
                                 verbose_name=_("Section"))
