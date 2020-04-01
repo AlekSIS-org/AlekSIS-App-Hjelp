@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-04 15:02+0100\n"
+"POT-Creation-Date: 2020-04-01 13:24+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -94,75 +94,67 @@ msgstr ""
 msgid "FAQ"
 msgstr ""
 
-#: models.py:9
-msgid "Email address for REBUS"
-msgstr ""
-
-#: models.py:10
-msgid "Email address for Feedback"
-msgstr ""
-
-#: models.py:11
-msgid "Email address for questions/help"
-msgstr ""
-
-#: models.py:18
+#: models.py:13
 msgid "Can use REBUS"
 msgstr ""
 
-#: models.py:19
+#: models.py:14
 msgid "Can send feedback"
 msgstr ""
 
-#: models.py:24
+#: models.py:19
 msgid "Name"
 msgstr ""
 
-#: models.py:26 models.py:39
+#: models.py:22 models.py:36
 msgid "Symbol"
 msgstr ""
 
-#: models.py:27
+#: models.py:23
 msgid "Symbol colour"
 msgstr ""
 
-#: models.py:33
+#: models.py:29
 msgid "FAQ section"
 msgstr ""
 
-#: models.py:34
+#: models.py:30
 msgid "FAQ sections"
 msgstr ""
 
-#: models.py:38
+#: models.py:34
 msgid "Question"
 msgstr ""
 
-#: models.py:41
+#: models.py:38
 msgid "Published"
 msgstr ""
 
-#: models.py:43
+#: models.py:39
 msgid ""
-"Bei den Antworten funktioniert auch HTML-Syntax!<br> Aus Gründen des "
-"verwendeten CSS-Frameworks muss der Tag <strong>&lt;ul&gt;</strong> die CSS-"
-"Klasse <em>browser-default</em> besitzen!"
+"Because of our CSS framework the HTML tag <strong>&lt;ul&gt;</strong> must "
+"have the CSS class <em>browser-default</em>. In this case, please use the "
+"manual editor mode."
 msgstr ""
 
 #: models.py:45
-msgid "Answer"
-msgstr ""
-
-#: models.py:48
 msgid "Section"
 msgstr ""
 
-#: models.py:54 models.py:55
+#: models.py:51 models.py:52
 msgid "FAQ questions"
 msgstr ""
 
-#: models.py:58
-msgid "Mail adresses"
+#: models.py:56
+msgid "Category name"
+msgstr ""
+
+#: models.py:57
+msgid "Icon"
+msgstr ""
+
+#: models.py:60
+msgid "Top-level select or optgroup"
 msgstr ""
 
 #: templates/hjelp/ask.html:6
@@ -300,22 +292,22 @@ msgid ""
 "\t"
 msgstr ""
 
-#: views.py:37
+#: views.py:38
 msgid "You have submitted a question."
 msgstr ""
 
-#: views.py:75
+#: views.py:76
 msgid "You reported a problem."
 msgstr ""
 
-#: views.py:115
+#: views.py:116
 msgid "You submitted feedback."
 msgstr ""
 
-#: views.py:116
+#: views.py:117
 msgid "You rated AlekSIS with {} from 5 stars."
 msgstr ""
 
-#: views.py:132
+#: views.py:133
 msgid "Feedback from {}"
 msgstr ""
