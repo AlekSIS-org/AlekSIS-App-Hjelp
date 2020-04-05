@@ -30,7 +30,7 @@ class REBUSForm(forms.Form):
             toplevel=False
         ),
         widget=ModelSelect2Widget(
-            search_fields=["name__icontains"], attrs={"data-minimum-input-length": 0}, dependent_fields={'a': 'parent'}
+            search_fields=["name__icontains"], attrs={"data-minimum-input-length": 0}, dependent_fields={'bug_category_1': 'parent'}
         ),
     )
     bug_category_3 = forms.ModelChoiceField(
@@ -40,7 +40,7 @@ class REBUSForm(forms.Form):
             toplevel=False
         ),
         widget=ModelSelect2Widget(
-            search_fields=["name__icontains"], attrs={"data-minimum-input-length": 0}, dependent_fields={'b': 'parent'}
+            search_fields=["name__icontains"], attrs={"data-minimum-input-length": 0}, dependent_fields={'bug_category_2': 'parent'}
         ),
     )
     short_description = forms.CharField(
