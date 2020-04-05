@@ -65,21 +65,21 @@ def rebus(request):
         form = REBUSForm(request.POST)
         if form.is_valid():
             # Read out form data
-            a = form.cleaned_data['a']
-            b = form.cleaned_data["b"]
-            c = form.cleaned_data["c"]
+            bug_category_1 = str(form.cleaned_data['bug_category_1'])
+            bug_category_2 = str(form.cleaned_data['bug_category_2'])
+            bug_category_3 = str(form.cleaned_data['bug_category_2'])
             short_description = form.cleaned_data['short_description']
             long_description = form.cleaned_data['long_description']
 
             # Register activity
-            desc_act = "{} | {}".format(add_arrows([a, b, c]), short_description)
+            desc_act = "{} | {}".format(add_arrows([bug_category_1, bug_category_2, bug_category_3]), short_description)
             act = Activity(title=_("You reported a problem."), description=desc_act, app="Hjelp",
                            user=request.user)
             act.save()
 
             # Send mail
             context = {
-                "arrow_list": add_arrows([a, b, c]),
+                "arrow_list": add_arrows([bug_category_1, bug_category_2, bug_category_3]),
                 "short_desc": short_description,
                 "long_desc": long_description,
                 "user": request.user

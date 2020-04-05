@@ -52,9 +52,17 @@ class FAQQuestion(models.Model):
         verbose_name_plural = _("FAQ questions")
 
 
-class BugReportSelectModel(models.Model):
+class REBUSCategory(models.Model):
     name = models.CharField(max_length=40, verbose_name=_("Category name"))
-    icon = models.CharField(max_length=50, verbose_name=_("Icon"), blank=True)
-    parent = models.ForeignKey("self", related_name="children", on_delete=models.CASCADE)
+    icon = models.CharField(max_length=50, blank=True, default="bug_report", choices=ICONS,
+                            verbose_name=_("Symbol"))
+    parent = models.ForeignKey("self", related_name="children", on_delete=models.CASCADE, blank=True,
+                               null=True, verbose_name=_("Parent"))
+    toplevel = models.BooleanField(verbose_name=_("Top-level select"), default=False)
 
-    toplevel = models.BooleanField(verbose_name=_("Top-level select or optgroup"), null=True, blank=True)
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = _("Bug report choice")
+        verbose_name_plural = _("Bug report choices")
