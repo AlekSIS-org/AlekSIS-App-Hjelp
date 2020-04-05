@@ -33,7 +33,7 @@
             <div class="input-field col s12 support-input-mobile">
                 <i class="material-icons prefix">help</i>
                 {{ form.short_description }}
-                <label for="{{ form.short_description.id_for_label }}">{% blocktrans %}Please describe your issue in<strong>one</strong> sentence{% endblocktrans %}</label>
+                <label for="{{ form.short_description.id_for_label }}">{% blocktrans %}Please describe your issue in <strong>one</strong> sentence{% endblocktrans %}</label>
             </div>
         </div>
 
@@ -44,10 +44,7 @@
                 <textarea id="{{ form.long_description.id_for_label }}" name="{{ form.long_description.html_name }}"
                           class="materialize-textarea">
                 </textarea>
-
-                <label for="{{ form.long_description.id_for_label }}">{% blocktrans %}Please describe your issue
-                    <strong>more detailed</strong> (optional){% endblocktrans %}
-                </label>
+                <label for="{{ form.long_description.id_for_label }}">{% blocktrans %}Please describe your issue <strong>more detailed</strong> (optional){% endblocktrans %}</label>
             </div>
         </div>
 
