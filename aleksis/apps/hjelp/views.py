@@ -67,7 +67,7 @@ def rebus(request):
             # Read out form data
             bug_category_1 = str(form.cleaned_data['bug_category_1'])
             bug_category_2 = str(form.cleaned_data['bug_category_2'])
-            bug_category_3 = str(form.cleaned_data['bug_category_2'])
+            bug_category_3 = str(form.cleaned_data['bug_category_3'])
             short_description = form.cleaned_data['short_description']
             long_description = form.cleaned_data['long_description']
 
