@@ -64,5 +64,5 @@ class REBUSCategory(models.Model):
         return self.name
 
     class Meta:
-        verbose_name = _("Bug report choice")
-        verbose_name_plural = _("Bug report choices")
+        verbose_name = _("Bug report category")
+        verbose_name_plural = _("Bug report categories")
