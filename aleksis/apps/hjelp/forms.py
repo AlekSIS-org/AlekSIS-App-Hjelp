@@ -16,21 +16,20 @@ class REBUSForm(forms.Form):
     bug_category_1 = forms.ModelChoiceField(
         label=_("Category A"),
         required=True,
-        queryset=REBUSCategory.objects.filter(parent=None).filter(
-            toplevel=False
-        ),
+        queryset=REBUSCategory.objects.filter(parent=None).filter(toplevel=False),
         widget=ModelSelect2Widget(
-            search_fields=["name__icontains"], attrs={"data-minimum-input-length": 0}
+            search_fields=["name__icontains"],
+            attrs={"data-minimum-input-length": 0},
         ),
     )
     bug_category_2 = forms.ModelChoiceField(
         label=_("Category B"),
         required=False,
-        queryset=REBUSCategory.objects.exclude(parent=None).filter(
-            toplevel=False
-        ),
+        queryset=REBUSCategory.objects.exclude(parent=None).filter(toplevel=False),
         widget=ModelSelect2Widget(
-            search_fields=["name__icontains"], attrs={"data-minimum-input-length": 0}, dependent_fields={'bug_category_1': 'parent'}
+            dependent_fields={"bug_category_1": "parent"},
+            search_fields=["name__icontains"],
+            attrs={"data-minimum-input-length": 0},
         ),
     )
     bug_category_3 = forms.ModelChoiceField(
@@ -40,7 +39,9 @@ class REBUSForm(forms.Form):
             toplevel=False
         ),
         widget=ModelSelect2Widget(
-            search_fields=["name__icontains"], attrs={"data-minimum-input-length": 0}, dependent_fields={'bug_category_2': 'parent'}
+            search_fields=["name__icontains"],
+            attrs={"data-minimum-input-length": 0},
+            dependent_fields={'bug_category_2': 'parent'},
         ),
     )
     short_description = forms.CharField(

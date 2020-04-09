@@ -17,13 +17,13 @@
         <p class="red-text">{{ form.non_field_errors }}</p>
 
         <div class="row">
-            <div class="input col s4 support-input-mobile browser-default">
+            <div id="{{ form.bug_category_1.auto_id }}" class="input col s4 support-input-mobile browser-default">
                 {{ form.bug_category_1 }}
             </div>
-            <div class="input col s4 support-input-mobile browser-default">
+            <div id="{{ form.bug_category_2.auto_id }}" class="input col s4 support-input-mobile browser-default" style="display: none">
                 {{ form.bug_category_2 }}
             </div>
-            <div class="input col s4 support-input-mobile browser-default">
+            <div id="{{ form.bug_category_3.auto_id }}" class="input col s4 support-input-mobile browser-default" style="display: none">
                 {{ form.bug_category_3 }}
             </div>
         </div>
@@ -61,9 +61,12 @@
                 M.toast({html: "<i class='material-icons left'>error</i>Bitte fülle alle benötigten Felder aus!"})
             }
         });
-
+        $("#{{ form.bug_category_1.auto_id }}").on('input', function() {
+            $("#{{ form.bug_category_2.auto_id }}").show();
+        });
+        $("#{{ form.bug_category_2.auto_id }}").on('input', function() {
+            $("#{{ form.bug_category_3.auto_id }}").show();
+        });
     </script>
-    {{ form.media.js }}
-    <script src="{% static "js/materialize-select2.js" %}"></script>
 
 {% endblock %}
