@@ -1,5 +1,5 @@
 {% extends 'core/base.html' %}
-{% load material_form static i18n %}
+{% load static i18n %}
 
 {% block extra_head %}
     {{ form.media.css }}
@@ -12,7 +12,6 @@
 
     <form method="post" id="rebus-form">
         {% csrf_token %}
-
 
         <p class="red-text">{{ form.non_field_errors }}</p>
 
