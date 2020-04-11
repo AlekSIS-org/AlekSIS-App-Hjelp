@@ -16,13 +16,16 @@
         <p class="red-text">{{ form.non_field_errors }}</p>
 
         <div class="row">
-            <div id="{{ form.bug_category_1.auto_id }}" class="input col s4 support-input-mobile browser-default">
+            <div id="{{ form.bug_category_1.auto_id }}" class="input col support-input-mobile browser-default">
+                {{ form.bug_category_1.label_tag }}
                 {{ form.bug_category_1 }}
             </div>
-            <div id="{{ form.bug_category_2.auto_id }}" class="input col s4 support-input-mobile browser-default" style="display: none">
+            <div id="{{ form.bug_category_2.auto_id }}" class="input col support-input-mobile browser-default" style="display: none">
+                {{ form.bug_category_2.label_tag }}
                 {{ form.bug_category_2 }}
             </div>
-            <div id="{{ form.bug_category_3.auto_id }}" class="input col s4 support-input-mobile browser-default" style="display: none">
+            <div id="{{ form.bug_category_3.auto_id }}" class="input col support-input-mobile browser-default" style="display: none">
+                {{ form.bug_category_3.label_tag }}
                 {{ form.bug_category_3 }}
             </div>
         </div>
