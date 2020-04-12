@@ -58,3 +58,11 @@
 .support-input-mobile label {
     line-height: 1rem;
 }
+
+.bug-category-icon {
+    flex-basis: 45px;
+}
+
+.bug-category-field {
+    flex-grow: 1;
+}

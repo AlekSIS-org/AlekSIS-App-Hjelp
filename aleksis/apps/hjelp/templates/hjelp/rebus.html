@@ -17,31 +17,32 @@
 
         <div class="row">
             <div id="{{ form.bug_category_1.auto_id }}" class="input col s12 m4 support-input-mobile browser-default">
-                <div class="row">
-                    <div id="bug_category_1_icon" class="col s2">
+                <div class="flex-row">
+                    <div id="bug_category_1_icon" class="bug-category-icon">
                         <i class="material-icons prefix small">bug_report</i>
                     </div>
-                    <div class="col s10">
+                    <div class="bug-category-field">
                         {{ form.bug_category_1.label_tag }}
                         {{ form.bug_category_1 }}
                     </div>
                 </div>
             </div>
             <div id="{{ form.bug_category_2.auto_id }}" class="input col s12 m4 support-input-mobile browser-default" style="display: none">
-                <div class="row">
-                    <div id="bug_category_2_icon" class="col s2">
+                <div class="flex-row">
+                    <div id="bug_category_2_icon" class="bug-category-icon">
+                        <i class="material-icons prefix small">bug_report</i>
                     </div>
-                    <div class="col s10">
+                    <div class="bug-category-field">
                         {{ form.bug_category_2.label_tag }}
                         {{ form.bug_category_2 }}
                     </div>
                 </div>
             </div>
             <div id="{{ form.bug_category_3.auto_id }}" class="input col s12 m4 support-input-mobile browser-default" style="display: none">
-                <div class="row">
-                    <div id="bug_category_3_icon" class="col s2">
+                <div class="flex-row">
+                    <div id="bug_category_3_icon" class="bug-category-icon">
                     </div>
-                    <div class="col s10">
+                    <div class="bug-category-field">
                         {{ form.bug_category_3.label_tag }}
                         {{ form.bug_category_3 }}
                     </div>
@@ -84,33 +85,33 @@
                 M.toast({html: "<i class='material-icons left'>error</i>Bitte fülle alle benötigten Felder aus!"})
             }
         });
-        $("#{{ form.bug_category_1.auto_id }}").on('input', function() {
-            var category = $('#{{ form.bug_category_1.auto_id }} :selected').text();
+        $.fn.setIcons = function (field_id, icon_id) {
+            var category = $('#' + field_id).find(':selected').text();
+            console.log(category);
             $.ajax({
-                url: '/app/hjelp/ajax/rebus_get_icon/',
+                url: '{% url "rebus-get-icon" %}',
                 data: {
                     'category': category
                 },
                 dataType: 'json',
                 success: function (data) {
-                    $("#bug_category_2_icon").html("<i class=\"material-icons prefix small\">" + data.icon + "</i>");
+                    $(icon_id).html("<i class=\"material-icons prefix small\">" + data.icon + "</i>");
                 }
             });
-            $("#{{ form.bug_category_2.auto_id }}").show();
+        }
+        $("#{{ form.bug_category_1.auto_id }}").on('input', function() {
+            $.fn.setIcons(this.id, "#bug_category_2_icon")
+            if ($("#{{ form.bug_category_2.auto_id }}").is(':hidden')) {
+                $("#{{ form.bug_category_2.auto_id }}").show();
+            } else if ($("#{{ form.bug_category_3.auto_id }}").is(':visible')) {
+                $("#{{ form.bug_category_3.auto_id }}").hide();
+            }
         });
         $("#{{ form.bug_category_2.auto_id }}").on('input', function() {
-            var category = $('#{{ form.bug_category_2.auto_id }} :selected').text();
-            $.ajax({
-                url: '/app/hjelp/ajax/rebus_get_icon/',
-                data: {
-                    'category': category
-                },
-                dataType: 'json',
-                success: function (data) {
-                    $("#bug_category_3_icon").html("<i class=\"material-icons prefix\">" + data.icon + "</i>");
-                }
-            });
-            $("#{{ form.bug_category_3.auto_id }}").show();
+            $.fn.setIcons(this.id, "#bug_category_3_icon")
+            if ($("#{{ form.bug_category_3.auto_id }}").is(':hidden')) {
+                $("#{{ form.bug_category_3.auto_id }}").show();
+            }
         });
     </script>
 
