@@ -5,7 +5,6 @@ from django.utils.translation import ugettext_lazy as _
 from .models import FAQSection, FAQQuestion, REBUSCategory
 from .forms import FAQForm, REBUSForm, FeedbackForm
 
-from datetime import datetime
 from constance import config
 
 
