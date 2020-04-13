@@ -71,7 +71,12 @@ def add_arrows(array: list):
 
 def rebus_get_next_properties(request):
     category = request.GET.get("category", None)
-    next_properties = {"icon": REBUSCategory.objects.get(name=category).icon, "tagging": REBUSCategory.objects.get(name=category).tagging, "placeholder": REBUSCategory.objects.get(name=category).placeholder, "has_children": REBUSCategory.objects.get(name=category).children.exists()}
+    next_properties = {
+        "icon": REBUSCategory.objects.get(name=category).icon,
+        "free_text": REBUSCategory.objects.get(name=category).free_text,
+        "placeholder": REBUSCategory.objects.get(name=category).placeholder,
+        "has_children": REBUSCategory.objects.get(name=category).children.exists(),
+    }
     return JsonResponse(next_properties)
 
 
@@ -84,12 +89,13 @@ def rebus(request):
             bug_category_1 = str(form.cleaned_data["bug_category_1"])
             bug_category_2 = str(form.cleaned_data["bug_category_2"])
             bug_category_3 = str(form.cleaned_data["bug_category_3"])
+            bug_category_free_text = form.cleaned_data["bug_category_free_text"]
             short_description = form.cleaned_data["short_description"]
             long_description = form.cleaned_data["long_description"]
 
             # Register activity
             desc_act = "{} | {}".format(
-                add_arrows([bug_category_1, bug_category_2, bug_category_3]),
+                add_arrows([bug_category_1, bug_category_2, bug_category_3, bug_category_free_text]),
                 short_description,
             )
             act = Activity(
@@ -103,7 +109,7 @@ def rebus(request):
             # Send mail
             context = {
                 "arrow_list": add_arrows(
-                    [bug_category_1, bug_category_2, bug_category_3]
+                    [bug_category_1, bug_category_2, bug_category_3, bug_category_free_text]
                 ),
                 "short_desc": short_description,
                 "long_desc": long_description,

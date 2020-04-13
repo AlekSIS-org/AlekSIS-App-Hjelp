@@ -58,11 +58,16 @@ class REBUSCategory(models.Model):
                             verbose_name=_("Symbol"))
     parent = models.ForeignKey("self", related_name="children", on_delete=models.CASCADE, blank=True,
                                null=True, verbose_name=_("Parent"))
-    tagging = models.BooleanField(verbose_name=_("Tagging allowed"), default=False)
+    free_text = models.BooleanField(verbose_name=_("Free text input allowed"), default=False)
     placeholder = models.CharField(max_length=100, verbose_name=_("Placeholder"), blank=True, null=True)
 
     def __str__(self):
         return self.name
+
+    def save(self, *args, **kwargs):
+        if self.free_text:
+            REBUSCategory.objects.filter(parent=self).delete()
+        super(REBUSCategory, self).save(*args, **kwargs)
 
     class Meta:
         verbose_name = _("Bug report category")

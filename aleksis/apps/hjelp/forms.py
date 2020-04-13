@@ -20,7 +20,11 @@ class REBUSForm(forms.Form):
         widget=ModelSelect2Widget(
             model=REBUSCategory,
             search_fields=["name__icontains"],
-            attrs={"data-minimum-input-length": 0, "class": "browser-default", "data-placeholder": _("Select a category")},
+            attrs={
+                "data-minimum-input-length": 0,
+                "class": "browser-default",
+                "data-placeholder": _("Select a category"),
+            },
         ),
     )
     bug_category_2 = forms.ModelChoiceField(
@@ -42,6 +46,10 @@ class REBUSForm(forms.Form):
             search_fields=["name__icontains"],
             attrs={"data-minimum-input-length": 0, "class": "browser-default"},
         ),
+    )
+    bug_category_free_text = forms.CharField(
+        label=_("Please specify the error according to the chosen category."),
+        required=False,
     )
     short_description = forms.CharField(
         label=_("Please describe the error in one sentence."), required=True

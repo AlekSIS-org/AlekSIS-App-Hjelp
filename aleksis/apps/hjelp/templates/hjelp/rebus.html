@@ -16,31 +16,41 @@
         <p class="red-text">{{ form.non_field_errors }}</p>
 
         <div class="row">
-            <div id="{{ form.bug_category_1.auto_id }}" class="input col s12 m4 support-input-mobile browser-default">
+            <div id="{{ form.bug_category_1.auto_id }}" class="input col s12 m4 browser-default">
                 <div class="flex-row">
                     <div id="bug_category_1_icon" class="bug-category-icon">
                         <i class="material-icons prefix small">bug_report</i>
                     </div>
-                    <div class="bug-category-field">
+                    <div class="support-input-mobile bug-category-field">
                         {{ form.bug_category_1 }}
                     </div>
                 </div>
             </div>
-            <div id="{{ form.bug_category_2.auto_id }}" class="input col s12 m4 support-input-mobile browser-default" style="display: none">
+            <div id="{{ form.bug_category_2.auto_id }}" class="input col s12 m4 browser-default" style="display: none" disabled>
                 <div class="flex-row">
                     <div id="bug_category_2_icon" class="bug-category-icon">
                     </div>
-                    <div class="bug-category-field">
+                    <div class="support-input-mobile bug-category-field">
                         {{ form.bug_category_2 }}
                     </div>
                 </div>
             </div>
-            <div id="{{ form.bug_category_3.auto_id }}" class="input col s12 m4 support-input-mobile browser-default" style="display: none">
+            <div id="{{ form.bug_category_3.auto_id }}" class="input col s12 m4 browser-default" style="display: none" disabled>
                 <div class="flex-row">
                     <div id="bug_category_3_icon" class="bug-category-icon">
                     </div>
-                    <div class="bug-category-field">
+                    <div class="support-input-mobile bug-category-field">
                         {{ form.bug_category_3 }}
+                    </div>
+                </div>
+            </div>
+            <div id="{{ form.bug_category_free_text.auto_id }}" class="input col s12 m4" style="display: none" disabled>
+                <div class="flex-row">
+                    <div id="bug_category_free_text_icon" class="bug-category-icon">
+                    </div>
+                    <div class="input-field support-input-mobile bug-category-field">
+                        {{ form.bug_category_free_text }}
+                        <label for="{{ form.bug_category_free_text.id_for_label }}"></label>
                     </div>
                 </div>
             </div>
@@ -81,8 +91,11 @@
                 M.toast({html: "<i class='material-icons left'>error</i>Bitte fülle alle benötigten Felder aus!"})
             }
         });
-
-        $.fn.setNextProperties = function (field_id, next_field_id, icon_id, next_field_name) {
+        $.fn.hideAndDisable = function (id) {
+            $(id).hide();
+            $(id).disabled = true;
+        }
+        $.fn.setNextProperties = function (field_id, next_field_id, next_field_name) {
             var category = $('#' + field_id).find(':selected').text();
             $.ajax({
                 url: '{% url "rebus-get-next-properties" %}',
@@ -91,25 +104,30 @@
                 },
                 dataType: 'json',
                 success: function (data) {
-                    $(icon_id).html("<i class=\"material-icons prefix small\">" + data.icon + "</i>");
-                    $("[name=" + next_field_name + "]").djangoSelect2({tags: data.tagging});
-                    $("[name=" + next_field_name + "]").next("span.select2:first").find("span.select2-selection__placeholder").html(data.placeholder);
-                    if (($(next_field_id).is(':hidden')) && ((data.tagging == true) || ( data.has_children))) {
+                    if (data.free_text) {
+                        $.fn.hideAndDisable(next_field_id)
+                        next_field_id = "#{{ form.bug_category_free_text.auto_id }}"
+                        $(next_field_id).children().children('.bug-category-field').children('label').html(data.placeholder)
+                    } else {
+                        $.fn.hideAndDisable("#{{ form.bug_category_free_text.auto_id }}")
+                        $("[name=" + next_field_name + "]").next("span.select2:first").find("span.select2-selection__placeholder").html(data.placeholder);
+                    }
+                    $(next_field_id).children().children('.bug-category-icon').html("<i class=\"material-icons prefix small\">" + data.icon + "</i>");
+                    if (($(next_field_id).is(':hidden')) && ((data.has_children)) || (data.free_text)){
+                        $(next_field_id).disabled = false;
                         $(next_field_id).show();
-                    } else if (!data.has_children) {
-                        $(next_field_id).hide();
                     }
                 }
             });
         }
         $("#{{ form.bug_category_1.auto_id }}").on('input', function() {
-            $.fn.setNextProperties(this.id, "#{{ form.bug_category_2.auto_id }}", "#bug_category_2_icon", "bug_category_2")
+            $.fn.setNextProperties(this.id, "#{{ form.bug_category_2.auto_id }}", "bug_category_2")
             if ($("#{{ form.bug_category_3.auto_id }}").is(':visible')) {
-                $("#{{ form.bug_category_3.auto_id }}").hide();
+                $.fn.hideAndDisable("#{{ form.bug_category_3.auto_id }}")
             }
         });
         $("#{{ form.bug_category_2.auto_id }}").on('input', function() {
-            $.fn.setNextProperties(this.id, "#{{ form.bug_category_3.auto_id }}", "#bug_category_3_icon", "bug_category_3")
+            $.fn.setNextProperties(this.id, "#{{ form.bug_category_3.auto_id }}", "bug_category_3")
         });
     </script>
 
