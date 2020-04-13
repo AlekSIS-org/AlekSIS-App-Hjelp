@@ -82,7 +82,7 @@
             }
         });
 
-        $.fn.setNextProperties = function (field_id, icon_id, next_field_name) {
+        $.fn.setNextProperties = function (field_id, next_field_id, icon_id, next_field_name) {
             var category = $('#' + field_id).find(':selected').text();
             $.ajax({
                 url: '{% url "rebus-get-next-properties" %}',
@@ -94,22 +94,22 @@
                     $(icon_id).html("<i class=\"material-icons prefix small\">" + data.icon + "</i>");
                     $("[name=" + next_field_name + "]").djangoSelect2({tags: data.tagging});
                     $("[name=" + next_field_name + "]").next("span.select2:first").find("span.select2-selection__placeholder").html(data.placeholder);
+                    if (($(next_field_id).is(':hidden')) && ((data.tagging == true) || ( data.has_children))) {
+                        $(next_field_id).show();
+                    } else if (!data.has_children) {
+                        $(next_field_id).hide();
+                    }
                 }
             });
         }
         $("#{{ form.bug_category_1.auto_id }}").on('input', function() {
-            $.fn.setNextProperties(this.id, "#bug_category_2_icon", "bug_category_2")
-            if ($("#{{ form.bug_category_2.auto_id }}").is(':hidden')) {
-                $("#{{ form.bug_category_2.auto_id }}").show();
-            } else if ($("#{{ form.bug_category_3.auto_id }}").is(':visible')) {
+            $.fn.setNextProperties(this.id, "#{{ form.bug_category_2.auto_id }}", "#bug_category_2_icon", "bug_category_2")
+            if ($("#{{ form.bug_category_3.auto_id }}").is(':visible')) {
                 $("#{{ form.bug_category_3.auto_id }}").hide();
             }
         });
         $("#{{ form.bug_category_2.auto_id }}").on('input', function() {
-            $.fn.setNextProperties(this.id, "#bug_category_3_icon", "bug_category_3")
-            if ($("#{{ form.bug_category_3.auto_id }}").is(':hidden')) {
-                $("#{{ form.bug_category_3.auto_id }}").show();
-            }
+            $.fn.setNextProperties(this.id, "#{{ form.bug_category_3.auto_id }}", "#bug_category_3_icon", "bug_category_3")
         });
     </script>
 

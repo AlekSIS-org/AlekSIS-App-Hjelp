@@ -71,7 +71,7 @@ def add_arrows(array: list):
 
 def rebus_get_next_properties(request):
     category = request.GET.get("category", None)
-    next_properties = {"icon": REBUSCategory.objects.get(name=category).icon, "tagging": REBUSCategory.objects.get(name=category).tagging, "placeholder": REBUSCategory.objects.get(name=category).placeholder}
+    next_properties = {"icon": REBUSCategory.objects.get(name=category).icon, "tagging": REBUSCategory.objects.get(name=category).tagging, "placeholder": REBUSCategory.objects.get(name=category).placeholder, "has_children": REBUSCategory.objects.get(name=category).children.exists()}
     return JsonResponse(next_properties)
 
 
