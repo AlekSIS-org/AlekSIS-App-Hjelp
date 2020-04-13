@@ -44,7 +44,7 @@ class FAQQuestionAdmin(admin.ModelAdmin):
 
 
 class REBUSCategoryAdmin(admin.ModelAdmin):
-    list_display = ("name", "_icon", "_parent", "_toplevel")
+    list_display = ("name", "_icon", "_parent", "_placeholder", "_tagging")
 
     class Media:
         css = {
@@ -57,8 +57,11 @@ class REBUSCategoryAdmin(admin.ModelAdmin):
     def _parent(self, obj):
         return obj.parent
 
-    def _toplevel(self, obj):
-        return obj.toplevel
+    def _placeholder(self, obj):
+        return obj.placeholder
+
+    def _tagging(self, obj):
+        return obj.tagging
 
 
 admin.site.register(FAQQuestion, FAQQuestionAdmin)

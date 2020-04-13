@@ -58,7 +58,8 @@ class REBUSCategory(models.Model):
                             verbose_name=_("Symbol"))
     parent = models.ForeignKey("self", related_name="children", on_delete=models.CASCADE, blank=True,
                                null=True, verbose_name=_("Parent"))
-    toplevel = models.BooleanField(verbose_name=_("Top-level select"), default=False)
+    tagging = models.BooleanField(verbose_name=_("Tagging allowed"), default=False)
+    placeholder = models.CharField(max_length=100, verbose_name=_("Placeholder"), blank=True, null=True)
 
     def __str__(self):
         return self.name

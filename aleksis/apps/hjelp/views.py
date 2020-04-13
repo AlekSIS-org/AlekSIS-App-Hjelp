@@ -69,10 +69,10 @@ def add_arrows(array: list):
     return " → ".join([item for item in array if item != ""])
 
 
-def rebus_get_icon(request):
+def rebus_get_next_properties(request):
     category = request.GET.get("category", None)
-    icon = {"icon": REBUSCategory.objects.get(name=category).icon}
-    return JsonResponse(icon)
+    next_properties = {"icon": REBUSCategory.objects.get(name=category).icon, "tagging": REBUSCategory.objects.get(name=category).tagging, "placeholder": REBUSCategory.objects.get(name=category).placeholder}
+    return JsonResponse(next_properties)
 
 
 @login_required

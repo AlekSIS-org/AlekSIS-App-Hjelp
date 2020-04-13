@@ -22,7 +22,6 @@
                         <i class="material-icons prefix small">bug_report</i>
                     </div>
                     <div class="bug-category-field">
-                        {{ form.bug_category_1.label_tag }}
                         {{ form.bug_category_1 }}
                     </div>
                 </div>
@@ -32,7 +31,6 @@
                     <div id="bug_category_2_icon" class="bug-category-icon">
                     </div>
                     <div class="bug-category-field">
-                        {{ form.bug_category_2.label_tag }}
                         {{ form.bug_category_2 }}
                     </div>
                 </div>
@@ -42,7 +40,6 @@
                     <div id="bug_category_3_icon" class="bug-category-icon">
                     </div>
                     <div class="bug-category-field">
-                        {{ form.bug_category_3.label_tag }}
                         {{ form.bug_category_3 }}
                     </div>
                 </div>
@@ -84,22 +81,25 @@
                 M.toast({html: "<i class='material-icons left'>error</i>Bitte fülle alle benötigten Felder aus!"})
             }
         });
-        $.fn.setIcons = function (field_id, icon_id) {
+
+        $.fn.setNextProperties = function (field_id, icon_id, next_field_name) {
             var category = $('#' + field_id).find(':selected').text();
-            console.log(category);
             $.ajax({
-                url: '{% url "rebus-get-icon" %}',
+                url: '{% url "rebus-get-next-properties" %}',
                 data: {
                     'category': category
                 },
                 dataType: 'json',
                 success: function (data) {
                     $(icon_id).html("<i class=\"material-icons prefix small\">" + data.icon + "</i>");
+                    $("[name=" + next_field_name + "]").djangoSelect2({tags: data.tagging});
+                    $("[name=" + next_field_name + "]").data('select2').selection.placeholder.text = data.placeholder;
+                    $("[name=" + next_field_name + "]").next("span.select2:first").find("span.select2-selection__placeholder").html(data.placeholder);
                 }
             });
         }
         $("#{{ form.bug_category_1.auto_id }}").on('input', function() {
-            $.fn.setIcons(this.id, "#bug_category_2_icon")
+            $.fn.setNextProperties(this.id, "#bug_category_2_icon", "bug_category_2")
             if ($("#{{ form.bug_category_2.auto_id }}").is(':hidden')) {
                 $("#{{ form.bug_category_2.auto_id }}").show();
             } else if ($("#{{ form.bug_category_3.auto_id }}").is(':visible')) {
@@ -107,7 +107,7 @@
             }
         });
         $("#{{ form.bug_category_2.auto_id }}").on('input', function() {
-            $.fn.setIcons(this.id, "#bug_category_3_icon")
+            $.fn.setNextProperties(this.id, "#bug_category_3_icon", "bug_category_3")
             if ($("#{{ form.bug_category_3.auto_id }}").is(':hidden')) {
                 $("#{{ form.bug_category_3.auto_id }}").show();
             }

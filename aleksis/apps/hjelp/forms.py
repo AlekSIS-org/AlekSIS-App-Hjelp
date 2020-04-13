@@ -16,17 +16,17 @@ class REBUSForm(forms.Form):
     bug_category_1 = forms.ModelChoiceField(
         label=_("Category A"),
         required=True,
-        queryset=REBUSCategory.objects.filter(parent=None).filter(toplevel=False),
+        queryset=REBUSCategory.objects.filter(parent=None),
         widget=ModelSelect2Widget(
             model=REBUSCategory,
             search_fields=["name__icontains"],
-            attrs={"data-minimum-input-length": 0, "class": "browser-default"},
+            attrs={"data-minimum-input-length": 0, "class": "browser-default", "data-placeholder": _("Select a category")},
         ),
     )
     bug_category_2 = forms.ModelChoiceField(
         label=_("Category B"),
         required=False,
-        queryset=REBUSCategory.objects.exclude(parent=None).filter(toplevel=False),
+        queryset=REBUSCategory.objects.exclude(parent=None),
         widget=ModelSelect2Widget(
             dependent_fields={"bug_category_1": "parent"},
             search_fields=["name__icontains"],
@@ -36,7 +36,7 @@ class REBUSForm(forms.Form):
     bug_category_3 = forms.ModelChoiceField(
         label=_("Category C"),
         required=False,
-        queryset=REBUSCategory.objects.exclude(parent=None).filter(toplevel=False),
+        queryset=REBUSCategory.objects.exclude(parent=None),
         widget=ModelSelect2Widget(
             dependent_fields={"bug_category_2": "parent"},
             search_fields=["name__icontains"],
