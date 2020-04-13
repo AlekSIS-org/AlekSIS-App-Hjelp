@@ -15,14 +15,6 @@ from aleksis.apps.chronos.models import Room
 from aleksis.core.models import Activity
 
 
-def create_info(text):
-    return (
-        '<div class="alert success"> <p> <i class="material-icons left">info</i>'
-        + text
-        + "</p> </div>"
-    )
-
-
 def faq(request):
     """ Shows the FAQ site, also if not logged in"""
     context = {
@@ -95,7 +87,14 @@ def rebus(request):
 
             # Register activity
             desc_act = "{} | {}".format(
-                add_arrows([bug_category_1, bug_category_2, bug_category_3, bug_category_free_text]),
+                add_arrows(
+                    [
+                        bug_category_1,
+                        bug_category_2,
+                        bug_category_3,
+                        bug_category_free_text,
+                    ]
+                ),
                 short_description,
             )
             act = Activity(
@@ -109,7 +108,12 @@ def rebus(request):
             # Send mail
             context = {
                 "arrow_list": add_arrows(
-                    [bug_category_1, bug_category_2, bug_category_3, bug_category_free_text]
+                    [
+                        bug_category_1,
+                        bug_category_2,
+                        bug_category_3,
+                        bug_category_free_text,
+                    ]
                 ),
                 "short_desc": short_description,
                 "long_desc": long_description,
