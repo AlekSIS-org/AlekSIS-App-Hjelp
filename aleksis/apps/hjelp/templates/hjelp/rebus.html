@@ -93,7 +93,6 @@
                 success: function (data) {
                     $(icon_id).html("<i class=\"material-icons prefix small\">" + data.icon + "</i>");
                     $("[name=" + next_field_name + "]").djangoSelect2({tags: data.tagging});
-                    $("[name=" + next_field_name + "]").data('select2').selection.placeholder.text = data.placeholder;
                     $("[name=" + next_field_name + "]").next("span.select2:first").find("span.select2-selection__placeholder").html(data.placeholder);
                 }
             });
