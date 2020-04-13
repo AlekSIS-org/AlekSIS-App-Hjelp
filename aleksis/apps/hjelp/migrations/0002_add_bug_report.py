@@ -22,8 +22,8 @@ class Migration(migrations.Migration):
                 ('parent', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='children', to='hjelp.REBUSCategory', verbose_name='Parent')),
             ],
             options={
-                'verbose_name': 'Bug report choice',
-                'verbose_name_plural': 'Bug report choices',
+                'verbose_name': 'Bug report category',
+                'verbose_name_plural': 'Bug report categories',
             },
         ),
     ]
