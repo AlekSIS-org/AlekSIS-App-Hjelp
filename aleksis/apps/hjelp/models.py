@@ -2,12 +2,14 @@ from django.db import models
 
 from django.utils.translation import ugettext_lazy as _
 
+from aleksis.core.mixins import ExtensibleModel
+
 from .model_helper import COLORS, ICONS
 
 from ckeditor.fields import RichTextField
 
 
-class Support(models.Model):
+class Support(ExtensibleModel):
     class Meta:
         permissions = (
             ("use_rebus", _("Can use REBUS")),
@@ -15,7 +17,7 @@ class Support(models.Model):
         )
 
 
-class FAQSection(models.Model):
+class FAQSection(ExtensibleModel):
     name = models.CharField(max_length=200, verbose_name=_("Name"))
 
     icon = models.CharField(max_length=50, blank=True, default="question_answer", choices=ICONS,
@@ -30,7 +32,7 @@ class FAQSection(models.Model):
         verbose_name_plural = _("FAQ sections")
 
 
-class FAQQuestion(models.Model):
+class FAQQuestion(ExtensibleModel):
     question_text = models.TextField(verbose_name=_("Question"))
     icon = models.CharField(max_length=50, blank=True, default="question_answer", choices=ICONS,
                             verbose_name=_("Symbol"))
@@ -52,7 +54,7 @@ class FAQQuestion(models.Model):
         verbose_name_plural = _("FAQ questions")
 
 
-class REBUSCategory(models.Model):
+class REBUSCategory(ExtensibleModel):
     name = models.CharField(max_length=40, verbose_name=_("Category name"))
     icon = models.CharField(max_length=50, blank=True, default="bug_report", choices=ICONS,
                             verbose_name=_("Symbol"))
