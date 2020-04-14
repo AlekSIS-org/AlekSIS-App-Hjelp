@@ -18,7 +18,6 @@ class REBUSForm(forms.Form):
         required=True,
         queryset=REBUSCategory.objects.filter(parent=None),
         widget=ModelSelect2Widget(
-            model=REBUSCategory,
             search_fields=["name__icontains"],
             attrs={
                 "data-minimum-input-length": 0,
