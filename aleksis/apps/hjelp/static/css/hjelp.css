@@ -65,6 +65,11 @@
 
 .bug-category-field {
     flex-grow: 1;
-    margin-top: 0;
-    margin-bottom: 0;
+    margin: 0;
+    max-height: 40px;
+}
+
+.bug-category-field * {
+    margin: inherit;
+    max-height: inherit;
 }
