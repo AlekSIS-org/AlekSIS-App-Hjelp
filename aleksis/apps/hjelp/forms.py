@@ -1,9 +1,9 @@
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 
-from .models import REBUSCategory
-
 from django_select2.forms import ModelSelect2Widget
+
+from .models import REBUSCategory
 
 
 class FAQForm(forms.Form):
