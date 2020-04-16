@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import FAQQuestion, FAQSection
+from .models import FAQQuestion, FAQSection, REBUSCategory
 from django.utils.html import format_html
 from django.utils.translation import ugettext_lazy as _
 
@@ -43,5 +43,27 @@ class FAQQuestionAdmin(admin.ModelAdmin):
         return format_html(u'<i class="material-icons">{}<i/>', obj.icon)
 
 
+class REBUSCategoryAdmin(admin.ModelAdmin):
+    list_display = ("name", "_icon", "_parent", "_placeholder", "_free_text")
+
+    class Media:
+        css = {
+            'all': ('/static/css/materialdesignicons-webfont/material-icons.css',)
+        }
+
+    def _icon(self, obj):
+        return format_html(u'<i class="material-icons">{}<i/>', obj.icon)
+
+    def _parent(self, obj):
+        return obj.parent
+
+    def _placeholder(self, obj):
+        return obj.placeholder
+
+    def _free_text(self, obj):
+        return obj.free_text
+
+
 admin.site.register(FAQQuestion, FAQQuestionAdmin)
 admin.site.register(FAQSection, FAQSectionAdmin)
+admin.site.register(REBUSCategory, REBUSCategoryAdmin)
