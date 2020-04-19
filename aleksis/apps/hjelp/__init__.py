@@ -1,3 +1,8 @@
-# NOTE: this is currently empty, but contains, in subdirectories,
-# two separate Django apps that should be merged into one, those
-# subdirectories faq and support will then be deleted.
+import pkg_resources
+
+try:
+    __version__ = pkg_resources.get_distribution("AlekSIS-App-Hjelp").version
+except Exception:
+    __version__ = "unknown"
+
+default_app_config = "aleksis.apps.hjelp.apps.HjelpConfig"
