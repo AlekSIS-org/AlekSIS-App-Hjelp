@@ -260,7 +260,7 @@ msgid ""
 msgstr ""
 
 #: templates/hjelp/rebus.html:6
-msgid "Report a bug – REBUS – REport-A-Bug-System"
+msgid "Report a bug – REBUS – REport-a-BUg-System"
 msgstr ""
 
 #: templates/hjelp/rebus.html:22
