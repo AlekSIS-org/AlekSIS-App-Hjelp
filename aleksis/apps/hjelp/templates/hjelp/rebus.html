@@ -1,6 +1,11 @@
 {% extends 'core/base.html' %}
-{% load material_form static i18n %}
+{% load static i18n any_js %}
 
+{% block extra_head %}
+    {{ form.media.css }}
+    {% include_css "select2-materialize" %}
+    <link rel="stylesheet" type="text/css" href="{% static "css/hjelp/hjelp.css" %}" />
+{% endblock %}
 
 {% block content %}
     <h5>{% blocktrans %}Report a bug – REBUS – REport-A-Bug-System{% endblocktrans %}</h5>
@@ -8,18 +13,55 @@
     <form method="post" id="rebus-form">
         {% csrf_token %}
 
-
         <p class="red-text">{{ form.non_field_errors }}</p>
 
-        {# Filled by REACT #}
-        <div id="dynselect"></div>
+        <div class="row">
+            <div id="{{ form.bug_category_1.auto_id }}" class="input-field col s12 m4 browser-default">
+                <div class="flex-row">
+                    <div id="bug_category_1_icon" class="bug-category-icon">
+                        <i class="material-icons prefix small">bug_report</i>
+                    </div>
+                    <div class="support-input-mobile bug-category-field">
+                        {{ form.bug_category_1 }}
+                    </div>
+                </div>
+            </div>
+            <div id="{{ form.bug_category_2.auto_id }}" class="input-field col s12 m4 browser-default" style="display: none" disabled>
+                <div class="flex-row">
+                    <div id="bug_category_2_icon" class="bug-category-icon">
+                    </div>
+                    <div class="support-input-mobile bug-category-field">
+                        {{ form.bug_category_2 }}
+                    </div>
+                </div>
+            </div>
+            <div id="{{ form.bug_category_3.auto_id }}" class="input-field col s12 m4 browser-default" style="display: none" disabled>
+                <div class="flex-row">
+                    <div id="bug_category_3_icon" class="bug-category-icon">
+                    </div>
+                    <div class="support-input-mobile bug-category-field">
+                        {{ form.bug_category_3 }}
+                    </div>
+                </div>
+            </div>
+            <div id="{{ form.bug_category_free_text.auto_id }}" class="input-field col s12 m4" style="display: none" disabled>
+                <div class="flex-row">
+                    <div id="bug_category_free_text_icon" class="bug-category-icon">
+                    </div>
+                    <div class="input-field support-input-mobile bug-category-field">
+                        {{ form.bug_category_free_text }}
+                        <label for="{{ form.bug_category_free_text.id_for_label }}"></label>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <div class="row">
             <p class="red-text">{{ form.short_description.errors }}</p>
             <div class="input-field col s12 support-input-mobile">
                 <i class="material-icons prefix">help</i>
                 {{ form.short_description }}
-                <label for="{{ form.short_description.id_for_label }}">{% blocktrans %}Please describe your issue in<strong>one</strong> sentence{% endblocktrans %}</label>
+                <label for="{{ form.short_description.id_for_label }}">{% blocktrans %}Please describe your issue in <strong>one</strong> sentence{% endblocktrans %}</label>
             </div>
         </div>
 
@@ -27,13 +69,8 @@
             <p class="red-text">{{ form.long_description.errors }}</p>
             <div class="input-field col s12 support-input-mobile">
                 <i class="material-icons prefix">mode_edit</i>
-                <textarea id="{{ form.long_description.id_for_label }}" name="{{ form.long_description.html_name }}"
-                          class="materialize-textarea">
-                </textarea>
-
-                <label for="{{ form.long_description.id_for_label }}">{% blocktrans %}Please describe your issue
-                    <strong>more detailed</strong> (optional){% endblocktrans %}
-                </label>
+                <textarea id="{{ form.long_description.id_for_label }}" name="{{ form.long_description.html_name }}" class="materialize-textarea"></textarea>
+                <label for="{{ form.long_description.id_for_label }}">{% blocktrans %}Please describe your issue <strong>more detailed</strong> (optional){% endblocktrans %}</label>
             </div>
         </div>
 
@@ -43,13 +80,9 @@
         </button>
     </form>
 
-    {# Provide props in JSON format #}
-    {{ props|json_script:"props" }}
+    {% include_js "select2-materialize" %}
+    {{ form.media.js }}
     <script>
-        {# Read props as JS var#}
-        var props = JSON.parse(document.getElementById('props').textContent);
-
-
         $('#go').click(function (event) {
             var el = $("#rebus-form").get(0);
             var valid = el.reportValidity();
@@ -58,10 +91,44 @@
                 M.toast({html: "<i class='material-icons left'>error</i>Bitte fülle alle benötigten Felder aus!"})
             }
         });
+        $.fn.hideAndDisable = function (id) {
+            $(id).hide();
+            $(id).disabled = true;
+        }
+        $.fn.setNextProperties = function (field_id, next_field_id, next_field_name) {
+            var category = $('#' + field_id).find(':selected').text();
+            $.ajax({
+                url: '{% url "rebus-get-next-properties" %}',
+                data: {
+                    'category': category
+                },
+                dataType: 'json',
+                success: function (data) {
+                    if (data.free_text) {
+                        $.fn.hideAndDisable(next_field_id)
+                        next_field_id = "#{{ form.bug_category_free_text.auto_id }}"
+                        $(next_field_id).children().children('.bug-category-field').children('label').html(data.placeholder)
+                    } else {
+                        $.fn.hideAndDisable("#{{ form.bug_category_free_text.auto_id }}")
+                        $("[name=" + next_field_name + "]").next("span.select2:first").find("span.select2-selection__placeholder").html(data.placeholder);
+                    }
+                    $(next_field_id).children().children('.bug-category-icon').html("<i class=\"material-icons prefix small\">" + data.icon + "</i>");
+                    if (($(next_field_id).is(':hidden')) && ((data.has_children)) || (data.free_text)){
+                        $(next_field_id).disabled = false;
+                        $(next_field_id).show();
+                    }
+                }
+            });
+        }
+        $("#{{ form.bug_category_1.auto_id }}").on('input', function() {
+            $.fn.setNextProperties(this.id, "#{{ form.bug_category_2.auto_id }}", "bug_category_2")
+            if ($("#{{ form.bug_category_3.auto_id }}").is(':visible')) {
+                $.fn.hideAndDisable("#{{ form.bug_category_3.auto_id }}")
+            }
+        });
+        $("#{{ form.bug_category_2.auto_id }}").on('input', function() {
+            $.fn.setNextProperties(this.id, "#{{ form.bug_category_3.auto_id }}", "bug_category_3")
+        });
     </script>
-
-    {# Include React for dynamic select #}
-    {% include "components/react.html" %}
-    <script src="{% static "js/hjelp.js" %}"></script>
 
 {% endblock %}
