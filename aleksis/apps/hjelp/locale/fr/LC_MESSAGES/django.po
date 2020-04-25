@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-01 13:24+0200\n"
+"POT-Creation-Date: 2020-04-25 15:25+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,55 +26,63 @@ msgstr ""
 msgid "Unpublish selected questions"
 msgstr ""
 
-#: forms.py:7
+#: forms.py:11
 msgid "Your questions"
 msgstr ""
 
-#: forms.py:11
+#: forms.py:17
 msgid "Category A"
 msgstr ""
 
-#: forms.py:12
+#: forms.py:25
+msgid "Select a category"
+msgstr ""
+
+#: forms.py:30
 msgid "Category B"
 msgstr ""
 
-#: forms.py:13
+#: forms.py:40
 msgid "Category C"
 msgstr ""
 
-#: forms.py:14
-msgid "Please describe the error in one sentence."
-msgstr ""
-
-#: forms.py:15
-msgid "Please describe the error more detailed."
-msgstr ""
-
-#: forms.py:22
-msgid "Design of the user interface"
-msgstr ""
-
-#: forms.py:28
-msgid "Speed"
-msgstr ""
-
-#: forms.py:33
-msgid "User friendlines"
-msgstr ""
-
-#: forms.py:38
-msgid "AlekSIS in general"
-msgstr ""
-
-#: forms.py:44
-msgid "What do you like? What would you change?"
-msgstr ""
-
-#: forms.py:49
-msgid "Do you want to tell us something else?"
+#: forms.py:50
+msgid "Please specify the error according to the chosen category."
 msgstr ""
 
 #: forms.py:54
+msgid "Please describe the error in one sentence."
+msgstr ""
+
+#: forms.py:58
+msgid "Please describe the error more detailed."
+msgstr ""
+
+#: forms.py:67
+msgid "Design of the user interface"
+msgstr ""
+
+#: forms.py:74
+msgid "Speed"
+msgstr ""
+
+#: forms.py:81
+msgid "User friendlines"
+msgstr ""
+
+#: forms.py:88
+msgid "AlekSIS in general"
+msgstr ""
+
+#: forms.py:95
+msgid "What do you like? What would you change?"
+msgstr ""
+
+#: forms.py:101
+msgid "Do you want to tell us something else?"
+msgstr ""
+
+#: forms.py:107
 msgid "Do you have some Ideas what we could implement in AlekSIS?"
 msgstr ""
 
@@ -94,67 +102,79 @@ msgstr ""
 msgid "FAQ"
 msgstr ""
 
-#: models.py:13
+#: models.py:15
 msgid "Can use REBUS"
 msgstr ""
 
-#: models.py:14
+#: models.py:16
 msgid "Can send feedback"
 msgstr ""
 
-#: models.py:19
+#: models.py:21
 msgid "Name"
 msgstr ""
 
-#: models.py:22 models.py:36
+#: models.py:24 models.py:38 models.py:60
 msgid "Symbol"
 msgstr ""
 
-#: models.py:23
+#: models.py:25
 msgid "Symbol colour"
 msgstr ""
 
-#: models.py:29
+#: models.py:31
 msgid "FAQ section"
 msgstr ""
 
-#: models.py:30
+#: models.py:32
 msgid "FAQ sections"
 msgstr ""
 
-#: models.py:34
+#: models.py:36
 msgid "Question"
 msgstr ""
 
-#: models.py:38
+#: models.py:40
 msgid "Published"
 msgstr ""
 
-#: models.py:39
+#: models.py:41
 msgid ""
 "Because of our CSS framework the HTML tag <strong>&lt;ul&gt;</strong> must "
 "have the CSS class <em>browser-default</em>. In this case, please use the "
 "manual editor mode."
 msgstr ""
 
-#: models.py:45
+#: models.py:47
 msgid "Section"
 msgstr ""
 
-#: models.py:51 models.py:52
+#: models.py:53 models.py:54
 msgid "FAQ questions"
 msgstr ""
 
-#: models.py:56
+#: models.py:58
 msgid "Category name"
 msgstr ""
 
-#: models.py:57
-msgid "Icon"
+#: models.py:62
+msgid "Parent"
 msgstr ""
 
-#: models.py:60
-msgid "Top-level select or optgroup"
+#: models.py:63
+msgid "Free text input allowed"
+msgstr ""
+
+#: models.py:64
+msgid "Placeholder"
+msgstr ""
+
+#: models.py:75
+msgid "Bug report category"
+msgstr ""
+
+#: models.py:76
+msgid "Bug report categories"
 msgstr ""
 
 #: templates/hjelp/ask.html:6
@@ -197,6 +217,10 @@ msgid ""
 "            Please give us detailed and honest feedback so that we can make "
 "AlekSIS even better!\n"
 "\t"
+msgstr ""
+
+#: templates/hjelp/feedback.html:100
+msgid "Send feedback"
 msgstr ""
 
 #: templates/hjelp/feedback_submitted.html:7
@@ -259,21 +283,19 @@ msgid ""
 "\t"
 msgstr ""
 
-#: templates/hjelp/rebus.html:6
-msgid "Report a bug – REBUS – REport-a-BUg-System"
+#: templates/hjelp/rebus.html:11
+msgid "Report an issue"
 msgstr ""
 
-#: templates/hjelp/rebus.html:22
-msgid "Please describe your issue in<strong>one</strong> sentence"
+#: templates/hjelp/rebus.html:64
+msgid "Please describe your issue in <strong>one</strong> sentence"
 msgstr ""
 
-#: templates/hjelp/rebus.html:34
-msgid ""
-"Please describe your issue\n"
-"                    <strong>more detailed</strong> (optional)"
+#: templates/hjelp/rebus.html:73
+msgid "Please describe your issue <strong>more detailed</strong> (optional)"
 msgstr ""
 
-#: templates/hjelp/rebus.html:41
+#: templates/hjelp/rebus.html:78
 msgid "Submit bugreport"
 msgstr ""
 
@@ -292,22 +314,22 @@ msgid ""
 "\t"
 msgstr ""
 
-#: views.py:38
+#: views.py:35
 msgid "You have submitted a question."
 msgstr ""
 
-#: views.py:76
+#: views.py:100
 msgid "You reported a problem."
 msgstr ""
 
-#: views.py:116
+#: views.py:157
 msgid "You submitted feedback."
 msgstr ""
 
-#: views.py:117
+#: views.py:158
 msgid "You rated AlekSIS with {} from 5 stars."
 msgstr ""
 
-#: views.py:133
+#: views.py:178
 msgid "Feedback from {}"
 msgstr ""
