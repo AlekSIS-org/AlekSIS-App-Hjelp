@@ -7,16 +7,20 @@ from .models import REBUSCategory
 
 
 class FAQForm(forms.Form):
+    """ Form used to allow users to send in a question """
+
     question = forms.CharField(
-        widget=forms.Textarea(), label=_("Your questions"), required=True
+        widget=forms.Textarea(), label=_("Your question"), required=True
     )
 
 
-class REBUSForm(forms.Form):
-    bug_category_1 = forms.ModelChoiceField(
-        label=_("Category A"),
+class IssueForm(forms.Form):
+    """ Form used to allow users to report an issue """
+
+    category_1 = forms.ModelChoiceField(
+        label=_("Category 1"),
         required=True,
-        queryset=REBUSCategory.objects.filter(parent=None),
+        queryset=IssueCategory.objects.filter(parent=None),
         widget=ModelSelect2Widget(
             search_fields=["name__icontains"],
             attrs={
@@ -26,36 +30,36 @@ class REBUSForm(forms.Form):
             },
         ),
     )
-    bug_category_2 = forms.ModelChoiceField(
-        label=_("Category B"),
+    category_2 = forms.ModelChoiceField(
+        label=_("Category 2"),
         required=False,
-        queryset=REBUSCategory.objects.exclude(parent=None),
+        queryset=IssueCategory.objects.exclude(parent=None),
         widget=ModelSelect2Widget(
-            dependent_fields={"bug_category_1": "parent"},
+            dependent_fields={"category_1": "parent"},
             search_fields=["name__icontains"],
             attrs={"data-minimum-input-length": 0, "class": "browser-default"},
         ),
     )
-    bug_category_3 = forms.ModelChoiceField(
-        label=_("Category C"),
+    category_3 = forms.ModelChoiceField(
+        label=_("Category 3"),
         required=False,
-        queryset=REBUSCategory.objects.exclude(parent=None),
+        queryset=IssueCategory.objects.exclude(parent=None),
         widget=ModelSelect2Widget(
-            dependent_fields={"bug_category_2": "parent"},
+            dependent_fields={"category_2": "parent"},
             search_fields=["name__icontains"],
             attrs={"data-minimum-input-length": 0, "class": "browser-default"},
         ),
     )
     bug_category_free_text = forms.CharField(
-        label=_("Please specify the error according to the chosen category."),
+        label=_("Please specify the issue according to the chosen category."),
         required=False,
     )
     short_description = forms.CharField(
-        label=_("Please describe the error in one sentence."), required=True
+        label=_("Please describe the issue in one sentence."), required=True
     )
     long_description = forms.CharField(
         widget=forms.Textarea,
-        label=_("Please describe the error more detailed."),
+        label=_("Please describe the issue in more detail."),
         required=False,
     )
 
@@ -78,7 +82,7 @@ class FeedbackForm(forms.Form):
     )
 
     usability_rating = forms.ChoiceField(
-        label=_("User friendlines"),
+        label=_("User friendliness"),
         choices=ratings,
         widget=forms.RadioSelect(attrs={"checked": "checked"}),
         required=True,
@@ -98,13 +102,13 @@ class FeedbackForm(forms.Form):
     )
 
     more = forms.CharField(
-        label=_("Do you want to tell us something else?"),
+        label=_("What else do you want to tell us?"),
         required=False,
         widget=forms.Textarea,
     )
 
     ideas = forms.CharField(
-        label=_("Do you have some Ideas what we could implement in AlekSIS?"),
+        label=_("What do you think should be added to AlekSIS?"),
         required=False,
         widget=forms.Textarea,
     )

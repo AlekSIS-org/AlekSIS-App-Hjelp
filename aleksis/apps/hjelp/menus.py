@@ -7,28 +7,23 @@ MENUS = {
             "url": "#",
             "icon": "help_circle",
             "root": True,
-            "validators": [
-                "menu_generator.validators.is_authenticated",
-                "aleksis.core.util.core_helpers.has_person",
-            ],
             "submenu": [
                 {
-                    "name": _("Report a Bug"),
-                    "url": "rebus",
+                    "name": _("Report an issue"),
+                    "url": "report_issue",
                     "icon": "bug_report",
-                    "validators": ["menu_generator.validators.is_authenticated"],
+                    "validators": ["menu_generator.validators.is_authenticated", "aleksis.core.util.core_helpers.has_person"],
                 },
                 {
-                    "name": _("Feedback"),
+                    "name": _("Give feedback"),
                     "url": "feedback",
                     "icon": "message_alert",
-                    "validators": ["menu_generator.validators.is_authenticated"],
+                    "validators": ["menu_generator.validators.is_authenticated", "aleksis.core.util.core_helpers.has_person"],
                 },
                 {
                     "name": _("FAQ"),
                     "url": "faq",
                     "icon": "question_answer",
-                    "validators": ["menu_generator.validators.is_superuser"],
                 },
             ],
         }

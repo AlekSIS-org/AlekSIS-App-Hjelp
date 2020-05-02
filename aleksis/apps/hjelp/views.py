@@ -2,8 +2,8 @@ from django.http import JsonResponse
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.utils.translation import ugettext_lazy as _
-from .models import FAQSection, FAQQuestion, REBUSCategory
-from .forms import FAQForm, REBUSForm, FeedbackForm
+from .models import FAQSection, FAQQuestion, IssueCategory
+from .forms import FAQForm, IssueForm, FeedbackForm
 
 from constance import config
 
@@ -15,7 +15,8 @@ from aleksis.core.models import Activity
 
 
 def faq(request):
-    """ Shows the FAQ site, also if not logged in"""
+    """ Shows the FAQ page """
+
     context = {
         "questions": FAQQuestion.objects.filter(show=True),
         "sections": FAQSection.objects.all(),
@@ -24,7 +25,7 @@ def faq(request):
 
 
 @login_required
-def ask(request):
+def ask_faq(request):
     if request.method == "POST":
         form = FAQForm(request.POST)
         if form.is_valid():
@@ -63,10 +64,10 @@ def add_arrows(array: list):
 def rebus_get_next_properties(request):
     category = request.GET.get("category", None)
     next_properties = {
-        "icon": REBUSCategory.objects.get(name=category).icon,
-        "free_text": REBUSCategory.objects.get(name=category).free_text,
-        "placeholder": REBUSCategory.objects.get(name=category).placeholder,
-        "has_children": REBUSCategory.objects.get(name=category).children.exists(),
+        "icon": IssueCategory.objects.get(name=category).icon,
+        "free_text": IssueCategory.objects.get(name=category).free_text,
+        "placeholder": IssueCategory.objects.get(name=category).placeholder,
+        "has_children": IssueCategory.objects.get(name=category).children.exists(),
     }
     return JsonResponse(next_properties)
 
@@ -74,7 +75,7 @@ def rebus_get_next_properties(request):
 @login_required
 def rebus(request):
     if request.method == "POST":
-        form = REBUSForm(request.POST)
+        form = IssueForm(request.POST)
         if form.is_valid():
             # Read out form data
             bug_category_1 = str(form.cleaned_data["bug_category_1"])
@@ -119,8 +120,8 @@ def rebus(request):
                 "user": request.user,
             }
             send_mail_with_template(
-                "[REBUS] {}".format(short_description),
-                [config.MAIL_REBUS],
+                "[Issue] {}".format(short_description),
+                [config.MAIL_Issue],
                 "hjelp/mail/rebus.txt",
                 "hjelp/mail/rebus.html",
                 context,
@@ -129,7 +130,7 @@ def rebus(request):
 
             return render(request, "hjelp/rebus_submitted.html")
     else:
-        form = REBUSForm()
+        form = IssueForm()
 
     rooms = [room.name for room in Room.objects.all()]
 
@@ -153,7 +154,7 @@ def feedback(request):
             apps = form.cleaned_data["apps"]
 
             # Register activity
-            act = Activity(
+            act = Activity.objects.create(
                 title=_("You submitted feedback."),
                 description=_("You rated AlekSIS with {} from 5 stars.").format(
                     overall_rating
@@ -161,7 +162,6 @@ def feedback(request):
                 app="Feedback",
                 user=request.user,
             )
-            act.save()
 
             # Send mail
             context = {
