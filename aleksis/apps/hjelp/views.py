@@ -6,6 +6,7 @@ from .models import FAQSection, FAQQuestion, IssueCategory
 from .forms import FAQForm, IssueForm, FeedbackForm
 
 from constance import config
+from rules.contrib.views import permission_required
 from templated_email import send_templated_mail
 
 from aleksis.core.models import Activity
@@ -21,7 +22,7 @@ def faq(request):
     return render(request, "hjelp/faq.html", context)
 
 
-@login_required
+@permission_required("hjelp.ask_faq")
 def ask_faq(request):
     if request.method == "POST":
         form = FAQForm(request.POST)
@@ -67,7 +68,7 @@ def rebus_get_next_properties(request):
     return JsonResponse(next_properties)
 
 
-@login_required
+@permission_required("hjelp.report_issue")
 def rebus(request):
     if request.method == "POST":
         form = IssueForm(request.POST)
@@ -130,7 +131,7 @@ def rebus(request):
     )
 
 
-@login_required
+@permission_required("hjelp.add_feedback")
 def feedback(request):
     if request.method == "POST":
         form = FeedbackForm(request.POST)

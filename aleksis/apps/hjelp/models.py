@@ -74,3 +74,13 @@ class IssueCategory(ExtensibleModel):
     class Meta:
         verbose_name = _("Bug report category")
         verbose_name_plural = _("Bug report categories")
+
+
+class GlobalPermissions(ExtensibleModel):
+    class Meta:
+        managed = False
+        permissions = (
+            ("ask_faq", _("Can ask FAQ question")),
+            ("report_issue", _("Can report issue")),
+            ("add_feedback", _("Can add feedback")),
+        )
