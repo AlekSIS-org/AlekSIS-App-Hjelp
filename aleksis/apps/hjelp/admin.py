@@ -1,7 +1,27 @@
 from django.contrib import admin
-from .models import FAQQuestion, FAQSection, REBUSCategory
+from django.db.models import Model
 from django.utils.html import format_html
 from django.utils.translation import ugettext_lazy as _
+
+from .models import FAQQuestion, FAQSection, IssueCategory
+
+
+MATERIAL_ICONS_CSS_URL = "/static/css/materialdesignicons-webfont/material-icons.css"
+
+
+def icon_html(obj: Model) -> str:
+    return format_html('<i class="material-icons">{}<i/>', obj.icon)
+
+
+class FAQSectionAdmin(admin.ModelAdmin):
+    """ ModelAdmin for FAQ sections """
+
+    list_display = ("name", "_icon")
+
+    class Media:
+        css = {"all": (MATERIAL_ICONS_CSS_URL,)}
+
+    _icon = icon_html
 
 
 def show(modeladmin, request, queryset):
@@ -18,52 +38,29 @@ def hide(modeladmin, request, queryset):
 hide.short_description = _("Unpublish selected questions")
 
 
-class FAQSectionAdmin(admin.ModelAdmin):
-    list_display = ("name", "_icon")
-
-    class Media:
-        css = {
-            'all': ('/static/css/materialdesignicons-webfont/material-icons.css',)
-        }
-
-    def _icon(self, obj):
-        return format_html(u'<i style="color: {};" class="material-icons">{}<i/>', obj.icon_color, obj.icon)
-
-
 class FAQQuestionAdmin(admin.ModelAdmin):
+    """ ModelAdmin for FAQ questions """
+
     list_display = ("question_text", "section", "_icon", "show")
     actions = [show, hide]
 
     class Media:
-        css = {
-            'all': ('/static/css/materialdesignicons-webfont/material-icons.css',)
-        }
+        css = {"all": (MATERIAL_ICONS_CSS_URL,)}
 
-    def _icon(self, obj):
-        return format_html(u'<i class="material-icons">{}<i/>', obj.icon)
+    _icon = icon_html
 
 
-class REBUSCategoryAdmin(admin.ModelAdmin):
-    list_display = ("name", "_icon", "_parent", "_placeholder", "_free_text")
+class IssueCategoryAdmin(admin.ModelAdmin):
+    """ ModelAdmin for issue categories """
+
+    list_display = ("name", "_icon", "parent", "placeholder", "free_text")
 
     class Media:
-        css = {
-            'all': ('/static/css/materialdesignicons-webfont/material-icons.css',)
-        }
+        css = {"all": (MATERIAL_ICONS_CSS_URL,)}
 
-    def _icon(self, obj):
-        return format_html(u'<i class="material-icons">{}<i/>', obj.icon)
-
-    def _parent(self, obj):
-        return obj.parent
-
-    def _placeholder(self, obj):
-        return obj.placeholder
-
-    def _free_text(self, obj):
-        return obj.free_text
+    _icon = icon_html
 
 
 admin.site.register(FAQQuestion, FAQQuestionAdmin)
 admin.site.register(FAQSection, FAQSectionAdmin)
-admin.site.register(REBUSCategory, REBUSCategoryAdmin)
+admin.site.register(IssueCategory, IssueCategoryAdmin)
