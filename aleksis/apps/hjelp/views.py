@@ -117,7 +117,7 @@ def rebus(request):
             send_templated_mail(
                 template_name="hjelp",
                 from_email=f"{request.user.get_full_name()} <{request.user.email}>",
-                recipient_list=[config.MAIL_QUESTIONS],
+                recipient_list=[config.MAIL_REBUS],
                 context=context,
             )
 
