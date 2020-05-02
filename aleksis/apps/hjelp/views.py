@@ -42,12 +42,12 @@ def ask_faq(request):
 
             context = {"question": question, "user": request.user}
             send_mail_with_template(
-                "[FAQ QUESTION] {}".format(question),
+                f"[FAQ QUESTION] {question}",
                 [config.MAIL_QUESTIONS],
                 "hjelp/mail/question.txt",
                 "hjelp/mail/question.html",
                 context,
-                "{} <{}>".format(request.user.get_full_name(), request.user.email),
+                f"{request.user.get_full_name()} <{request.user.email}>",
             )
 
             return render(request, "hjelp/question_submitted.html")
@@ -86,17 +86,15 @@ def rebus(request):
             long_description = form.cleaned_data["long_description"]
 
             # Register activity
-            desc_act = "{} | {}".format(
-                add_arrows(
-                    [
-                        bug_category_1,
-                        bug_category_2,
-                        bug_category_3,
-                        bug_category_free_text,
-                    ]
-                ),
-                short_description,
+            desc_categories = add_arrows(
+                [
+                    bug_category_1,
+                    bug_category_2,
+                    bug_category_3,
+                    bug_category_free_text,
+                ]
             )
+            desc_act = f"{desc_categories} | {short_description}"
             act = Activity(
                 title=_("You reported a problem."),
                 description=desc_act,
@@ -120,12 +118,12 @@ def rebus(request):
                 "user": request.user,
             }
             send_mail_with_template(
-                "[Issue] {}".format(short_description),
+                f"[Issue] {short_description}",
                 [config.MAIL_Issue],
                 "hjelp/mail/rebus.txt",
                 "hjelp/mail/rebus.html",
                 context,
-                "{} <{}>".format(request.user.get_full_name(), request.user.email),
+                f"{request.user.get_full_name()} <{request.user.email}>",
             )
 
             return render(request, "hjelp/rebus_submitted.html")
@@ -156,9 +154,7 @@ def feedback(request):
             # Register activity
             act = Activity.objects.create(
                 title=_("You submitted feedback."),
-                description=_("You rated AlekSIS with {} from 5 stars.").format(
-                    overall_rating
-                ),
+                description=_(f"You rated AlekSIS with {overall_rating} from 5 stars."),
                 app="Feedback",
                 user=request.user,
             )
@@ -175,12 +171,12 @@ def feedback(request):
                 "user": request.user,
             }
             send_mail_with_template(
-                _("Feedback from {}").format(request.user.username),
+                _(f"Feedback from {request.user.username}"),
                 [config.MAIL_FEEDBACK],
                 "hjelp/mail/feedback.txt",
                 "hjelp/mail/feedback.html",
                 context,
-                "{} <{}>".format(request.user.get_full_name(), request.user.email),
+                f"{request.user.get_full_name()} <{request.user.email}>",
             )
 
             return render(request, "hjelp/feedback_submitted.html")
