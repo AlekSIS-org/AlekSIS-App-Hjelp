@@ -6,9 +6,7 @@ from .models import FAQSection, FAQQuestion, IssueCategory
 from .forms import FAQForm, IssueForm, FeedbackForm
 
 from constance import config
-
-
-from .mailer import send_mail_with_template
+from templated_email import send_templated_mail
 
 from aleksis.apps.chronos.models import Room
 from aleksis.core.models import Activity
@@ -40,14 +38,12 @@ def ask_faq(request):
             )
             act.save()
 
-            context = {"question": question, "user": request.user}
-            send_mail_with_template(
-                f"[FAQ QUESTION] {question}",
-                [config.MAIL_QUESTIONS],
-                "hjelp/mail/question.txt",
-                "hjelp/mail/question.html",
-                context,
-                f"{request.user.get_full_name()} <{request.user.email}>",
+            context = {"description": [question], "user": request.user, "type": _("FAQ question")}
+            send_templated_mail(
+                template_name="hjelp",
+                from_email=f"{request.user.get_full_name()} <{request.user.email}>",
+                recipient_list=[config.MAIL_QUESTIONS],
+                context=context,
             )
 
             return render(request, "hjelp/question_submitted.html")
@@ -105,25 +101,25 @@ def rebus(request):
 
             # Send mail
             context = {
-                "arrow_list": add_arrows(
-                    [
-                        bug_category_1,
-                        bug_category_2,
-                        bug_category_3,
-                        bug_category_free_text,
-                    ]
-                ),
-                "short_desc": short_description,
-                "long_desc": long_description,
+                "description": [add_arrows(
+                        [
+                            bug_category_1,
+                            bug_category_2,
+                            bug_category_3,
+                            bug_category_free_text,
+                        ]
+                    ),
+                    short_description,
+                    long_description,
+                ],
                 "user": request.user,
+                "type": _("Issue"),
             }
-            send_mail_with_template(
-                f"[Issue] {short_description}",
-                [config.MAIL_Issue],
-                "hjelp/mail/rebus.txt",
-                "hjelp/mail/rebus.html",
-                context,
-                f"{request.user.get_full_name()} <{request.user.email}>",
+            send_templated_mail(
+                template_name="hjelp",
+                from_email=f"{request.user.get_full_name()} <{request.user.email}>",
+                recipient_list=[config.MAIL_QUESTIONS],
+                context=context,
             )
 
             return render(request, "hjelp/rebus_submitted.html")
