@@ -5,10 +5,10 @@ from django.utils.translation import ugettext_lazy as _
 from .models import FAQSection, FAQQuestion, IssueCategory
 from .forms import FAQForm, IssueForm, FeedbackForm
 
-from constance import config
 from templated_email import send_templated_mail
 
 from aleksis.core.models import Activity
+from aleksis.core.util.core_helpers import get_site_preferences
 
 
 def faq(request):
@@ -45,7 +45,7 @@ def ask_faq(request):
             send_templated_mail(
                 template_name="hjelp",
                 from_email=f"{request.user.get_full_name()} <{request.user.email}>",
-                recipient_list=[config.MAIL_QUESTIONS],
+                recipient_list=[get_site_preferences()["hjelp__faq_recipient"]],
                 context=context,
             )
 
@@ -122,7 +122,9 @@ def rebus(request):
             send_templated_mail(
                 template_name="hjelp",
                 from_email=f"{request.user.get_full_name()} <{request.user.email}>",
-                recipient_list=[config.MAIL_REBUS],
+                recipient_list=[
+                    get_site_preferences()["hjelp__issue_report_recipient"]
+                ],
                 context=context,
             )
 
@@ -172,7 +174,7 @@ def feedback(request):
             send_templated_mail(
                 template_name="hjelp",
                 from_email=f"{request.user.get_full_name()} <{request.user.email}>",
-                recipient_list=[config.MAIL_FEEDBACK],
+                recipient_list=[get_site_preferences()["hjelp__feedback_recipient"]],
                 context=context,
             )
 
