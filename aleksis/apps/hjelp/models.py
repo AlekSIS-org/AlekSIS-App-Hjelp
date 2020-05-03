@@ -80,9 +80,7 @@ class IssueCategory(ExtensibleModel):
         verbose_name=_("Parent category"),
     )
     free_text = models.BooleanField(verbose_name=_("Free text input allowed"), default=False)
-    placeholder = models.CharField(
-        max_length=100, verbose_name=_("Placeholder"), blank=True
-    )
+    placeholder = models.CharField(max_length=100, verbose_name=_("Placeholder"), blank=True)
 
     def __str__(self):
         return self.name
