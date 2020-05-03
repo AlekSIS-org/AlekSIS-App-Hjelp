@@ -16,15 +16,20 @@ class HjelpGlobalPermissions(ExtensibleModel):
             ("view_faq", _("Can view FAQ")),
             ("ask_faq", _("Can ask FAQ question")),
             ("report_issue", _("Can report issues")),
-            ("send_feedback", _("Can send feedback"))
+            ("send_feedback", _("Can send feedback")),
         )
 
 
 class FAQSection(ExtensibleModel):
     name = models.CharField(max_length=200, verbose_name=_("Name"))
 
-    icon = models.CharField(max_length=50, blank=True, default="question_answer", choices=ICONS,
-                            verbose_name=_("Icon"))
+    icon = models.CharField(
+        max_length=50,
+        blank=True,
+        default="question_answer",
+        choices=ICONS,
+        verbose_name=_("Icon"),
+    )
 
     def __str__(self):
         return self.name
@@ -36,17 +41,32 @@ class FAQSection(ExtensibleModel):
 
 class FAQQuestion(ExtensibleModel):
     question_text = models.TextField(verbose_name=_("Question"))
-    icon = models.CharField(max_length=50, blank=True, default="question_answer", choices=ICONS,
-                            verbose_name=_("Icon"))
+    icon = models.CharField(
+        max_length=50,
+        blank=True,
+        default="question_answer",
+        choices=ICONS,
+        verbose_name=_("Icon"),
+    )
 
     show = models.BooleanField(verbose_name=_("Show"), default=False)
-    answer_text = RichTextField(verbose_name=_("Answer"), help_text=_("Because of our CSS framework the HTML tag "
-                                            "<strong>&lt;ul&gt;</strong> must have the CSS "
-                                            "class <em>browser-default</em>. In this case, please "
-                                            "use the manual editor mode."))
+    answer_text = RichTextField(
+        verbose_name=_("Answer"),
+        help_text=_(
+            "Because of our CSS framework the HTML tag "
+            "<strong>&lt;ul&gt;</strong> must have the CSS "
+            "class <em>browser-default</em>. In this case, please "
+            "use the manual editor mode."
+        ),
+    )
 
-    section = models.ForeignKey(FAQSection, on_delete=models.CASCADE, blank=True, related_name="questions",
-                                verbose_name=_("FAQ Section"))
+    section = models.ForeignKey(
+        FAQSection,
+        on_delete=models.CASCADE,
+        blank=True,
+        related_name="questions",
+        verbose_name=_("FAQ Section"),
+    )
 
     def __str__(self):
         return self.question_text
@@ -58,12 +78,27 @@ class FAQQuestion(ExtensibleModel):
 
 class IssueCategory(ExtensibleModel):
     name = models.CharField(max_length=40, verbose_name=_("Name"))
-    icon = models.CharField(max_length=50, blank=True, default="bug_report", choices=ICONS,
-                            verbose_name=_("Icon"))
-    parent = models.ForeignKey("self", related_name="children", on_delete=models.CASCADE, blank=True,
-                               null=True, verbose_name=_("Parent category"))
-    free_text = models.BooleanField(verbose_name=_("Free text input allowed"), default=False)
-    placeholder = models.CharField(max_length=100, verbose_name=_("Placeholder"), blank=True, null=True)
+    icon = models.CharField(
+        max_length=50,
+        blank=True,
+        default="bug_report",
+        choices=ICONS,
+        verbose_name=_("Icon"),
+    )
+    parent = models.ForeignKey(
+        "self",
+        related_name="children",
+        on_delete=models.CASCADE,
+        blank=True,
+        null=True,
+        verbose_name=_("Parent category"),
+    )
+    free_text = models.BooleanField(
+        verbose_name=_("Free text input allowed"), default=False
+    )
+    placeholder = models.CharField(
+        max_length=100, verbose_name=_("Placeholder"), blank=True, null=True
+    )
 
     def __str__(self):
         return self.name

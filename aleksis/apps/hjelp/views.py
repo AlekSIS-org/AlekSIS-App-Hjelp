@@ -39,7 +39,11 @@ def ask_faq(request):
             )
             act.save()
 
-            context = {"description": [question], "user": request.user, "type": _("FAQ question")}
+            context = {
+                "description": [question],
+                "user": request.user,
+                "type": _("FAQ question"),
+            }
             send_templated_mail(
                 template_name="hjelp",
                 from_email=f"{request.user.get_full_name()} <{request.user.email}>",
@@ -102,7 +106,8 @@ def rebus(request):
 
             # Send mail
             context = {
-                "description": [add_arrows(
+                "description": [
+                    add_arrows(
                         [
                             bug_category_1,
                             bug_category_2,
@@ -119,7 +124,9 @@ def rebus(request):
             send_templated_mail(
                 template_name="hjelp",
                 from_email=f"{request.user.get_full_name()} <{request.user.email}>",
-                recipient_list=[get_site_preferences()["hjelp__issue_report_recipient"]],
+                recipient_list=[
+                    get_site_preferences()["hjelp__issue_report_recipient"]
+                ],
                 context=context,
             )
 
@@ -127,9 +134,7 @@ def rebus(request):
     else:
         form = IssueForm()
 
-    return render(
-        request, "hjelp/rebus.html", {"form": form}
-    )
+    return render(request, "hjelp/rebus.html", {"form": form})
 
 
 @permission_required("hjelp.send_feedback")
@@ -156,7 +161,15 @@ def feedback(request):
 
             # Send mail
             context = {
-                "description": [design_rating, performance_rating, usability_rating, overall_rating, more, apps, ideas],
+                "description": [
+                    design_rating,
+                    performance_rating,
+                    usability_rating,
+                    overall_rating,
+                    more,
+                    apps,
+                    ideas,
+                ],
                 "user": request.user,
                 "type": _("Feedback"),
             }

@@ -7,13 +7,15 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('hjelp', '0002_add_bug_report'),
+        ("hjelp", "0002_add_bug_report"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='faqquestion',
-            name='answer_text',
-            field=ckeditor.fields.RichTextField(help_text='Because of our CSS framework the HTML tag <strong>&lt;ul&gt;</strong> must have the CSS class <em>browser-default</em>. In this case, please use the manual editor mode.'),
+            model_name="faqquestion",
+            name="answer_text",
+            field=ckeditor.fields.RichTextField(
+                help_text="Because of our CSS framework the HTML tag <strong>&lt;ul&gt;</strong> must have the CSS class <em>browser-default</em>. In this case, please use the manual editor mode."
+            ),
         ),
     ]
