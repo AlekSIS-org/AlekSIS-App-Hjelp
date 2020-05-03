@@ -7,13 +7,13 @@ from .models import IssueCategory
 
 
 class FAQForm(forms.Form):
-    """ Form used to allow users to send in a question """
+    """Form used to allow users to send in a question."""
 
     question = forms.CharField(widget=forms.Textarea(), label=_("Your question"), required=True)
 
 
 class IssueForm(forms.Form):
-    """ Form used to allow users to report an issue """
+    """Form used to allow users to report an issue."""
 
     category_1 = forms.ModelChoiceField(
         label=_("Category 1"),

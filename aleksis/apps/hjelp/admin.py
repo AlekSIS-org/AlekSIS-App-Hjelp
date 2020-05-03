@@ -15,7 +15,7 @@ def icon_html(obj: Model) -> str:
 
 
 class FAQSectionAdmin(admin.ModelAdmin):
-    """ ModelAdmin for FAQ sections """
+    """ModelAdmin for FAQ sections."""
 
     list_display = ("name", "_icon")
 
@@ -40,7 +40,7 @@ hide.short_description = _("Unpublish selected questions")
 
 
 class FAQQuestionAdmin(admin.ModelAdmin):
-    """ ModelAdmin for FAQ questions """
+    """ModelAdmin for FAQ questions."""
 
     list_display = ("question_text", "section", "_icon", "show")
     actions = [show, hide]
@@ -52,7 +52,7 @@ class FAQQuestionAdmin(admin.ModelAdmin):
 
 
 class IssueCategoryAdmin(admin.ModelAdmin):
-    """ ModelAdmin for issue categories """
+    """ModelAdmin for issue categories."""
 
     list_display = ("name", "_icon", "parent", "placeholder", "free_text")
 

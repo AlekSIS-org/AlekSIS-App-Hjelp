@@ -4,7 +4,7 @@ from django.utils.translation import ugettext_lazy as _
 from ckeditor.fields import RichTextField
 
 from aleksis.core.mixins import ExtensibleModel
-from aleksis.core.util.model_helpers import COLOURS, ICONS
+from aleksis.core.util.model_helpers import ICONS
 
 
 class HjelpGlobalPermissions(ExtensibleModel):
@@ -81,7 +81,7 @@ class IssueCategory(ExtensibleModel):
     )
     free_text = models.BooleanField(verbose_name=_("Free text input allowed"), default=False)
     placeholder = models.CharField(
-        max_length=100, verbose_name=_("Placeholder"), blank=True, null=True
+        max_length=100, verbose_name=_("Placeholder"), blank=True
     )
 
     def __str__(self):

@@ -1,4 +1,3 @@
-from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.shortcuts import render
 from django.utils.translation import ugettext_lazy as _
@@ -15,7 +14,7 @@ from .models import FAQQuestion, FAQSection, IssueCategory
 
 @permission_required("hjelp.view_faq")
 def faq(request):
-    """ Shows the FAQ page """
+    """Shows the FAQ page."""
 
     context = {
         "questions": FAQQuestion.objects.filter(show=True),
