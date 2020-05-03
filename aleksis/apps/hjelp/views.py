@@ -5,12 +5,14 @@ from django.utils.translation import ugettext_lazy as _
 from .models import FAQSection, FAQQuestion, IssueCategory
 from .forms import FAQForm, IssueForm, FeedbackForm
 
+from rules.contrib.views import permission_required
 from templated_email import send_templated_mail
 
 from aleksis.core.models import Activity
 from aleksis.core.util.core_helpers import get_site_preferences
 
 
+@permission_required("hjelp.view_faq")
 def faq(request):
     """ Shows the FAQ page """
 
@@ -21,7 +23,7 @@ def faq(request):
     return render(request, "hjelp/faq.html", context)
 
 
-@login_required
+@permission_required("hjelp.ask_faq")
 def ask_faq(request):
     if request.method == "POST":
         form = FAQForm(request.POST)
@@ -71,7 +73,7 @@ def issues_get_next_properties(request):
     return JsonResponse(next_properties)
 
 
-@login_required
+@permission_required("hjelp.report_issue")
 def report_issue(request):
     if request.method == "POST":
         form = IssueForm(request.POST)
@@ -135,7 +137,7 @@ def report_issue(request):
     return render(request, "hjelp/issue_report.html", {"form": form})
 
 
-@login_required
+@permission_required("hjelp.send_feedback")
 def feedback(request):
     if request.method == "POST":
         form = FeedbackForm(request.POST)

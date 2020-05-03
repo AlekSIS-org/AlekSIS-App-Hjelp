@@ -2,13 +2,22 @@ from django import forms
 from django.conf import settings
 from django.utils.translation import gettext_lazy as _
 
-from dynamic_preferences.types import StringPreference
+from dynamic_preferences.types import BooleanPreference, StringPreference
 from dynamic_preferences.preferences import Section
 
 from aleksis.core.registries import site_preferences_registry
 
 
 hjelp = Section("hjelp")
+
+
+@site_preferences_registry.register
+class PublicFAQ(BooleanPreference):
+    section = hjelp
+    name = "public_faq"
+    default = False
+    required = False
+    verbose_name = _("Public visibility of FAQ")
 
 
 @site_preferences_registry.register
