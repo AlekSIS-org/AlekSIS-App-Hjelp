@@ -24,11 +24,7 @@ class FAQSection(ExtensibleModel):
     name = models.CharField(max_length=200, verbose_name=_("Name"))
 
     icon = models.CharField(
-        max_length=50,
-        blank=True,
-        default="question_answer",
-        choices=ICONS,
-        verbose_name=_("Icon"),
+        max_length=50, blank=True, default="question_answer", choices=ICONS, verbose_name=_("Icon"),
     )
 
     def __str__(self):
@@ -42,11 +38,7 @@ class FAQSection(ExtensibleModel):
 class FAQQuestion(ExtensibleModel):
     question_text = models.TextField(verbose_name=_("Question"))
     icon = models.CharField(
-        max_length=50,
-        blank=True,
-        default="question_answer",
-        choices=ICONS,
-        verbose_name=_("Icon"),
+        max_length=50, blank=True, default="question_answer", choices=ICONS, verbose_name=_("Icon"),
     )
 
     show = models.BooleanField(verbose_name=_("Show"), default=False)
@@ -79,11 +71,7 @@ class FAQQuestion(ExtensibleModel):
 class IssueCategory(ExtensibleModel):
     name = models.CharField(max_length=40, verbose_name=_("Name"))
     icon = models.CharField(
-        max_length=50,
-        blank=True,
-        default="bug_report",
-        choices=ICONS,
-        verbose_name=_("Icon"),
+        max_length=50, blank=True, default="bug_report", choices=ICONS, verbose_name=_("Icon"),
     )
     parent = models.ForeignKey(
         "self",
@@ -93,9 +81,7 @@ class IssueCategory(ExtensibleModel):
         null=True,
         verbose_name=_("Parent category"),
     )
-    free_text = models.BooleanField(
-        verbose_name=_("Free text input allowed"), default=False
-    )
+    free_text = models.BooleanField(verbose_name=_("Free text input allowed"), default=False)
     placeholder = models.CharField(
         max_length=100, verbose_name=_("Placeholder"), blank=True, null=True
     )

@@ -88,12 +88,7 @@ def report_issue(request):
 
             # Register activity
             desc_categories = add_arrows(
-                [
-                    bug_category_1,
-                    bug_category_2,
-                    bug_category_3,
-                    bug_category_free_text,
-                ]
+                [bug_category_1, bug_category_2, bug_category_3, bug_category_free_text,]
             )
             desc_act = f"{desc_categories} | {short_description}"
             act = Activity(
@@ -108,12 +103,7 @@ def report_issue(request):
             context = {
                 "description": [
                     add_arrows(
-                        [
-                            bug_category_1,
-                            bug_category_2,
-                            bug_category_3,
-                            bug_category_free_text,
-                        ]
+                        [bug_category_1, bug_category_2, bug_category_3, bug_category_free_text,]
                     ),
                     short_description,
                     long_description,
@@ -124,9 +114,7 @@ def report_issue(request):
             send_templated_mail(
                 template_name="hjelp",
                 from_email=f"{request.user.get_full_name()} <{request.user.email}>",
-                recipient_list=[
-                    get_site_preferences()["hjelp__issue_report_recipient"]
-                ],
+                recipient_list=[get_site_preferences()["hjelp__issue_report_recipient"]],
                 context=context,
             )
 
