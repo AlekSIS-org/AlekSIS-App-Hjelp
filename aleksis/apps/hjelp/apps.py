@@ -9,7 +9,7 @@ class HjelpConfig(AppConfig):
         "Repository": "https://edugit.org/AlekSIS/official/AlekSIS-App-Hjelp/",
     }
     licence = "EUPL-1.2+"
-    copyright = (
+    copyright_info = (
         ([2019, 2020], "Julian Leucker", "leuckeju@katharineum.de"),
         ([2019, 2020], "Hangzhi Yu", "yuha@katharineum.de"),
         ([2019], "Frank Poetzsch-Heffter", "p-h@katharineum.de"),

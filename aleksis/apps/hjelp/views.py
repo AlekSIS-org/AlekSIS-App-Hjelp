@@ -14,8 +14,7 @@ from .models import FAQQuestion, FAQSection, IssueCategory
 
 @permission_required("hjelp.view_faq")
 def faq(request):
-    """Shows the FAQ page."""
-
+    """Show the FAQ page."""
     context = {
         "questions": FAQQuestion.objects.filter(show=True),
         "sections": FAQSection.objects.all(),
