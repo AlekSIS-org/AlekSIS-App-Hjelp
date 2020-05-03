@@ -2,7 +2,7 @@ from aleksis.core.util.apps import AppConfig
 
 
 class HjelpConfig(AppConfig):
-    name = 'aleksis.apps.hjelp'
+    name = "aleksis.apps.hjelp"
     verbose_name = "AlekSIS — Hjelp (Support)"
 
     urls = {

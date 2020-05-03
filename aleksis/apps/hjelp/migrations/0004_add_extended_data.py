@@ -7,28 +7,36 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('hjelp', '0003_alter_faqquestion_answer_text_field'),
+        ("hjelp", "0003_alter_faqquestion_answer_text_field"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='faqquestion',
-            name='extended_data',
-            field=django.contrib.postgres.fields.jsonb.JSONField(default=dict, editable=False),
+            model_name="faqquestion",
+            name="extended_data",
+            field=django.contrib.postgres.fields.jsonb.JSONField(
+                default=dict, editable=False
+            ),
         ),
         migrations.AddField(
-            model_name='faqsection',
-            name='extended_data',
-            field=django.contrib.postgres.fields.jsonb.JSONField(default=dict, editable=False),
+            model_name="faqsection",
+            name="extended_data",
+            field=django.contrib.postgres.fields.jsonb.JSONField(
+                default=dict, editable=False
+            ),
         ),
         migrations.AddField(
-            model_name='rebuscategory',
-            name='extended_data',
-            field=django.contrib.postgres.fields.jsonb.JSONField(default=dict, editable=False),
+            model_name="rebuscategory",
+            name="extended_data",
+            field=django.contrib.postgres.fields.jsonb.JSONField(
+                default=dict, editable=False
+            ),
         ),
         migrations.AddField(
-            model_name='support',
-            name='extended_data',
-            field=django.contrib.postgres.fields.jsonb.JSONField(default=dict, editable=False),
+            model_name="support",
+            name="extended_data",
+            field=django.contrib.postgres.fields.jsonb.JSONField(
+                default=dict, editable=False
+            ),
         ),
     ]
