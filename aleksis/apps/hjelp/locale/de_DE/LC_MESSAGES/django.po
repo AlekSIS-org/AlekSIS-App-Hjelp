@@ -8,9 +8,10 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-04-28 13:31+0000\n"
-"PO-Revision-Date: 2020-04-19 18:26+0000\n"
+"PO-Revision-Date: 2020-05-03 09:28+0000\n"
 "Last-Translator: Jonathan Weth <teckids@jonathanweth.de>\n"
-"Language-Team: German <https://translate.edugit.org/projects/aleksis/aleksis-app-hjelp/de/>\n"
+"Language-Team: German <https://translate.edugit.org/projects/aleksis/"
+"aleksis-app-hjelp/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -36,7 +37,7 @@ msgstr "Kategorie A"
 
 #: forms.py:25
 msgid "Select a category"
-msgstr ""
+msgstr "Wählen Sie eine Kategorie aus"
 
 #: forms.py:30
 msgid "Category B"
@@ -118,27 +119,27 @@ msgstr "Name"
 
 #: models.py:24 models.py:38 models.py:60
 msgid "Symbol"
-msgstr ""
+msgstr "Symbol"
 
 #: models.py:25
 msgid "Symbol colour"
-msgstr ""
+msgstr "Symbolfarbe"
 
 #: models.py:31
 msgid "FAQ section"
-msgstr ""
+msgstr "FAQ-Abschnitt"
 
 #: models.py:32
 msgid "FAQ sections"
-msgstr ""
+msgstr "FAQ-Abschnitte"
 
 #: models.py:36
 msgid "Question"
-msgstr ""
+msgstr "Frage"
 
 #: models.py:40
 msgid "Published"
-msgstr ""
+msgstr "Veröffentlicht"
 
 #: models.py:41
 msgid "Because of our CSS framework the HTML tag <strong>&lt;ul&gt;</strong> must have the CSS class <em>browser-default</em>. In this case, please use the manual editor mode."
@@ -146,39 +147,39 @@ msgstr ""
 
 #: models.py:47
 msgid "Section"
-msgstr ""
+msgstr "Abschnitt"
 
 #: models.py:53 models.py:54
 msgid "FAQ questions"
-msgstr ""
+msgstr "FAQ-Fragen"
 
 #: models.py:58
 msgid "Category name"
-msgstr ""
+msgstr "Name der Kategorie"
 
 #: models.py:62
 msgid "Parent"
-msgstr ""
+msgstr "Elternelement"
 
 #: models.py:63
 msgid "Free text input allowed"
-msgstr ""
+msgstr "Freitext-Eingabe erlaubt"
 
 #: models.py:64
 msgid "Placeholder"
-msgstr ""
+msgstr "Platzhalter"
 
 #: models.py:75
 msgid "Bug report category"
-msgstr ""
+msgstr "Fehlerkategorie"
 
 #: models.py:76
 msgid "Bug report categories"
-msgstr ""
+msgstr "Fehlerkategorien"
 
 #: templates/hjelp/ask.html:6
 msgid "You have a question?"
-msgstr ""
+msgstr "Sie haben eine Frage?"
 
 #: templates/hjelp/ask.html:8
 msgid ""
@@ -186,6 +187,10 @@ msgid ""
 "        You have a question about AlekSIS and didn't find the answer to your question in the FAQ? Then you can ask us your question here:\n"
 "\t"
 msgstr ""
+"\n"
+"        Sie haben eine Frage über AlekSIS und konnten die Antwort auf Ihre "
+"Frage nicht in den FAQ finden? Dann können Sie uns die Frage hier stellen:\n"
+"\t"
 
 #: templates/hjelp/faq.html:39
 msgid ""
@@ -193,6 +198,9 @@ msgid ""
 "\t    Your question is not listed above?\n"
 "\t"
 msgstr ""
+"\n"
+"\t    Ihre Frage war nicht dabei?\n"
+"\t"
 
 #: templates/hjelp/faq.html:47
 msgid ""
@@ -207,6 +215,10 @@ msgid ""
 "                If you have a question please ask one of you site administrators:\n"
 "            "
 msgstr ""
+"\n"
+"                Wenn Sie eine Frage haben, fragen Sie bitte einen der "
+"Administratoren:\n"
+"            "
 
 #: templates/hjelp/feedback.html:9
 msgid ""
@@ -214,12 +226,14 @@ msgid ""
 "            Please give us detailed and honest feedback so that we can make AlekSIS even better!\n"
 "\t"
 msgstr ""
+"\n"
+"            Bitte geben Sie uns ein ausführliches und ehrliches Feedback, "
+"damit wir AlekSIS noch besser machen können!\n"
+"\t"
 
 #: templates/hjelp/feedback.html:100
-#, fuzzy
-#| msgid "Can send feedback"
 msgid "Send feedback"
-msgstr "Kann Feedback senden"
+msgstr "Feedback senden"
 
 #: templates/hjelp/feedback_submitted.html:7
 msgid ""
@@ -227,6 +241,9 @@ msgid ""
 "            Thank you for your feedback. It was successfully submitted.\n"
 "\t"
 msgstr ""
+"\n"
+"            Vielen Dank für Ihr Feedback. Es wurde erfolgreich übermittelt.\n"
+"\t"
 
 #: templates/hjelp/feedback_submitted.html:14
 msgid ""
