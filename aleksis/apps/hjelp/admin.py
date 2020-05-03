@@ -1,3 +1,5 @@
+#noqa
+
 from django.contrib import admin
 from django.db.models import Model
 from django.utils.html import format_html

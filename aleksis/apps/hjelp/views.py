@@ -5,11 +5,11 @@ from django.utils.translation import ugettext_lazy as _
 from .models import FAQSection, FAQQuestion, IssueCategory
 from .forms import FAQForm, IssueForm, FeedbackForm
 
-from constance import config
 from rules.contrib.views import permission_required
 from templated_email import send_templated_mail
 
 from aleksis.core.models import Activity
+from aleksis.core.util.core_helpers import get_site_preferences
 
 
 def faq(request):
@@ -42,7 +42,7 @@ def ask_faq(request):
             send_templated_mail(
                 template_name="hjelp",
                 from_email=f"{request.user.get_full_name()} <{request.user.email}>",
-                recipient_list=[config.MAIL_QUESTIONS],
+                recipient_list=[get_site_preferences()["hjelp__faq_recipient"]],
                 context=context,
             )
 
@@ -118,7 +118,7 @@ def rebus(request):
             send_templated_mail(
                 template_name="hjelp",
                 from_email=f"{request.user.get_full_name()} <{request.user.email}>",
-                recipient_list=[config.MAIL_QUESTIONS],
+                recipient_list=[get_site_preferences()["hjelp__issue_report_recipient"]],
                 context=context,
             )
 
@@ -155,22 +155,15 @@ def feedback(request):
 
             # Send mail
             context = {
-                "design": design_rating,
-                "performance": performance_rating,
-                "usability": usability_rating,
-                "overall": overall_rating,
-                "more": more,
-                "apps": apps,
-                "ideas": ideas,
+                "description": [design_rating, performance_rating, usability_rating, overall_rating, more, apps, ideas],
                 "user": request.user,
+                "type": _("Feedback"),
             }
-            send_mail_with_template(
-                _(f"Feedback from {request.user.username}"),
-                [config.MAIL_FEEDBACK],
-                "hjelp/mail/feedback.txt",
-                "hjelp/mail/feedback.html",
-                context,
-                f"{request.user.get_full_name()} <{request.user.email}>",
+            send_templated_mail(
+                template_name="hjelp",
+                from_email=f"{request.user.get_full_name()} <{request.user.email}>",
+                recipient_list=[get_site_preferences()["hjelp__feedback_recipient"]],
+                context=context,
             )
 
             return render(request, "hjelp/feedback_submitted.html")
