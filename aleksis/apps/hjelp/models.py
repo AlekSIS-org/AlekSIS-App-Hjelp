@@ -1,12 +1,10 @@
 from django.db import models
-
 from django.utils.translation import ugettext_lazy as _
 
-from aleksis.core.mixins import ExtensibleModel
-
-from aleksis.core.util.model_helpers import COLOURS, ICONS
-
 from ckeditor.fields import RichTextField
+
+from aleksis.core.mixins import ExtensibleModel
+from aleksis.core.util.model_helpers import COLOURS, ICONS
 
 
 class HjelpGlobalPermissions(ExtensibleModel):

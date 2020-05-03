@@ -2,11 +2,10 @@ from django import forms
 from django.conf import settings
 from django.utils.translation import gettext_lazy as _
 
-from dynamic_preferences.types import BooleanPreference, StringPreference
 from dynamic_preferences.preferences import Section
+from dynamic_preferences.types import BooleanPreference, StringPreference
 
 from aleksis.core.registries import site_preferences_registry
-
 
 hjelp = Section("hjelp")
 

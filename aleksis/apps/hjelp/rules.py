@@ -1,10 +1,6 @@
 from rules import add_perm, always_allow
 
-from aleksis.core.util.predicates import (
-    has_global_perm,
-    has_person,
-    is_site_preference_set,
-)
+from aleksis.core.util.predicates import has_global_perm, has_person, is_site_preference_set
 
 # View FAQ
 view_faq_predicate = is_site_preference_set("hjelp", "public_faq") | (

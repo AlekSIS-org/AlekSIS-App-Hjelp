@@ -7,7 +7,6 @@ from django.utils.translation import ugettext_lazy as _
 
 from .models import FAQQuestion, FAQSection, IssueCategory
 
-
 MATERIAL_ICONS_CSS_URL = "/static/css/materialdesignicons-webfont/material-icons.css"
 
 

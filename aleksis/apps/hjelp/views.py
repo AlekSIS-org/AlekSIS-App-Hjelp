@@ -1,15 +1,16 @@
+from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.shortcuts import render
-from django.contrib.auth.decorators import login_required
 from django.utils.translation import ugettext_lazy as _
-from .models import FAQSection, FAQQuestion, IssueCategory
-from .forms import FAQForm, IssueForm, FeedbackForm
 
 from rules.contrib.views import permission_required
 from templated_email import send_templated_mail
 
 from aleksis.core.models import Activity
 from aleksis.core.util.core_helpers import get_site_preferences
+
+from .forms import FAQForm, FeedbackForm, IssueForm
+from .models import FAQQuestion, FAQSection, IssueCategory
 
 
 @permission_required("hjelp.view_faq")
