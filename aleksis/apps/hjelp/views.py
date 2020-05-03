@@ -12,6 +12,7 @@ from aleksis.core.models import Activity
 from aleksis.core.util.core_helpers import get_site_preferences
 
 
+@permission_required("hjelp.view_faq")
 def faq(request):
     """ Shows the FAQ page """
 

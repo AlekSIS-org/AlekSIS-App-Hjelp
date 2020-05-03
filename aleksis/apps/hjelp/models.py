@@ -13,6 +13,7 @@ class HjelpGlobalPermissions(ExtensibleModel):
     class Meta:
         managed = False
         permissions = (
+            ("view_faq", _("Can view FAQ")),
             ("ask_faq", _("Can ask FAQ question")),
             ("report_issue", _("Can report issues")),
             ("send_feedback", _("Can send feedback"))
