@@ -1,11 +1,11 @@
 from django import forms
+from django.conf import settings
 from django.utils.translation import gettext_lazy as _
 
 from dynamic_preferences.types import StringPreference
 from dynamic_preferences.preferences import Section
 
 from aleksis.core.registries import site_preferences_registry
-from aleksis.core.settings import ADMINS as admins
 
 
 hjelp = Section("hjelp")
@@ -16,7 +16,7 @@ class FAQRecipient(StringPreference):
     field_class = forms.EmailField
     section = hjelp
     name = "faq_recipient"
-    default = admins[0].email
+    default = settings.DEFAULT_FROM_EMAIL
     required = False
     verbose_name = _("Recipient e-mail address for FAQ questions")
 
@@ -26,7 +26,7 @@ class IssueReportRecipient(StringPreference):
     field_class = forms.EmailField
     section = hjelp
     name = "issue_report_recipient"
-    default = admins[0].email
+    default = settings.DEFAULT_FROM_EMAIL
     required = False
     verbose_name = _("Recipient e-mail address for issue reports")
 
@@ -36,6 +36,6 @@ class FeedbackRecipient(StringPreference):
     field_class = forms.EmailField
     section = hjelp
     name = "feedback_recipient"
-    default = admins[0].email
+    default = settings.DEFAULT_FROM_EMAIL
     required = False
     verbose_name = _("Recipient e-mail address for feedback")
