@@ -3,7 +3,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from django_select2.forms import ModelSelect2Widget
 
-from .models import REBUSCategory
+from .models import IssueCategory
 
 
 class FAQForm(forms.Form):

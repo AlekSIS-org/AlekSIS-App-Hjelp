@@ -60,7 +60,7 @@ def add_arrows(array: list):
     return " → ".join([item for item in array if item != ""])
 
 
-def rebus_get_next_properties(request):
+def issues_get_next_properties(request):
     category = request.GET.get("category", None)
     next_properties = {
         "icon": IssueCategory.objects.get(name=category).icon,
@@ -72,7 +72,7 @@ def rebus_get_next_properties(request):
 
 
 @login_required
-def rebus(request):
+def report_issue(request):
     if request.method == "POST":
         form = IssueForm(request.POST)
         if form.is_valid():
@@ -128,11 +128,11 @@ def rebus(request):
                 context=context,
             )
 
-            return render(request, "hjelp/rebus_submitted.html")
+            return render(request, "hjelp/issue_report_submitted.html")
     else:
         form = IssueForm()
 
-    return render(request, "hjelp/rebus.html", {"form": form})
+    return render(request, "hjelp/issue_report.html", {"form": form})
 
 
 @login_required
