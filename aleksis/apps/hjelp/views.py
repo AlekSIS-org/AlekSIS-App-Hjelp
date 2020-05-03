@@ -131,7 +131,7 @@ def rebus(request):
     )
 
 
-@permission_required("hjelp.add_feedback")
+@permission_required("hjelp.send_feedback")
 def feedback(request):
     if request.method == "POST":
         form = FeedbackForm(request.POST)

@@ -14,5 +14,5 @@ report_issue_predicate = has_person & has_global_perm("hjelp.report_issue")
 add_perm("hjelp.report_issue", report_issue_predicate)
 
 # Add feedback
-add_feedback_predicate = has_person & has_global_perm("hjelp.add_feedback")
-add_perm("hjelp.add_feedback", add_feedback_predicate)
+send_feedback_predicate = has_person & has_global_perm("hjelp.send_feedback")
+add_perm("hjelp.send_feedback", send_feedback_predicate)
