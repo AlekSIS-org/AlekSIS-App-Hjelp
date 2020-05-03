@@ -109,5 +109,5 @@ class IssueCategory(ExtensibleModel):
         super(IssueCategory, self).save(*args, **kwargs)
 
     class Meta:
-        verbose_name = _("Bug report category")
-        verbose_name_plural = _("Bug report categories")
+        verbose_name = _("Issue category")
+        verbose_name_plural = _("Issue categories")
