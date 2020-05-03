@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-04-28 13:31+0000\n"
-"PO-Revision-Date: 2020-05-03 09:28+0000\n"
+"PO-Revision-Date: 2020-05-04 13:41+0000\n"
 "Last-Translator: Jonathan Weth <teckids@jonathanweth.de>\n"
 "Language-Team: German <https://translate.edugit.org/projects/aleksis/"
 "aleksis-app-hjelp/de/>\n"
@@ -48,10 +48,8 @@ msgid "Category C"
 msgstr "Kategorie C"
 
 #: forms.py:50
-#, fuzzy
-#| msgid "Please describe the error in one sentence."
 msgid "Please specify the error according to the chosen category."
-msgstr "Bitte beschreiben Sie das Problem in einem Satz."
+msgstr "Bitte beschreiben Sie das Problem zugehörig zur Kategorie."
 
 #: forms.py:54
 msgid "Please describe the error in one sentence."
