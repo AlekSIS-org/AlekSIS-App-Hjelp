@@ -34,7 +34,7 @@ def ask_faq(request):
                 title=_("You have submitted a question."),
                 description=question,
                 app="Hjelp",
-                user=request.user,
+                user=request.user.person,
             )
             act.save()
 
@@ -94,7 +94,7 @@ def report_issue(request):
                 title=_("You reported a problem."),
                 description=desc_act,
                 app="Hjelp",
-                user=request.user,
+                user=request.user.person,
             )
             act.save()
 
@@ -143,7 +143,7 @@ def feedback(request):
                 title=_("You submitted feedback."),
                 description=_(f"You rated AlekSIS with {overall_rating} from 5 stars."),
                 app="Feedback",
-                user=request.user,
+                user=request.user.person,
             )
 
             # Send mail
