@@ -40,15 +40,8 @@ class FAQQuestion(ExtensibleModel):
     )
 
     show = models.BooleanField(verbose_name=_("Show"), default=False)
-    answer_text = RichTextField(
-        verbose_name=_("Answer"),
-        help_text=_(
-            "Because of our CSS framework the HTML tag "
-            "<strong>&lt;ul&gt;</strong> must have the CSS "
-            "class <em>browser-default</em>. In this case, please "
-            "use the manual editor mode."
-        ),
-    )
+
+    answer_text = RichTextField(verbose_name=_("Answer"))
 
     section = models.ForeignKey(
         FAQSection,
