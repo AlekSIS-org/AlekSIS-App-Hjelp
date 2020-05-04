@@ -4,11 +4,11 @@
 
 {% block html %}
 <main>
-    <p>{% trans "The user" %} {{ user.username }} ({% trans "full name: "} {{ user.first_name }} {{ user.last_name }}, {% trans "e-mail: "} {{ user.email }}) {% trans "has submitted the following" %} {{ type }}: </p>
+    <p>{% trans "The user" %} {{ user.username }} ({% trans "full name: " %} {{ user.first_name }} {{ user.last_name }}, {% trans "e-mail: " %} {{ user.email }}) {% trans "has submitted the following" %} {{ type }}: </p>
     <blockquote>
-        {{ for item in description }}
+        {% for item in description %}
             <p>{{ item }}</p>
-        {{ endfor }}
+        {% endfor %}
     </blockquote>
 </main>
 {% endblock %}
