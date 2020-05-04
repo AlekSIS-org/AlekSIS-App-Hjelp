@@ -1,4 +1,3 @@
-from django.conf import settings
 from django.http import JsonResponse
 from django.shortcuts import render
 from django.utils.translation import ugettext_lazy as _
@@ -92,9 +91,7 @@ def report_issue(request):
             long_description = form.cleaned_data["long_description"]
 
             # Register activity
-            desc_categories = add_arrows(
-                [category_1, category_2, category_3, free_text,]
-            )
+            desc_categories = add_arrows([category_1, category_2, category_3, free_text,])
             desc_act = f"{desc_categories} | {short_description}"
             act = Activity(
                 title=_("You reported a problem."),
@@ -107,9 +104,7 @@ def report_issue(request):
             # Send mail
             context = {
                 "description": [
-                    add_arrows(
-                        [category_1, category_2, category_3, free_text,]
-                    ),
+                    add_arrows([category_1, category_2, category_3, free_text,]),
                     short_description,
                     long_description,
                 ],
