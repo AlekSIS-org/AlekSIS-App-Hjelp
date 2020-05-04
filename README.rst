@@ -9,7 +9,10 @@ This is an application for use with the `AlekSIS`_ platform.
 Features
 --------
 
-The Hjelp app provides functionality for aiding users.
+* Report issues
+* Frequently asked questions
+* Ask questions
+* Feedback
 
 Licence
 -------
