@@ -59,17 +59,17 @@
     line-height: 1rem;
 }
 
-.bug-category-icon {
+.issue-category-icon {
     flex-basis: 45px;
 }
 
-.bug-category-field {
+.issue-category-field {
     flex-grow: 1;
     margin: 0;
     max-height: 40px;
 }
 
-.bug-category-field * {
+.issue-category-field * {
     margin: inherit;
     max-height: inherit;
 }
