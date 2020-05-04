@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.http import JsonResponse
 from django.shortcuts import render
 from django.utils.translation import ugettext_lazy as _
@@ -43,9 +44,14 @@ def ask_faq(request):
                 "user": request.user,
                 "type": _("FAQ question"),
             }
+
             send_templated_mail(
                 template_name="hjelp",
-                from_email=f"{request.user.get_full_name()} <{request.user.email}>",
+                from_email=request.user.person.mail_sender_via,
+                headers={
+                    "Reply-To": request.user.person.mail_sender,
+                    "Sender": request.user.person.mail_sender,
+                },
                 recipient_list=[get_site_preferences()["hjelp__faq_recipient"]],
                 context=context,
             )
@@ -112,7 +118,11 @@ def report_issue(request):
             }
             send_templated_mail(
                 template_name="hjelp",
-                from_email=f"{request.user.get_full_name()} <{request.user.email}>",
+                from_email=request.user.person.mail_sender_via,
+                headers={
+                    "Reply-To": request.user.person.mail_sender,
+                    "Sender": request.user.person.mail_sender,
+                },
                 recipient_list=[get_site_preferences()["hjelp__issue_report_recipient"]],
                 context=context,
             )
@@ -141,7 +151,7 @@ def feedback(request):
             # Register activity
             act = Activity.objects.create(
                 title=_("You submitted feedback."),
-                description=_(f"You rated AlekSIS with {overall_rating} from 5 stars."),
+                description=_(f"You rated AlekSIS with {overall_rating} out of 5 stars."),
                 app="Feedback",
                 user=request.user.person,
             )
@@ -149,10 +159,10 @@ def feedback(request):
             # Send mail
             context = {
                 "description": [
-                    design_rating,
-                    performance_rating,
-                    usability_rating,
-                    overall_rating,
+                    _(f"Design rating: {design_rating} out of 5 stars."),
+                    _(f"Performance rating: {performance_rating} out of 5 stars."),
+                    _(f"Usability rating: {usability_rating} out of 5 stars."),
+                    _(f"Overall rating: {overall_rating} out of 5 stars."),
                     more,
                     apps,
                     ideas,
@@ -162,7 +172,11 @@ def feedback(request):
             }
             send_templated_mail(
                 template_name="hjelp",
-                from_email=f"{request.user.get_full_name()} <{request.user.email}>",
+                from_email=request.user.person.mail_sender_via,
+                headers={
+                    "Reply-To": request.user.person.mail_sender,
+                    "Sender": request.user.person.mail_sender,
+                },
                 recipient_list=[get_site_preferences()["hjelp__feedback_recipient"]],
                 context=context,
             )
