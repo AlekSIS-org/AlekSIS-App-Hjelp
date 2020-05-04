@@ -48,7 +48,7 @@ class IssueForm(forms.Form):
             attrs={"data-minimum-input-length": 0, "class": "browser-default"},
         ),
     )
-    bug_category_free_text = forms.CharField(
+    free_text = forms.CharField(
         label=_("Please specify the issue according to the chosen category."), required=False,
     )
     short_description = forms.CharField(

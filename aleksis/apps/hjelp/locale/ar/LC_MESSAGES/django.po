@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-04 15:43+0200\n"
+"POT-Creation-Date: 2020-05-04 15:44+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,11 +19,11 @@ msgstr ""
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
 
-#: admin.py:32
+#: admin.py:33
 msgid "Publish selected questions"
 msgstr ""
 
-#: admin.py:39
+#: admin.py:40
 msgid "Unpublish selected questions"
 msgstr ""
 
@@ -274,11 +274,15 @@ msgstr ""
 msgid "Submit bugreport"
 msgstr ""
 
+#: templates/hjelp/issue_report.html:91
+msgid "Please fill in all required fields!"
+msgstr ""
+
 #: templates/hjelp/issue_report_submitted.html:8
 msgid ""
 "\n"
 "\t    We've received your bug report and will be look at it as soon a "
-"possbible. Thank you for your report.\n"
+"possible. Thank you for your report.\n"
 "\t"
 msgstr ""
 

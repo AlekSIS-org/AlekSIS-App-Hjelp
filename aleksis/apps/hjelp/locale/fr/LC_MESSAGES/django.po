@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-04 15:43+0200\n"
+"POT-Creation-Date: 2020-05-04 15:44+0200\n"
 "PO-Revision-Date: 2020-05-03 09:28+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: French <https://translate.edugit.org/projects/aleksis/aleksis-"
@@ -19,11 +19,11 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
 "X-Generator: Weblate 4.0.1\n"
 
-#: admin.py:32
+#: admin.py:33
 msgid "Publish selected questions"
 msgstr "Publier questions sélectées"
 
-#: admin.py:39
+#: admin.py:40
 msgid "Unpublish selected questions"
 msgstr ""
 
@@ -274,11 +274,15 @@ msgstr ""
 msgid "Submit bugreport"
 msgstr ""
 
+#: templates/hjelp/issue_report.html:91
+msgid "Please fill in all required fields!"
+msgstr ""
+
 #: templates/hjelp/issue_report_submitted.html:8
 msgid ""
 "\n"
 "\t    We've received your bug report and will be look at it as soon a "
-"possbible. Thank you for your report.\n"
+"possible. Thank you for your report.\n"
 "\t"
 msgstr ""
 

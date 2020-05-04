@@ -16,41 +16,41 @@
         <p class="red-text">{{ form.non_field_errors }}</p>
 
         <div class="row">
-            <div id="{{ form.bug_category_1.auto_id }}" class="input-field col s12 m4 browser-default">
+            <div id="{{ form.category_1.auto_id }}" class="input-field col s12 m4 browser-default">
                 <div class="flex-row">
-                    <div id="bug_category_1_icon" class="bug-category-icon">
+                    <div id="bug_category_1_icon" class="issue-category-icon">
                         <i class="material-icons prefix small">bug_report</i>
                     </div>
-                    <div class="support-input-mobile bug-category-field">
-                        {{ form.bug_category_1 }}
+                    <div class="support-input-mobile issue-category-field">
+                        {{ form.category_1 }}
                     </div>
                 </div>
             </div>
-            <div id="{{ form.bug_category_2.auto_id }}" class="input-field col s12 m4 browser-default" style="display: none" disabled>
+            <div id="{{ form.category_2.auto_id }}" class="input-field col s12 m4 browser-default" style="display: none" disabled>
                 <div class="flex-row">
-                    <div id="bug_category_2_icon" class="bug-category-icon">
+                    <div id="bug_category_2_icon" class="issue-category-icon">
                     </div>
-                    <div class="support-input-mobile bug-category-field">
-                        {{ form.bug_category_2 }}
+                    <div class="support-input-mobile issue-category-field">
+                        {{ form.category_2 }}
                     </div>
                 </div>
             </div>
-            <div id="{{ form.bug_category_3.auto_id }}" class="input-field col s12 m4 browser-default" style="display: none" disabled>
+            <div id="{{ form.category_3.auto_id }}" class="input-field col s12 m4 browser-default" style="display: none" disabled>
                 <div class="flex-row">
-                    <div id="bug_category_3_icon" class="bug-category-icon">
+                    <div id="bug_category_3_icon" class="issue-category-icon">
                     </div>
-                    <div class="support-input-mobile bug-category-field">
-                        {{ form.bug_category_3 }}
+                    <div class="support-input-mobile issue-category-field">
+                        {{ form.category_3 }}
                     </div>
                 </div>
             </div>
-            <div id="{{ form.bug_category_free_text.auto_id }}" class="input-field col s12 m4" style="display: none" disabled>
+            <div id="{{ form.free_text.auto_id }}" class="input-field col s12 m4" style="display: none" disabled>
                 <div class="flex-row">
-                    <div id="bug_category_free_text_icon" class="bug-category-icon">
+                    <div id="bug_category_free_text_icon" class="issue-category-icon">
                     </div>
-                    <div class="input-field support-input-mobile bug-category-field">
-                        {{ form.bug_category_free_text }}
-                        <label for="{{ form.bug_category_free_text.id_for_label }}"></label>
+                    <div class="input-field support-input-mobile issue-category-field">
+                        {{ form.free_text }}
+                        <label for="{{ form.free_text.id_for_label }}"></label>
                     </div>
                 </div>
             </div>
@@ -88,7 +88,7 @@
             var valid = el.reportValidity();
             console.log(valid);
             if (!valid) {
-                M.toast({html: "<i class='material-icons left'>error</i>Bitte fülle alle benötigten Felder aus!"})
+                M.toast({html: "<i class='material-icons left'>error</i>{% blocktrans %}Please fill in all required fields!{% endblocktrans %}"})
             }
         });
         $.fn.hideAndDisable = function (id) {
@@ -98,7 +98,7 @@
         $.fn.setNextProperties = function (field_id, next_field_id, next_field_name) {
             var category = $('#' + field_id).find(':selected').text();
             $.ajax({
-                url: '{% url "rebus-get-next-properties" %}',
+                url: '{% url "issues_get_next_properties" %}',
                 data: {
                     'category': category
                 },
@@ -106,13 +106,13 @@
                 success: function (data) {
                     if (data.free_text) {
                         $.fn.hideAndDisable(next_field_id)
-                        next_field_id = "#{{ form.bug_category_free_text.auto_id }}"
-                        $(next_field_id).children().children('.bug-category-field').children('label').html(data.placeholder)
+                        next_field_id = "#{{ form.free_text.auto_id }}"
+                        $(next_field_id).children().children('.issue-category-field').children('label').html(data.placeholder)
                     } else {
-                        $.fn.hideAndDisable("#{{ form.bug_category_free_text.auto_id }}")
+                        $.fn.hideAndDisable("#{{ form.free_text.auto_id }}")
                         $("[name=" + next_field_name + "]").next("span.select2:first").find("span.select2-selection__placeholder").html(data.placeholder);
                     }
-                    $(next_field_id).children().children('.bug-category-icon').html("<i class=\"material-icons prefix small\">" + data.icon + "</i>");
+                    $(next_field_id).children().children('.issue-category-icon').html("<i class=\"material-icons prefix small\">" + data.icon + "</i>");
                     if (($(next_field_id).is(':hidden')) && ((data.has_children)) || (data.free_text)){
                         $(next_field_id).disabled = false;
                         $(next_field_id).show();
@@ -120,14 +120,14 @@
                 }
             });
         }
-        $("#{{ form.bug_category_1.auto_id }}").on('input', function() {
-            $.fn.setNextProperties(this.id, "#{{ form.bug_category_2.auto_id }}", "bug_category_2")
-            if ($("#{{ form.bug_category_3.auto_id }}").is(':visible')) {
-                $.fn.hideAndDisable("#{{ form.bug_category_3.auto_id }}")
+        $("#{{ form.category_1.auto_id }}").on('input', function() {
+            $.fn.setNextProperties(this.id, "#{{ form.category_2.auto_id }}", "bug_category_2")
+            if ($("#{{ form.category_3.auto_id }}").is(':visible')) {
+                $.fn.hideAndDisable("#{{ form.category_3.auto_id }}")
             }
         });
-        $("#{{ form.bug_category_2.auto_id }}").on('input', function() {
-            $.fn.setNextProperties(this.id, "#{{ form.bug_category_3.auto_id }}", "bug_category_3")
+        $("#{{ form.category_2.auto_id }}").on('input', function() {
+            $.fn.setNextProperties(this.id, "#{{ form.category_3.auto_id }}", "bug_category_3")
         });
     </script>
 
