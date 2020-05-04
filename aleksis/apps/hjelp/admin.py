@@ -7,22 +7,23 @@ from django.utils.translation import ugettext_lazy as _
 
 from .models import FAQQuestion, FAQSection, IssueCategory
 
-MATERIAL_ICONS_CSS_URL = "/static/css/materialdesignicons-webfont/material-icons.css"
+MATERIAL_ICONS_CSS_URL = "/static/material-design-icons-iconfont/dist/material-design-icons.css"
 
 
-def icon_html(obj: Model) -> str:
-    return format_html('<i class="material-icons">{}<i/>', obj.icon)
+class IconMixin(object):
+    """Mixin for icon lookup."""
+
+    def _icon(self, obj: Model) -> str:
+        return format_html('<i class="material-icons">{}<i/>', obj.icon)
 
 
-class FAQSectionAdmin(admin.ModelAdmin):
+class FAQSectionAdmin(IconMixin, admin.ModelAdmin):
     """ModelAdmin for FAQ sections."""
 
     list_display = ("name", "_icon")
 
     class Media:
         css = {"all": (MATERIAL_ICONS_CSS_URL,)}
-
-    _icon = icon_html
 
 
 def show(modeladmin, request, queryset):
@@ -39,7 +40,7 @@ def hide(modeladmin, request, queryset):
 hide.short_description = _("Unpublish selected questions")
 
 
-class FAQQuestionAdmin(admin.ModelAdmin):
+class FAQQuestionAdmin(IconMixin, admin.ModelAdmin):
     """ModelAdmin for FAQ questions."""
 
     list_display = ("question_text", "section", "_icon", "show")
@@ -48,18 +49,14 @@ class FAQQuestionAdmin(admin.ModelAdmin):
     class Media:
         css = {"all": (MATERIAL_ICONS_CSS_URL,)}
 
-    _icon = icon_html
 
-
-class IssueCategoryAdmin(admin.ModelAdmin):
+class IssueCategoryAdmin(IconMixin, admin.ModelAdmin):
     """ModelAdmin for issue categories."""
 
     list_display = ("name", "_icon", "parent", "placeholder", "free_text")
 
     class Media:
         css = {"all": (MATERIAL_ICONS_CSS_URL,)}
-
-    _icon = icon_html
 
 
 admin.site.register(FAQQuestion, FAQQuestionAdmin)
