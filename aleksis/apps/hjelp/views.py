@@ -78,16 +78,16 @@ def report_issue(request):
         form = IssueForm(request.POST)
         if form.is_valid():
             # Read out form data
-            bug_category_1 = str(form.cleaned_data["bug_category_1"])
-            bug_category_2 = str(form.cleaned_data["bug_category_2"])
-            bug_category_3 = str(form.cleaned_data["bug_category_3"])
-            bug_category_free_text = form.cleaned_data["bug_category_free_text"]
+            category_1 = str(form.cleaned_data["category_1"])
+            category_2 = str(form.cleaned_data["category_2"])
+            category_3 = str(form.cleaned_data["category_3"])
+            free_text = form.cleaned_data["free_text"]
             short_description = form.cleaned_data["short_description"]
             long_description = form.cleaned_data["long_description"]
 
             # Register activity
             desc_categories = add_arrows(
-                [bug_category_1, bug_category_2, bug_category_3, bug_category_free_text,]
+                [category_1, category_2, category_3, free_text,]
             )
             desc_act = f"{desc_categories} | {short_description}"
             act = Activity(
@@ -102,7 +102,7 @@ def report_issue(request):
             context = {
                 "description": [
                     add_arrows(
-                        [bug_category_1, bug_category_2, bug_category_3, bug_category_free_text,]
+                        [category_1, category_2, category_3, free_text,]
                     ),
                     short_description,
                     long_description,
