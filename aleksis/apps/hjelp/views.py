@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.http import JsonResponse
 from django.shortcuts import render
 from django.utils.translation import ugettext_lazy as _
@@ -10,6 +11,12 @@ from aleksis.core.util.core_helpers import get_site_preferences
 
 from .forms import FAQForm, FeedbackForm, IssueForm
 from .models import FAQQuestion, FAQSection, IssueCategory
+
+
+def get_from_email(request):
+    if request.user.email:
+        return f"{request.user.get_full_name()} <{request.user.email}>"
+    return settings.DEFAULT_FROM_EMAIL
 
 
 @permission_required("hjelp.view_faq")
@@ -45,7 +52,7 @@ def ask_faq(request):
             }
             send_templated_mail(
                 template_name="hjelp",
-                from_email=f"{request.user.get_full_name()} <{request.user.email}>",
+                from_email=get_from_email(request),
                 recipient_list=[get_site_preferences()["hjelp__faq_recipient"]],
                 context=context,
             )
@@ -112,7 +119,7 @@ def report_issue(request):
             }
             send_templated_mail(
                 template_name="hjelp",
-                from_email=f"{request.user.get_full_name()} <{request.user.email}>",
+                from_email=get_from_email(request),
                 recipient_list=[get_site_preferences()["hjelp__issue_report_recipient"]],
                 context=context,
             )
@@ -162,7 +169,7 @@ def feedback(request):
             }
             send_templated_mail(
                 template_name="hjelp",
-                from_email=f"{request.user.get_full_name()} <{request.user.email}>",
+                from_email=get_from_email(request),
                 recipient_list=[get_site_preferences()["hjelp__feedback_recipient"]],
                 context=context,
             )
