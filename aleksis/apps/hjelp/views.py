@@ -151,7 +151,7 @@ def feedback(request):
             # Register activity
             act = Activity.objects.create(
                 title=_("You submitted feedback."),
-                description=_(f"You rated AlekSIS with {overall_rating} from 5 stars."),
+                description=_(f"You rated AlekSIS with {overall_rating} out of 5 stars."),
                 app="Feedback",
                 user=request.user.person,
             )
@@ -159,10 +159,10 @@ def feedback(request):
             # Send mail
             context = {
                 "description": [
-                    _(f"Design rating: {design_rating} from 5 stars."),
-                    _(f"Performance rating: {performance_rating} from 5 stars."),
-                    _(f"Usability rating: {usability_rating} from 5 stars."),
-                    _(f"Overall rating: {overall_rating} from 5 stars."),
+                    _(f"Design rating: {design_rating} out of 5 stars."),
+                    _(f"Performance rating: {performance_rating} out of 5 stars."),
+                    _(f"Usability rating: {usability_rating} out of 5 stars."),
+                    _(f"Overall rating: {overall_rating} out of 5 stars."),
                     more,
                     apps,
                     ideas,
