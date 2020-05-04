@@ -1,5 +1,5 @@
 {% extends 'core/base.html' %}
-{% load i18n %}
+{% load html_helpers i18n %}
 
 
 {% block content %}
@@ -25,7 +25,7 @@
                                 {{ question.question_text }}
                             </div>
                             <div class="collapsible-body">
-                                {{ question.answer_text|safe }}
+                                {{ question.answer_text|add_class_to_el:"ul, browser-default"|safe }}
                             </div>
                         </li>
                     {% endif %}
