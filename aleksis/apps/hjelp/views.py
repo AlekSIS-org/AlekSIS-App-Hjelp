@@ -13,12 +13,6 @@ from .forms import FAQForm, FeedbackForm, IssueForm
 from .models import FAQQuestion, FAQSection, IssueCategory
 
 
-def get_from_email(request):
-    if request.user.email:
-        return f"{request.user.get_full_name()} <{request.user.email}>"
-    return settings.DEFAULT_FROM_EMAIL
-
-
 @permission_required("hjelp.view_faq")
 def faq(request):
     """Show the FAQ page."""
@@ -52,7 +46,7 @@ def ask_faq(request):
             }
             send_templated_mail(
                 template_name="hjelp",
-                from_email=get_from_email(request),
+                from_email=request.user.person.mail_sender,
                 recipient_list=[get_site_preferences()["hjelp__faq_recipient"]],
                 context=context,
             )
@@ -119,7 +113,7 @@ def report_issue(request):
             }
             send_templated_mail(
                 template_name="hjelp",
-                from_email=get_from_email(request),
+                from_email=request.user.person.mail_sender,
                 recipient_list=[get_site_preferences()["hjelp__issue_report_recipient"]],
                 context=context,
             )
@@ -169,7 +163,7 @@ def feedback(request):
             }
             send_templated_mail(
                 template_name="hjelp",
-                from_email=get_from_email(request),
+                from_email=request.user.person.mail_sender,
                 recipient_list=[get_site_preferences()["hjelp__feedback_recipient"]],
                 context=context,
             )
