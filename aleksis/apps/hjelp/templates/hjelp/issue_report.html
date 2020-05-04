@@ -98,7 +98,7 @@
         $.fn.setNextProperties = function (field_id, next_field_id, next_field_name) {
             var category = $('#' + field_id).find(':selected').text();
             $.ajax({
-                url: '{% url "rebus-get-next-properties" %}',
+                url: '{% url "issues_get_next_properties" %}',
                 data: {
                     'category': category
                 },
