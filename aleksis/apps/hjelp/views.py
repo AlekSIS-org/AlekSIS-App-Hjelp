@@ -156,10 +156,10 @@ def feedback(request):
             # Send mail
             context = {
                 "description": [
-                    design_rating,
-                    performance_rating,
-                    usability_rating,
-                    overall_rating,
+                    _(f"Design rating: {design_rating} from 5 stars."),
+                    _(f"Performance rating: {performance_rating} from 5 stars."),
+                    _(f"Usability rating: {usability_rating} from 5 stars."),
+                    _(f"Overall rating: {overall_rating} from 5 stars."),
                     more,
                     apps,
                     ideas,
