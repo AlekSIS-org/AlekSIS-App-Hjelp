@@ -11,9 +11,9 @@ authors = ["Julian Leucker <leuckeju@katharineum.de>", "Frank Poetzsch-Heffter <
 maintainers = ["Jonathan Weth <wethjo@katharineum.de>", "Dominik George <dominik.george@teckids.org>"]
 license = "EUPL-1.2-or-later"
 homepage = "https://aleksis.org/"
-repository = "https://edugit.org/AlekSIS/official/AlekSIS-App-Chronos"
+repository = "https://edugit.org/AlekSIS/official/AlekSIS-App-Hjelp"
 documentation = "https://aleksis.org/AlekSIS/docs/html/"
-keywords = ["SIS", "education", "school", "timetable", "plans"]
+keywords = ["SIS", "education", "school", "support", "feedback"]
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Environment :: Web Environment",
