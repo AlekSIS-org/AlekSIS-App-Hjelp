@@ -44,9 +44,14 @@ def ask_faq(request):
                 "user": request.user,
                 "type": _("FAQ question"),
             }
+
             send_templated_mail(
                 template_name="hjelp",
-                from_email=request.user.person.mail_sender,
+                from_email=request.user.person.mail_sender_via,
+                headers={
+                    "Reply-To": request.user.person.mail_sender,
+                    "Sender": request.user.person.mail_sender,
+                },
                 recipient_list=[get_site_preferences()["hjelp__faq_recipient"]],
                 context=context,
             )
@@ -113,7 +118,11 @@ def report_issue(request):
             }
             send_templated_mail(
                 template_name="hjelp",
-                from_email=request.user.person.mail_sender,
+                from_email=request.user.person.mail_sender_via,
+                headers={
+                    "Reply-To": request.user.person.mail_sender,
+                    "Sender": request.user.person.mail_sender,
+                },
                 recipient_list=[get_site_preferences()["hjelp__issue_report_recipient"]],
                 context=context,
             )
@@ -163,7 +172,11 @@ def feedback(request):
             }
             send_templated_mail(
                 template_name="hjelp",
-                from_email=request.user.person.mail_sender,
+                from_email=request.user.person.mail_sender_via,
+                headers={
+                    "Reply-To": request.user.person.mail_sender,
+                    "Sender": request.user.person.mail_sender,
+                },
                 recipient_list=[get_site_preferences()["hjelp__feedback_recipient"]],
                 context=context,
             )
