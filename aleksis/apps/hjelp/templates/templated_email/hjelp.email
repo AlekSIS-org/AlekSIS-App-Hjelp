@@ -1,6 +1,6 @@
 {% load i18n %}
 
-{% block subject %} {% trans "New" %} {{ type }} {% trans "from" %} {{ user.username }} {% endblock %}
+{% block subject %} {% trans "New" %} {{ type }} {% trans "from" %} {{ user.person.mail_sender_via }} {% endblock %}
 
 
 {% block plain %}
