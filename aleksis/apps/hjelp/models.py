@@ -79,7 +79,7 @@ class IssueCategory(ExtensibleModel):
         return self.name
 
     def save(self, *args, **kwargs):
-        if self.free_text:
+        if self.free_text and self.children.exists():
             IssueCategory.objects.filter(parent=self).delete()
         super(IssueCategory, self).save(*args, **kwargs)
 
