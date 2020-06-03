@@ -30,7 +30,17 @@ MENUS = {
                         ),
                     ],
                 },
-                {"name": _("FAQ"), "url": "faq", "icon": "question_answer",},
+                {
+		    "name": _("FAQ"),
+		    "url": "faq",
+		    "icon": "question_answer",
+		    "validators": [
+			(
+			    "aleksis.core.util.predicates.permission_validator",
+                            "hjelp.view_faq",
+                        ),
+                    ],
+		},
             ],
         }
     ]
