@@ -9,7 +9,9 @@ from .models import IssueCategory
 class FAQForm(forms.Form):
     """Form used to allow users to send in a question."""
 
-    question = forms.CharField(widget=forms.Textarea(), label=_("Your question"), required=True)
+    question = forms.CharField(
+        widget=forms.Textarea(), label=_("Your question"), required=True
+    )
 
 
 class IssueForm(forms.Form):
@@ -49,13 +51,16 @@ class IssueForm(forms.Form):
         ),
     )
     free_text = forms.CharField(
-        label=_("Please specify the issue according to the chosen category."), required=False,
+        label=_("Please specify the issue according to the chosen category."),
+        required=False,
     )
     short_description = forms.CharField(
         label=_("Please describe the issue in one sentence."), required=True
     )
     long_description = forms.CharField(
-        widget=forms.Textarea, label=_("Please describe the issue in more detail."), required=False,
+        widget=forms.Textarea,
+        label=_("Please describe the issue in more detail."),
+        required=False,
     )
 
 
@@ -91,11 +96,15 @@ class FeedbackForm(forms.Form):
     )
 
     apps = forms.CharField(
-        label=_("What do you like? What would you change?"), required=False, widget=forms.Textarea,
+        label=_("What do you like? What would you change?"),
+        required=False,
+        widget=forms.Textarea,
     )
 
     more = forms.CharField(
-        label=_("What else do you want to tell us?"), required=False, widget=forms.Textarea,
+        label=_("What else do you want to tell us?"),
+        required=False,
+        widget=forms.Textarea,
     )
 
     ideas = forms.CharField(

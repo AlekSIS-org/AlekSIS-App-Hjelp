@@ -12,12 +12,12 @@ MENUS = {
                     "name": _("Report an issue"),
                     "url": "report_issue",
                     "icon": "bug_report",
-		    "validators": [
+                    "validators": [
                         (
                             "aleksis.core.util.predicates.permission_validator",
                             "hjelp.report_issue",
                         ),
-		    ],
+                    ],
                 },
                 {
                     "name": _("Give feedback"),
@@ -31,16 +31,16 @@ MENUS = {
                     ],
                 },
                 {
-		    "name": _("FAQ"),
-		    "url": "faq",
-		    "icon": "question_answer",
-		    "validators": [
-			(
-			    "aleksis.core.util.predicates.permission_validator",
+                    "name": _("FAQ"),
+                    "url": "faq",
+                    "icon": "question_answer",
+                    "validators": [
+                        (
+                            "aleksis.core.util.predicates.permission_validator",
                             "hjelp.view_faq",
                         ),
                     ],
-		},
+                },
             ],
         }
     ]
