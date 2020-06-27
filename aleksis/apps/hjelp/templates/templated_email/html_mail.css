@@ -31,3 +31,11 @@ span.chip {
     border-radius: 2px;
     background-color: #eaeaea;
 }
+
+table tr>th {
+    text-align: left;
+}
+td.stars {
+    color: #fe9e27;
+    font-size: 20px;
+}

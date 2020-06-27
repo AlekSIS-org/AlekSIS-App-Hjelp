@@ -158,20 +158,17 @@ def feedback(request):
 
             # Send mail
             context = {
-                "description": [
-                    _(f"Design rating: {design_rating} out of 5 stars."),
-                    _(f"Performance rating: {performance_rating} out of 5 stars."),
-                    _(f"Usability rating: {usability_rating} out of 5 stars."),
-                    _(f"Overall rating: {overall_rating} out of 5 stars."),
-                    more,
-                    apps,
-                    ideas,
-                ],
+                "design_rating": design_rating,
+                "performance_rating": performance_rating,
+                "usability_rating": usability_rating,
+                "overall_rating": overall_rating,
+                "more": more,
+                "apps": apps,
+                "ideas": ideas,
                 "user": request.user,
-                "type": _("Feedback"),
             }
             send_templated_mail(
-                template_name="hjelp",
+                template_name="feedback",
                 from_email=request.user.person.mail_sender_via,
                 headers={
                     "Reply-To": request.user.person.mail_sender,
