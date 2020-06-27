@@ -41,7 +41,6 @@ def ask_faq(request):
             context = {
                 "description": [question],
                 "user": request.user,
-                "type": _("FAQ question"),
             }
 
             send_templated_mail(
@@ -105,16 +104,16 @@ def report_issue(request):
 
             # Send mail
             context = {
-                "description": [
-                    add_arrows([category_1, category_2, category_3, free_text,]),
-                    short_description,
-                    long_description,
-                ],
+                "categories": add_arrows([category_1, category_2, category_3, free_text, ]),
+                "categories_single":
+                    (element for element in [category_1, category_2, category_3, free_text, ]
+                     if element and element != "None"),
+                "short_description": short_description,
+                "long_description": long_description,
                 "user": request.user,
-                "type": _("Issue"),
             }
             send_templated_mail(
-                template_name="hjelp",
+                template_name="rebus",
                 from_email=request.user.person.mail_sender_via,
                 headers={
                     "Reply-To": request.user.person.mail_sender,
