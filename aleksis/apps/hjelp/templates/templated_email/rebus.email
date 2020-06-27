@@ -7,7 +7,7 @@
 
 {% block plain %}
     {% blocktrans with username=user.username full_name=user.person.full_name email=user.person.email %}
-    The user {{ username }} (full name: {{ full_name }}, e-mail: <{{ email }}>) has submitted the following issue:
+    The user {{ username }} (full name: {{ full_name }}, email: <{{ email }}>) has submitted the following issue:
     {% endblocktrans %}
     {{ categories }}
     {{ short_description }}
@@ -21,7 +21,7 @@
 <main>
     <p>
         {% blocktrans with username=user.username full_name=user.person.full_name email=user.person.email %}
-            The user {{ username }} (full name: {{ full_name }}, e-mail: <a href="mailto:{{ email }}">&lt;{{ email }}&gt;</a>)
+            The user {{ username }} (full name: {{ full_name }}, email: <a href="mailto:{{ email }}">&lt;{{ email }}&gt;</a>)
             has submitted the following issue:
         {% endblocktrans %}
     </p>
