@@ -39,13 +39,12 @@ def ask_faq(request):
             act.save()
 
             context = {
-                "description": [question],
+                "question": question,
                 "user": request.user,
-                "type": _("FAQ question"),
             }
 
             send_templated_mail(
-                template_name="hjelp",
+                template_name="faq",
                 from_email=request.user.person.mail_sender_via,
                 headers={
                     "Reply-To": request.user.person.mail_sender,
@@ -105,16 +104,16 @@ def report_issue(request):
 
             # Send mail
             context = {
-                "description": [
-                    add_arrows([category_1, category_2, category_3, free_text,]),
-                    short_description,
-                    long_description,
-                ],
+                "categories": add_arrows([category_1, category_2, category_3, free_text, ]),
+                "categories_single":
+                    (element for element in [category_1, category_2, category_3, free_text, ]
+                     if element and element != "None"),
+                "short_description": short_description,
+                "long_description": long_description,
                 "user": request.user,
-                "type": _("Issue"),
             }
             send_templated_mail(
-                template_name="hjelp",
+                template_name="rebus",
                 from_email=request.user.person.mail_sender_via,
                 headers={
                     "Reply-To": request.user.person.mail_sender,
@@ -159,20 +158,17 @@ def feedback(request):
 
             # Send mail
             context = {
-                "description": [
-                    _(f"Design rating: {design_rating} out of 5 stars."),
-                    _(f"Performance rating: {performance_rating} out of 5 stars."),
-                    _(f"Usability rating: {usability_rating} out of 5 stars."),
-                    _(f"Overall rating: {overall_rating} out of 5 stars."),
-                    more,
-                    apps,
-                    ideas,
-                ],
+                "design_rating": design_rating,
+                "performance_rating": performance_rating,
+                "usability_rating": usability_rating,
+                "overall_rating": overall_rating,
+                "more": more,
+                "apps": apps,
+                "ideas": ideas,
                 "user": request.user,
-                "type": _("Feedback"),
             }
             send_templated_mail(
-                template_name="hjelp",
+                template_name="feedback",
                 from_email=request.user.person.mail_sender_via,
                 headers={
                     "Reply-To": request.user.person.mail_sender,
