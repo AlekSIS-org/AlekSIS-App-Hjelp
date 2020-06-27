@@ -34,7 +34,7 @@
             {% endif %}
             {% endfor %}
         </p>
-        <p>{{ short_description }}</p>
+        <h4>{{ short_description }}</h4>
         <p>{{ long_description|linebreaksbr }}</p>
     </div>
 </main>
