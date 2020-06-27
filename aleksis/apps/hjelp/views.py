@@ -39,12 +39,12 @@ def ask_faq(request):
             act.save()
 
             context = {
-                "description": [question],
+                "question": question,
                 "user": request.user,
             }
 
             send_templated_mail(
-                template_name="hjelp",
+                template_name="faq",
                 from_email=request.user.person.mail_sender_via,
                 headers={
                     "Reply-To": request.user.person.mail_sender,
