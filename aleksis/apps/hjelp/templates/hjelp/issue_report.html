@@ -1,6 +1,10 @@
 {% extends 'core/base.html' %}
 {% load static i18n any_js %}
 
+{% block browser_title %}{% blocktrans %}Report an issue{% endblocktrans %}{% endblock browser_title %}
+
+{% block page_title %}{% blocktrans %}Report an issue{% endblocktrans %}{% endblock page_title %}
+
 {% block extra_head %}
     {{ form.media.css }}
     {% include_css "select2-materialize" %}
@@ -8,8 +12,6 @@
 {% endblock %}
 
 {% block content %}
-    <h4>{% blocktrans %}Report an issue{% endblocktrans %}</h4>
-
     <form method="post" id="rebus-form">
         {% csrf_token %}
 
