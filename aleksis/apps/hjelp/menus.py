@@ -7,6 +7,12 @@ MENUS = {
             "url": "#",
             "icon": "help_circle",
             "root": True,
+            "validators": [
+                (
+                    "aleksis.core.util.predicates.permission_validator",
+                    "hjelp.show_menu",
+                ),
+            ],
             "submenu": [
                 {
                     "name": _("Report an issue"),
