@@ -1,9 +1,11 @@
 {% extends 'core/base.html' %}
 {% load html_helpers i18n %}
 
+{% block page_title %}FAQ ({% trans "Frequently Asked Questions" %}){% endblock page_title %}
+
+{% block browser_title %}FAQ ({% trans "Frequently Asked Questions" %}){% endblock browser_title %}
 
 {% block content %}
-    <h3>FAQ (Frequently Asked Questions)</h3>
     {% for section in sections %}
         <section>
             <h4>
@@ -36,35 +38,35 @@
 
 
     <p class="flow-text">
-	{% blocktrans %}
-	    Your question is not listed above?
-	{% endblocktrans %}
+      {% blocktrans %}
+        Your question is not listed above?
+      {% endblocktrans %}
     </p>
     <p>
-        {% if user.is_authenticated %}
-            <a class="btn  blue waves-effect waves-green" href="{% url "ask_faq" %}">
-                <i class="material-icons left">chat</i>
-		{% blocktrans %}
-		    Ask your question
-		{% endblocktrans %}
-            </a>
-        {% else %}
-	    {% blocktrans %}
-                If you have a question please ask one of you site administrators:
-            {% endblocktrans %}
-                <ul>
-                    {% for admin in ADMINS %}
-                        <li>
-                           {{ admin.0 }}
-                            &lt;
-                            <a href="mailto:{{ admin.1 }}">
-                                {{ admin.1 }}
-                            </a>
-                            &gt;
-                        </li>
-                    {% endfor %}
-                </ul>
-        {% endif %}
+      {% if user.is_authenticated %}
+        <a class="btn  blue waves-effect waves-green" href="{% url "ask_faq" %}">
+          <i class="material-icons left">chat</i>
+          {% blocktrans %}
+            Ask your question
+          {% endblocktrans %}
+        </a>
+      {% else %}
+        {% blocktrans %}
+          If you have a question please ask one of you site administrators:
+        {% endblocktrans %}
+        <ul>
+          {% for admin in ADMINS %}
+            <li>
+              {{ admin.0 }}
+              &lt;
+              <a href="mailto:{{ admin.1 }}">
+                {{ admin.1 }}
+              </a>
+              &gt;
+            </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
     </p>
 
 {% endblock %}

@@ -1,27 +1,25 @@
 {% extends 'core/base.html' %}
-{% load i18n %}
+{% load i18n material_form %}
+
+{% block page_title %}{% blocktrans %}You have a question?{% endblocktrans %}{% endblock page_title %}
+{% block browser_title %}{% trans "Ask Question" %}{% endblock browser_title %}
 
 
 {% block content %}
-    <h4 class="h-with-subtitle">{% blocktrans %}You have a question?{% endblocktrans %}</h4>
-    <p class="flow-text">
-	{% blocktrans %}
-        You have a question about AlekSIS and didn't find the answer to your question in the FAQ? Then you can ask us your question here:
-	{% endblocktrans %}
-    </p>
-    <form class="col s12" method="post">
-        {% csrf_token %}
-        <div class="row">
-            <div class="input-field col s12">
-                <textarea id="{{ form.question.id_for_label }}" class="materialize-textarea validate"
-                          name="{{ form.question.html_name }}" required></textarea>
-                <label for="{{ form.question.id_for_label }}">{{ form.question.label }}</label>
-            </div>
-        </div>
+  <p>
+    {% blocktrans %}
+      You have a question about AlekSIS and didn't find the answer to your question in the FAQ? Then you can ask us your
+      question here:
+    {% endblocktrans %}
+  </p>
+  <form method="post">
+    {% csrf_token %}
+    {% form form=form %}{% endform %}
 
-        <button class="btn waves-effect waves-light green" type="submit" name="action">Frage stellen
-            <i class="material-icons right">send</i>
-        </button>
+    <button class="btn waves-effect waves-light green" type="submit" name="action">
+      {% trans "Ask Question" %}
+      <i class="material-icons right">send</i>
+    </button>
 
-    </form>
+  </form>
 {% endblock %}
