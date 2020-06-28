@@ -70,28 +70,28 @@ class FeedbackForm(forms.Form):
     design_rating = forms.ChoiceField(
         label=_("Design of the user interface"),
         choices=ratings,
-        widget=forms.RadioSelect(attrs={"checked": "checked"}),
+        widget=forms.RadioSelect(),
         required=True,
     )
 
     performance_rating = forms.ChoiceField(
         label=_("Speed"),
         choices=ratings,
-        widget=forms.RadioSelect(attrs={"checked": "checked", "class": "required"}),
+        widget=forms.RadioSelect(),
         required=True,
     )
 
     usability_rating = forms.ChoiceField(
         label=_("User friendliness"),
         choices=ratings,
-        widget=forms.RadioSelect(attrs={"checked": "checked"}),
+        widget=forms.RadioSelect(),
         required=True,
     )
 
     overall_rating = forms.ChoiceField(
         label=_("AlekSIS in general"),
         choices=ratings,
-        widget=forms.RadioSelect(attrs={"checked": "checked"}),
+        widget=forms.RadioSelect(),
         required=True,
     )
 
