@@ -62,7 +62,7 @@ def ask_faq(request):
 
 
 def add_arrows(array: list):
-    return " → ".join([item for item in array if item != ""])
+    return " → ".join([item for item in array if item != "" and item.lower() != "none"])
 
 
 def issues_get_next_properties(request):
