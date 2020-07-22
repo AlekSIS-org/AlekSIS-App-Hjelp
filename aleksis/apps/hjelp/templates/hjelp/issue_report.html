@@ -19,7 +19,7 @@
 
         <div class="row">
             <div id="{{ form.category_1.auto_id }}" class="input-field col s12 m4 browser-default">
-                <div class="flex-row">
+                <div class="issue-flex-row">
                     <div id="bug_category_1_icon" class="issue-category-icon">
                         <i class="material-icons prefix small">bug_report</i>
                     </div>
@@ -29,7 +29,7 @@
                 </div>
             </div>
             <div id="{{ form.category_2.auto_id }}" class="input-field col s12 m4 browser-default" style="display: none" disabled>
-                <div class="flex-row">
+                <div class="issue-flex-row">
                     <div id="bug_category_2_icon" class="issue-category-icon">
                     </div>
                     <div class="support-input-mobile issue-category-field">
@@ -38,7 +38,7 @@
                 </div>
             </div>
             <div id="{{ form.category_3.auto_id }}" class="input-field col s12 m4 browser-default" style="display: none" disabled>
-                <div class="flex-row">
+                <div class="issue-flex-row">
                     <div id="bug_category_3_icon" class="issue-category-icon">
                     </div>
                     <div class="support-input-mobile issue-category-field">
@@ -47,10 +47,10 @@
                 </div>
             </div>
             <div id="{{ form.free_text.auto_id }}" class="input-field col s12 m4" style="display: none" disabled>
-                <div class="flex-row">
+                <div class="issue-flex-row">
                     <div id="bug_category_free_text_icon" class="issue-category-icon">
                     </div>
-                    <div class="input-field support-input-mobile issue-category-field">
+                    <div class="input-field support-input-mobile issue-free-text-field">
                         {{ form.free_text }}
                         <label for="{{ form.free_text.id_for_label }}"></label>
                     </div>
