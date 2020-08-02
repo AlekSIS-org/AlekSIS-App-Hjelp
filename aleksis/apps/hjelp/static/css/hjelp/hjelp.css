@@ -61,15 +61,30 @@
 
 .issue-category-icon {
     flex-basis: 45px;
+    min-width: 45px;
 }
 
 .issue-category-field {
     flex-grow: 1;
     margin: 0;
     max-height: 40px;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-.issue-category-field * {
+.issue-free-text-field {
+    flex-grow: 1;
+    margin: 0;
+    max-height: 40px;
+}
+
+.issue-free-text-field * {
     margin: inherit;
     max-height: inherit;
+}
+
+.issue-flex-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
