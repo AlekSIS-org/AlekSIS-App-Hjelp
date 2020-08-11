@@ -68,11 +68,11 @@ extras = ["phonenumbers"]
 version = ">=3.0,<4.0"
 
 [package.dependencies.django-two-factor-auth]
-extras = ["sms", "phonenumbers", "yubikey", "call"]
+extras = ["phonenumbers", "call", "yubikey", "sms"]
 version = ">=1.11.0,<2.0.0"
 
 [package.dependencies.dynaconf]
-extras = ["yaml", "ini", "toml"]
+extras = ["toml", "ini", "yaml"]
 version = ">=2.0,<3.0"
 
 [package.extras]
@@ -984,18 +984,15 @@ description = "flake8 plugin that integrates isort ."
 name = "flake8-isort"
 optional = false
 python-versions = "*"
-version = "3.0.0"
+version = "4.0.0"
 
 [package.dependencies]
-flake8 = ">=3.2.1"
-testfixtures = "*"
-
-[package.dependencies.isort]
-extras = ["pyproject"]
-version = ">=4.3.5"
+flake8 = ">=3.2.1,<4"
+isort = ">=4.3.5,<6"
+testfixtures = ">=6.8.0,<7"
 
 [package.extras]
-test = ["pytest"]
+test = ["pytest (>=4.0.2,<6)", "toml"]
 
 [[package]]
 category = "dev"
@@ -1935,7 +1932,7 @@ docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 testing = ["jaraco.itertools", "func-timeout"]
 
 [metadata]
-content-hash = "db7ea9f2145e95e00263fab15d711bdf5ff1e4def68eefeac1042f0012bd1084"
+content-hash = "370a5ce7c3d2c605f6b15337e8ab81f2f50d68c928546e9c4a4f3e7b5a92527b"
 python-versions = "^3.7"
 
 [metadata.files]
@@ -2262,8 +2259,8 @@ flake8-fixme = [
     {file = "flake8_fixme-1.1.1-py2.py3-none-any.whl", hash = "sha256:226a6f2ef916730899f29ac140bed5d4a17e5aba79f00a0e3ae1eff1997cb1ac"},
 ]
 flake8-isort = [
-    {file = "flake8-isort-3.0.0.tar.gz", hash = "sha256:3ce227b5c5342b6d63937d3863e8de8783ae21863cb035cf992cdb0ba5990aa3"},
-    {file = "flake8_isort-3.0.0-py2.py3-none-any.whl", hash = "sha256:f5322a85cea89998e0df954162fd35a1f1e5b5eb4fc0c79b5975aa2799106baa"},
+    {file = "flake8-isort-4.0.0.tar.gz", hash = "sha256:2b91300f4f1926b396c2c90185844eb1a3d5ec39ea6138832d119da0a208f4d9"},
+    {file = "flake8_isort-4.0.0-py2.py3-none-any.whl", hash = "sha256:729cd6ef9ba3659512dee337687c05d79c78e1215fdf921ed67e5fe46cce2f3c"},
 ]
 flake8-mypy = [
     {file = "flake8-mypy-17.8.0.tar.gz", hash = "sha256:47120db63aff631ee1f84bac6fe8e64731dc66da3efc1c51f85e15ade4a3ba18"},
