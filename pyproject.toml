@@ -25,7 +25,7 @@ classifiers = [
 
 [tool.poetry.dependencies]
 python = "^3.7"
-AlekSIS = "^2.0a2"
+AlekSIS = { git = "https://edugit.org/AlekSIS/official/AlekSIS" }
 
 [tool.poetry.dev-dependencies]
 sphinx = "^3.0"
