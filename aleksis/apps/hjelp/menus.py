@@ -5,7 +5,7 @@ MENUS = {
         {
             "name": _("Support"),
             "url": "#",
-            "icon": "help_circle",
+            "icon": "help",
             "root": True,
             "validators": [
                 (
