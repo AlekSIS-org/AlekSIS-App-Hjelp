@@ -104,10 +104,14 @@ def report_issue(request):
 
             # Send mail
             context = {
-                "categories": add_arrows([category_1, category_2, category_3, free_text, ]),
-                "categories_single":
-                    (element for element in [category_1, category_2, category_3, free_text, ]
-                     if element and element != "None"),
+                "categories": add_arrows(
+                    [category_1, category_2, category_3, free_text,]
+                ),
+                "categories_single": (
+                    element
+                    for element in [category_1, category_2, category_3, free_text,]
+                    if element and element != "None"
+                ),
                 "short_description": short_description,
                 "long_description": long_description,
                 "user": request.user,
