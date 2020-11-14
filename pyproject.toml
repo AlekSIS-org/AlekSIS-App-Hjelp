@@ -5,6 +5,7 @@ packages = [
     { include = "aleksis" }
 ]
 readme = "README.rst"
+include = ["CHANGELOG.rst", "LICENCE.rst", "aleksis/**/locale/*.mo"]
 
 description = "AlekSIS (School Information System) — App Hjelp (FAQ, issue reporting and support)"
 authors = ["Julian Leucker <leuckeju@katharineum.de>", "Frank Poetzsch-Heffter <p-h@katharineum.de>", "Jonathan Weth <wethjo@katharineum.de>", "Hangzhi Yu <yuha@katharineum.de>", "Tom Teichler <tom.teichler@teckids.org>"]
