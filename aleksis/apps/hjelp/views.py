@@ -90,9 +90,7 @@ def report_issue(request):
             long_description = form.cleaned_data["long_description"]
 
             # Register activity
-            desc_categories = add_arrows(
-                [category_1, category_2, category_3, free_text,]
-            )
+            desc_categories = add_arrows([category_1, category_2, category_3, free_text,])
             desc_act = f"{desc_categories} | {short_description}"
             act = Activity(
                 title=_("You reported a problem."),
@@ -104,9 +102,7 @@ def report_issue(request):
 
             # Send mail
             context = {
-                "categories": add_arrows(
-                    [category_1, category_2, category_3, free_text,]
-                ),
+                "categories": add_arrows([category_1, category_2, category_3, free_text,]),
                 "categories_single": (
                     element
                     for element in [category_1, category_2, category_3, free_text,]
@@ -123,9 +119,7 @@ def report_issue(request):
                     "Reply-To": request.user.person.mail_sender,
                     "Sender": request.user.person.mail_sender,
                 },
-                recipient_list=[
-                    get_site_preferences()["hjelp__issue_report_recipient"]
-                ],
+                recipient_list=[get_site_preferences()["hjelp__issue_report_recipient"]],
                 context=context,
             )
 
@@ -153,9 +147,7 @@ def feedback(request):
             # Register activity
             act = Activity.objects.create(
                 title=_("You submitted feedback."),
-                description=_(
-                    f"You rated AlekSIS with {overall_rating} out of 5 stars."
-                ),
+                description=_(f"You rated AlekSIS with {overall_rating} out of 5 stars."),
                 app="Feedback",
                 user=request.user.person,
             )
