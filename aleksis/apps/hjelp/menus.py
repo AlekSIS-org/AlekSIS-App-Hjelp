@@ -8,10 +8,7 @@ MENUS = {
             "icon": "help",
             "root": True,
             "validators": [
-                (
-                    "aleksis.core.util.predicates.permission_validator",
-                    "hjelp.show_menu",
-                ),
+                ("aleksis.core.util.predicates.permission_validator", "hjelp.show_menu",),
             ],
             "submenu": [
                 {
@@ -41,10 +38,7 @@ MENUS = {
                     "url": "faq",
                     "icon": "question_answer",
                     "validators": [
-                        (
-                            "aleksis.core.util.predicates.permission_validator",
-                            "hjelp.view_faq",
-                        ),
+                        ("aleksis.core.util.predicates.permission_validator", "hjelp.view_faq",),
                     ],
                 },
             ],

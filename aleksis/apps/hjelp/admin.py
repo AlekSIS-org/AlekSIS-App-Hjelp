@@ -7,9 +7,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from .models import FAQQuestion, FAQSection, IssueCategory
 
-MATERIAL_ICONS_CSS_URL = (
-    "/static/material-design-icons-iconfont/dist/material-design-icons.css"
-)
+MATERIAL_ICONS_CSS_URL = "/static/material-design-icons-iconfont/dist/material-design-icons.css"
 
 
 class IconMixin(object):
