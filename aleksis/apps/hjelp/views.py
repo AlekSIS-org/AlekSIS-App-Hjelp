@@ -16,8 +16,7 @@ from .models import FAQQuestion, FAQSection, IssueCategory
 def faq(request):
     """Show the FAQ page."""
     context = {
-        "questions": FAQQuestion.objects.filter(show=True),
-        "sections": FAQSection.objects.all(),
+        "sections": FAQSection.objects.all(show=True),
     }
     return render(request, "hjelp/faq.html", context)
 
