@@ -29,6 +29,8 @@ class FAQSection(ExtensibleModel):
         verbose_name=_("Icon"),
     )
 
+    show = models.BooleanField(verbose_name=_("Show"), default=False)
+
     def __str__(self):
         return self.name
 
