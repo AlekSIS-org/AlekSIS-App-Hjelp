@@ -1,6 +1,7 @@
 from django.http import JsonResponse
 from django.shortcuts import render
 from django.utils.translation import ugettext_lazy as _
+from django.views.decorators.cache import never_cache
 
 from rules.contrib.views import permission_required
 from templated_email import send_templated_mail
@@ -22,6 +23,7 @@ def faq(request):
     return render(request, "hjelp/faq.html", context)
 
 
+@never_cache
 @permission_required("hjelp.ask_faq")
 def ask_faq(request):
     if request.method == "POST":
@@ -65,6 +67,7 @@ def add_arrows(array: list):
     return " → ".join([item for item in array if item != "" and item.lower() != "none"])
 
 
+@never_cache
 def issues_get_next_properties(request):
     category = request.GET.get("category", None)
     next_properties = {
@@ -76,6 +79,7 @@ def issues_get_next_properties(request):
     return JsonResponse(next_properties)
 
 
+@never_cache
 @permission_required("hjelp.report_issue")
 def report_issue(request):
     if request.method == "POST":
@@ -130,6 +134,7 @@ def report_issue(request):
     return render(request, "hjelp/issue_report.html", {"form": form})
 
 
+@never_cache
 @permission_required("hjelp.send_feedback")
 def feedback(request):
     if request.method == "POST":
