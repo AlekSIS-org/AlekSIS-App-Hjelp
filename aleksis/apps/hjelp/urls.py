@@ -7,6 +7,7 @@ urlpatterns = [
     path("feedback/", views.feedback, name="feedback"),
     path("faq/", views.faq, name="faq"),
     path("faq/ask/", views.ask_faq, name="ask_faq"),
+    path("faq/order/", views.FAQOrder.as_view(), name="order_faq"),
     path(
         "issues/get_next_properties/",
         views.issues_get_next_properties,
