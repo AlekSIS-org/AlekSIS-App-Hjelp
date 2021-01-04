@@ -73,3 +73,19 @@
     margin: inherit;
     max-height: inherit;
 }
+
+.handle {
+    cursor: grab;
+    user-select: none;
+}
+
+.outer-handle {
+    vertical-align: middle;
+    height: 100%;
+    position: absolute;
+}
+
+.handle-container {
+    float: left;
+    position: relative;
+}
