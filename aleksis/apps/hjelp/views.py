@@ -1,6 +1,8 @@
 from django.http import JsonResponse
 from django.shortcuts import render
 from django.utils.translation import ugettext_lazy as _
+from django.views.generic import ListView, UpdateView, FormView
+from material import Layout, Row
 
 from rules.contrib.views import permission_required
 from templated_email import send_templated_mail
@@ -8,7 +10,7 @@ from templated_email import send_templated_mail
 from aleksis.core.models import Activity
 from aleksis.core.util.core_helpers import get_site_preferences
 
-from .forms import FAQForm, FeedbackForm, IssueForm
+from .forms import FAQForm, FAQOrderFormSet, FeedbackForm, IssueForm
 from .models import FAQQuestion, FAQSection, IssueCategory
 
 
@@ -16,9 +18,39 @@ from .models import FAQQuestion, FAQSection, IssueCategory
 def faq(request):
     """Show the FAQ page."""
     context = {
-        "sections": FAQSection.objects.all(show=True),
+        "sections": FAQSection.objects.filter(show=True),
     }
     return render(request, "hjelp/faq.html", context)
+
+
+class FAQOrder(FormView):
+    queryset = FAQSection.objects.all()
+    template_name = "hjelp/order_faq.html"
+    form_class = FAQOrderFormSet
+    success_url = "#"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["layout"] = Layout(Row("name", "icon", "show"))  # , "ORDER"))
+
+        return context
+
+    def form_valid(self, form):
+        for individual_form in form.forms:
+            pos = individual_form.cleaned_data["ORDER"]
+            individual_form.cleaned_data["position"] = pos
+            individual_form.instance.position = pos
+            individual_form.instance.save()
+
+        questions_and_sections = zip(self.request.POST.getlist("question-ids[]"),
+                                     self.request.POST.getlist("question-sections[]"))
+
+        for question, section in questions_and_sections:
+            q = FAQQuestion.objects.get(pk=question)
+            q.section = FAQSection.objects.get(pk=section)
+            q.save()
+
+        return super().form_valid(form)
 
 
 @permission_required("hjelp.ask_faq")
