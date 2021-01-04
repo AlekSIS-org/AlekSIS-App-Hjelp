@@ -16,11 +16,6 @@ class FAQForm(forms.Form):
 
 class FAQOrderFormSet(forms.modelformset_factory(FAQSection, can_order=True, extra=0, fields="__all__")):
     ordering_widget = forms.widgets.HiddenInput
-    # question_ids = forms.IntegerField(widget=forms.MultipleHiddenInput)  # MultipleHiddenInput
-
-    # def add_fields(self, form, index):
-    #     super().add_fields(form, index)
-    #     form.fields['question_ids'] = forms.IntegerField(widget=forms.MultipleHiddenInput)
 
 
 class IssueForm(forms.Form):
