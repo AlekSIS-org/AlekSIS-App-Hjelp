@@ -1,0 +1,51 @@
+{% extends 'core/base.html' %}
+{% load i18n material_form static %}
+
+{% block page_title %}{% trans "Order FAQ" %}{% endblock page_title %}
+{% block browser_title %}{% trans "Order FAQ" %}{% endblock browser_title %}
+
+{% block extra_head %}
+    <link rel="stylesheet" href="{% static "css/hjelp/hjelp.css" %}">
+{% endblock extra_head %}
+
+{% block content %}
+    <form method="post">
+        {% csrf_token %}
+        {{ form.management_form }}
+        <div id="sections">
+            {% for faq_form in form %}
+                <div class="card-panel">
+                    <div class="row">
+                        <div class="handle-container">
+                            <i class="material-icons handle outer-handle small">drag_handle</i>
+                        </div>
+                        <div class="form-container col s11 push-s1" data-order-field="{{ faq_form.ORDER.auto_id }}">
+                            {% form form=faq_form layout=layout %}{% endform %}
+                            <div class="collection question-sortable" data-pk="{{ faq_form.instance.id }}">
+                                {% for question in faq_form.instance.questions.all %}
+                                    <div class="collection-item question-container">
+                                        <input type="hidden" name="question-ids[]" value="{{ question.id }}">
+                                        <input type="hidden" name="question-sections[]" value="{{ question.section.id }}">
+                                        <i class="material-icons left handle inner-handle">drag_handle</i>
+                                        {{ question.question_text }}
+                                        <a href="#!" class="secondary-content primary-color-text">
+                                            <i class="material-icons left">edit</i>
+                                            {% trans "Edit" %}
+                                        </a>
+                                    </div>
+                                    {% empty %}
+                                    <div class="collection-item">
+                                        :(
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        {% include "core/partials/save_button.html" %}
+    </form>
+
+    <script src="{% static "js/hjelp/order_faq.js" %}"></script>
+{% endblock content %}
