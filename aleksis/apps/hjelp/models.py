@@ -31,12 +31,19 @@ class FAQSection(ExtensibleModel):
 
     show = models.BooleanField(verbose_name=_("Show"), default=False)
 
+    position = models.PositiveIntegerField(verbose_name=_("Order"), default=1, blank=True)
+
     def __str__(self):
         return self.name
 
     class Meta:
         verbose_name = _("FAQ section")
         verbose_name_plural = _("FAQ sections")
+        ordering = ["position"]
+
+    def save(self, *args, **kwargs):
+        print(self, self.position)
+        return super().save(*args, **kwargs)
 
 
 class FAQQuestion(ExtensibleModel):
