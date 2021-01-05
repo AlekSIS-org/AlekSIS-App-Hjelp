@@ -4,7 +4,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.views.generic import ListView, UpdateView, FormView
 from material import Layout, Row
 
-from rules.contrib.views import permission_required
+from rules.contrib.views import permission_required, PermissionRequiredMixin
 from templated_email import send_templated_mail
 
 from aleksis.core.models import Activity
@@ -23,11 +23,12 @@ def faq(request):
     return render(request, "hjelp/faq.html", context)
 
 
-class FAQOrder(FormView):
+class FAQOrder(PermissionRequiredMixin, FormView):
     queryset = FAQSection.objects.all()
     template_name = "hjelp/order_faq.html"
     form_class = FAQOrderFormSet
     success_url = "#"
+    permission_required = "hjelp.change_faq"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
