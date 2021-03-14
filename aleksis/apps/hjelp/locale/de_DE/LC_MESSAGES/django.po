@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-08-02 22:22+0200\n"
-"PO-Revision-Date: 2021-03-14 11:52+0000\n"
+"PO-Revision-Date: 2021-03-14 12:00+0000\n"
 "Last-Translator: Jonathan Weth <teckids@jonathanweth.de>\n"
 "Language-Team: German <https://translate.edugit.org/projects/aleksis/"
 "aleksis-app-hjelp/de/>\n"
@@ -222,11 +222,6 @@ msgid "Frequently Asked Questions"
 msgstr "Häufig gestellte Fragen"
 
 #: templates/hjelp/faq.html:41
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "\t    Your question is not listed above?\n"
-#| "\t"
 msgid ""
 "\n"
 "        Your question is not listed above?\n"
@@ -237,26 +232,16 @@ msgstr ""
 "      "
 
 #: templates/hjelp/faq.html:49
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "\t\t    Ask your question\n"
-#| "\t\t"
 msgid ""
 "\n"
 "            Ask your question\n"
 "          "
 msgstr ""
 "\n"
-"            Ihre Frage stellen\n"
+"            Stellen Sie Ihre Frage\n"
 "          "
 
 #: templates/hjelp/faq.html:54
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "                If you have a question please ask one of you site administrators:\n"
-#| "            "
 msgid ""
 "\n"
 "          If you have a question please ask one of you site administrators:\n"
@@ -296,11 +281,6 @@ msgstr ""
 "  "
 
 #: templates/hjelp/feedback_submitted.html:14
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "            Thank you for your feedback. It was successfully submitted.\n"
-#| "\t"
 msgid ""
 "\n"
 "      Thank you for your feedback. It was successfully submitted.\n"
@@ -347,11 +327,6 @@ msgstr ""
 "  "
 
 #: templates/hjelp/issue_report_submitted.html:15
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "\t    We've received your bug report and will be look at it as soon a possible. Thank you for your report.\n"
-#| "\t"
 msgid ""
 "\n"
 "      We've received your issue report and will be look at it as soon a possible. Thank you for your report.\n"
@@ -377,11 +352,6 @@ msgstr ""
 "  "
 
 #: templates/hjelp/question_submitted.html:16
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "\t    We've received your question and will answer as soon as possible.\n"
-#| "\t"
 msgid ""
 "\n"
 "      We've received your question and will answer as soon as possible.\n"
@@ -396,11 +366,6 @@ msgid "Submit another question"
 msgstr "Weitere Frage senden"
 
 #: templates/hjelp/question_submitted.html:28
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "\t    Back to FAQ\n"
-#| "\t"
 msgid "Back to FAQ"
 msgstr "Zurück zu den FAQ"
 
@@ -416,6 +381,10 @@ msgid ""
 "    The user %(username)s (full name: %(full_name)s, email: <%(email)s>) has asked the following question:\n"
 "    "
 msgstr ""
+"\n"
+"    Der Nutzer %(username)s (vollständiger Name: %(full_name)s, E-Mail: "
+"<%(email)s>) hat die folgende Frage gestellt:\n"
+"    "
 
 #: templates/templated_email/faq.email:21
 #, python-format
@@ -425,11 +394,16 @@ msgid ""
 "            has asked the following question:\n"
 "        "
 msgstr ""
+"\n"
+"            Der Benutzer %(username)s (vollständiger Name: %(full_name)s, E-"
+"Mail <a href=\"mailto:%(email)s\">&lt;%(email)s&gt;</a>) \n"
+"            hat die folgende Frage gestellt:\n"
+"        "
 
 #: templates/templated_email/feedback.email:4
 #, python-format
 msgid "New feedback from %(user)s"
-msgstr ""
+msgstr "Neues Feedback von %(user)s"
 
 #: templates/templated_email/feedback.email:9
 #, python-format
@@ -450,6 +424,22 @@ msgid ""
 "        %(ideas)s\n"
 "    "
 msgstr ""
+"\n"
+"    Der Nutzer %(username)s (vollständiger Name: %(full_name)s, E-Mail: "
+"<%(email)s<) hat folgendes Feedback gegeben:\n"
+"\n"
+"Designbewertung: %(design_rating)s von 5 Sternen\n"
+"Geschwindigkeitsbewertung: %(performance_rating)s von 5 Sternen\n"
+"Benutzerfreundlichkeitsbewertung: %(usability_rating)s von 5 Sternen\n"
+"Bewertung insgesamt: %(overall_rating)s von 5 Sternen\n"
+"\n"
+"Was mögen Sie? Was würden Sie ändern?\n"
+"%(apps)s\n"
+"Was wollen Sie uns sonst noch mitteilen?\n"
+"%(more)s\n"
+"Was denken Sie, sollte in AlekSIS ergänzt werden?\n"
+"%(ideas)s\n"
+"    "
 
 #: templates/templated_email/feedback.email:32
 #, python-format
@@ -459,6 +449,11 @@ msgid ""
 "            has given the following feedback:\n"
 "        "
 msgstr ""
+"\n"
+"            Der Benutzer %(username)s (vollständiger Name: %(full_name)s, "
+"E-Mail: <a href=\"mailto:%(email)s\">&lt;%(email)s&gt;</a>)\n"
+"hat folgendes Feedback gegeben:\n"
+"        "
 
 #: templates/templated_email/feedback.email:40
 msgid "Design rating"
@@ -488,6 +483,10 @@ msgid ""
 "    The user %(username)s (full name: %(full_name)s, email: <%(email)s>) has submitted the following issue:\n"
 "    "
 msgstr ""
+"\n"
+"    Der Benutzer %(username)s (vollständiger Name: %(full_name)s, E-Mail: "
+"<%(email)s>) hat folgende Problemmeldung übermittelt:\n"
+"    "
 
 #: templates/templated_email/rebus.email:23
 #, python-format
@@ -497,6 +496,11 @@ msgid ""
 "            has submitted the following issue:\n"
 "        "
 msgstr ""
+"\n"
+"            Der Benutzer %(username)s (vollständiger Name: %(full_name)s, "
+"E-Mail: <a href=\"mailto:%(email)s\">&lt;%(email)s&gt;</a>)\n"
+"hat folgende Problemmeldung übermittelt:\n"
+"        "
 
 #: views.py:34
 msgid "You have submitted a question."
@@ -511,8 +515,7 @@ msgid "You submitted feedback."
 msgstr "Sie haben Feedback gegeben."
 
 #: views.py:153
-#, fuzzy, python-brace-format
-#| msgid "You rated AlekSIS with {overall_rating} from 5 stars."
+#, python-brace-format
 msgid "You rated AlekSIS with {overall_rating} out of 5 stars."
 msgstr "Sie haben AlekSIS mit {overall_rating} von 5 Sternen bewertet."
 
