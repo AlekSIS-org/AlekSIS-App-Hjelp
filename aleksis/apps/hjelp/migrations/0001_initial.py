@@ -36,6 +36,7 @@ class Migration(migrations.Migration):
                 ),
             ],
             options={
+                "default_permissions": (),
                 "permissions": (
                     ("view_faq", "Can view FAQ"),
                     ("ask_faq", "Can ask FAQ question"),
