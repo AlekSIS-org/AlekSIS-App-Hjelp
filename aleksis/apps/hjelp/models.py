@@ -3,11 +3,11 @@ from django.utils.translation import gettext_lazy as _
 
 from ckeditor.fields import RichTextField
 
-from aleksis.core.mixins import ExtensibleModel
+from aleksis.core.mixins import ExtensibleModel, GlobalPermissionModel
 from aleksis.core.util.model_helpers import ICONS
 
 
-class HjelpGlobalPermissions(ExtensibleModel):
+class HjelpGlobalPermissions(GlobalPermissionModel):
     class Meta:
         managed = False
         permissions = (
