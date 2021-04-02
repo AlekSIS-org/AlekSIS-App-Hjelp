@@ -19,7 +19,7 @@ class HjelpGlobalPermissions(GlobalPermissionModel):
 
 
 class FAQSection(ExtensibleModel):
-    name = models.CharField(max_length=200, verbose_name=_("Name"))
+    name = models.CharField(max_length=255, verbose_name=_("Name"))
 
     icon = models.CharField(
         max_length=50, blank=True, default="question_answer", choices=ICONS, verbose_name=_("Icon"),
@@ -60,7 +60,7 @@ class FAQQuestion(ExtensibleModel):
 
 
 class IssueCategory(ExtensibleModel):
-    name = models.CharField(max_length=40, verbose_name=_("Name"))
+    name = models.CharField(max_length=255, verbose_name=_("Name"))
     icon = models.CharField(
         max_length=50, blank=True, default="bug_report", choices=ICONS, verbose_name=_("Icon"),
     )
@@ -73,7 +73,7 @@ class IssueCategory(ExtensibleModel):
         verbose_name=_("Parent category"),
     )
     free_text = models.BooleanField(verbose_name=_("Free text input allowed"), default=False)
-    placeholder = models.CharField(max_length=100, verbose_name=_("Placeholder"), blank=True)
+    placeholder = models.CharField(max_length=255, verbose_name=_("Placeholder"), blank=True)
 
     def __str__(self):
         return self.name
