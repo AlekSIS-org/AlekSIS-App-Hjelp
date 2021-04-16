@@ -8,11 +8,11 @@ python-versions = "*"
 
 [[package]]
 name = "aleksis-builddeps"
-version = "2"
+version = "3"
 description = "AlekSIS (School Information System) — Build/Dev dependencies for apps"
 category = "dev"
 optional = false
-python-versions = "*"
+python-versions = ">=3.6,<4.0"
 
 [package.dependencies]
 black = ">=19.10b0,<20.0"
@@ -27,7 +27,8 @@ flake8-docstrings = ">=1.5.0,<2.0.0"
 flake8-fixme = ">=1.1.1,<2.0.0"
 flake8-isort = ">=4.0.0,<5.0.0"
 flake8-mypy = ">=17.8.0,<18.0.0"
-flake8-rst-docstrings = ">=0.0.14,<0.0.15"
+flake8-rst-docstrings = ">=0.1.0,<0.2.0"
+freezegun = ">=1.1.0,<2.0.0"
 isort = ">=5.0.0,<6.0.0"
 pytest = ">=6.0,<7.0"
 pytest-cov = ">=2.8.1,<3.0.0"
@@ -69,7 +70,6 @@ django-celery-beat = ">=2.2.0,<3.0.0"
 django-celery-email = ">=3.0.0,<4.0.0"
 django-celery-results = ">=2.0.1,<3.0.0"
 django-ckeditor = ">=6.0.0,<7.0.0"
-django-cleanup = ">=5.1.0,<6.0.0"
 django-colorfield = ">=0.4.0,<0.5.0"
 django-dbbackup = ">=3.3.0,<4.0.0"
 django-debug-toolbar = ">=3.2,<4.0"
@@ -90,7 +90,7 @@ django-material = ">=1.6.0,<2.0.0"
 django-menu-generator-ng = ">=1.2.3,<2.0.0"
 django-middleware-global-request = ">=0.1.2,<0.2.0"
 django-model-utils = ">=4.0.0,<5.0.0"
-django-phonenumber-field = {version = "<5.2", extras = ["phonenumbers"]}
+django-phonenumber-field = {version = "<5.1", extras = ["phonenumbers"]}
 django-polymorphic = ">=3.0.0,<4.0.0"
 django-prometheus = ">=2.1.0,<3.0.0"
 django-pwa = ">=1.0.8,<2.0.0"
@@ -669,14 +669,6 @@ python-versions = "*"
 django-js-asset = ">=1.2.2"
 
 [[package]]
-name = "django-cleanup"
-version = "5.1.0"
-description = "Deletes old files."
-category = "main"
-optional = false
-python-versions = "*"
-
-[[package]]
 name = "django-colorfield"
 version = "0.4.1"
 description = "simple color field for your models with a nice color-picker in the admin-interface."
@@ -939,11 +931,11 @@ YubiOTP = ">=0.2.2"
 
 [[package]]
 name = "django-phonenumber-field"
-version = "5.1.0"
+version = "5.0.0"
 description = "An international phone number field for django models."
 category = "main"
 optional = false
-python-versions = ">=3.6"
+python-versions = ">=3.5"
 
 [package.dependencies]
 Django = ">=2.2"
@@ -1361,15 +1353,28 @@ flake8 = "*"
 
 [[package]]
 name = "flake8-rst-docstrings"
-version = "0.0.14"
+version = "0.1.2"
 description = "Python docstring reStructuredText (RST) validator"
 category = "dev"
 optional = false
-python-versions = "*"
+python-versions = ">=3.3"
 
 [package.dependencies]
 flake8 = ">=3.0.0"
-restructuredtext_lint = "*"
+pydocstyle = ">=3.0.0"
+pygments = "*"
+restructuredtext-lint = "*"
+
+[[package]]
+name = "freezegun"
+version = "1.1.0"
+description = "Let your Python tests travel through time"
+category = "dev"
+optional = false
+python-versions = ">=3.5"
+
+[package.dependencies]
+python-dateutil = ">=2.7"
 
 [[package]]
 name = "gitdb"
@@ -2476,7 +2481,7 @@ alabaster = [
     {file = "alabaster-0.7.12.tar.gz", hash = "sha256:a661d72d58e6ea8a57f7a86e37d86716863ee5e92788398526d58b26a4e4dc02"},
 ]
 aleksis-builddeps = [
-    {file = "AlekSIS-Builddeps-2.tar.gz", hash = "sha256:fdf8b230ba4a690c279d99004316e84d7d9d72962768ca6b3205df54db9abaab"},
+    {file = "AlekSIS-Builddeps-3.tar.gz", hash = "sha256:04597e29a861e576d78adc068c9f1bf85450c81dc43cb1f7db0ed43e975b64a2"},
 ]
 aleksis-core = [
     {file = "AlekSIS-Core-2.0a5.dev0+20210217102451.bbdb8454.tar.gz", hash = "sha256:77dfe5726d2014afae043320da8552526cfa850ecae1a316cd3f8f24bf955930"},
@@ -2683,25 +2688,6 @@ aleksis-core = [
     {file = "AlekSIS-Core-2.0a5.dev0+20210408202102.04a696db.tar.gz", hash = "sha256:c231a8743418edcefd6784bba4699aae6401df3da9b8dd4f4528874c780ef3bf"},
     {file = "AlekSIS-Core-2.0a5.dev0+20210408203115.94c4c291.tar.gz", hash = "sha256:196df5034a0d2a72c9aa013ce99150c789f5d4b138e44878233e1c81253d0fd1"},
     {file = "AlekSIS-Core-2.0a5.dev0+20210408204951.30cdc3a0.tar.gz", hash = "sha256:93381241fac16ffe516db55d5a8232f6aeab1cc987ad1bdf08f3f2b8f42ebbab"},
-    {file = "AlekSIS-Core-2.0a5.dev0+20210411154713.b03040bd.tar.gz", hash = "sha256:28043bc9bf1be5bfb242e256796f64e64521009b3ced454d736fb85015a56de9"},
-    {file = "AlekSIS-Core-2.0a5.dev0+20210413120325.47d8e6c3.tar.gz", hash = "sha256:ed7feaa15bd3b6537190b607867bb9fbc293a69847ca01c5d85d84df9950acae"},
-    {file = "AlekSIS-Core-2.0a5.dev0+20210413125407.466a6e29.tar.gz", hash = "sha256:46cbccae7ea6a7def08bd1ec6881feade7681906b480090ddea1b3db68ed976e"},
-    {file = "AlekSIS-Core-2.0a5.dev0+20210413170223.83fc8097.tar.gz", hash = "sha256:1eb08d87033928080c6fb30c4bfe756ad21c110c21236f0ef21a2a130cf0c6cc"},
-    {file = "AlekSIS-Core-2.0a5.dev0+20210413171814.97e442b6.tar.gz", hash = "sha256:e5091f608a6fbec65e4bc3f0ac89a6401a3516a36e84229aea3f620ebb3c58a4"},
-    {file = "AlekSIS-Core-2.0a5.dev0+20210413205314.a990b99b.tar.gz", hash = "sha256:b1e70a2965c4c6bfe440b99a1208482f68928e5a95875e63a0caed65ba087187"},
-    {file = "AlekSIS-Core-2.0a5.dev0+20210414131048.3333d61a.tar.gz", hash = "sha256:ce88fa6d5a4b70b8a4846410fdeaa3b369a64ef69fa222faa8ba32f69a263735"},
-    {file = "AlekSIS-Core-2.0a5.dev0+20210414162612.8251a782.tar.gz", hash = "sha256:c57e2ded72874d2f6784bc2ec38c7731d0a5fd9564195a6d7d0b29f467b03a40"},
-    {file = "AlekSIS-Core-2.0a5.dev0+20210414173418.d859205b.tar.gz", hash = "sha256:2d95f13cf7c1537a9d48f2ccbcceb68f780a54739c8996c77f858d15e0662dfc"},
-    {file = "AlekSIS-Core-2.0a5.dev0+20210414185256.a52afb05.tar.gz", hash = "sha256:4112081bf169fb83b2bfe96c8eb5d11eb9a3a011d00e34b9dd59f81b9d0ec37a"},
-    {file = "AlekSIS-Core-2.0a5.dev0+20210414210640.719faa35.tar.gz", hash = "sha256:2cf45a6fb10f283e1c8e2f78ea61c1222a396733dbc1b428e3194c722f1a5cc4"},
-    {file = "AlekSIS-Core-2.0a5.dev0+20210414211751.3bfcc9c2.tar.gz", hash = "sha256:9d11b8f1ad28d86ab15cbd4b0c44f98860216fafb788d52a8c05a2d01bdd626d"},
-    {file = "AlekSIS-Core-2.0a5.dev0+20210415075328.eb22ff04.tar.gz", hash = "sha256:4f1b238ebd124a0a9107f2ac6df0a2eb1e30f43847cea798c0d105b9ff975693"},
-    {file = "AlekSIS-Core-2.0a5.dev0+20210415081501.ab7953bf.tar.gz", hash = "sha256:b53603bfff230fc8a5fb36b52bf9176a198e64b5a2705819694466f2f2727ef7"},
-    {file = "AlekSIS-Core-2.0a5.dev0+20210415193215.2a851f31.tar.gz", hash = "sha256:4e2321518290b6453a9514164e6448c407742b1fc9fc4f62bc396a2bd16b834f"},
-    {file = "AlekSIS-Core-2.0a5.dev0+20210415205640.e3bed4c2.tar.gz", hash = "sha256:0e0e1c13393dba4c3cace9d060eda1c7159e46beea2108b2face9fe95e3e2c17"},
-    {file = "AlekSIS-Core-2.0a5.dev0+20210415212302.b200ef3e.tar.gz", hash = "sha256:9f6d9840223618f8d3549f19dedae0f173ca03a18adb639bb2c49dfecea47d92"},
-    {file = "AlekSIS-Core-2.0a5.dev0+20210415222556.37d73508.tar.gz", hash = "sha256:5a00085a71ced055c9e71903bc608919029a8de297b6987d8e1263cbc5925390"},
-    {file = "AlekSIS-Core-2.0a5.dev0+20210416094627.29e673dd.tar.gz", hash = "sha256:8613c0458dcfb7fe88a481b5193dc74c95f09bb04c3458d8c028ec62b3a8f429"},
     {file = "AlekSIS_Core-2.0a5.dev0+20210217102451.bbdb8454-py3-none-any.whl", hash = "sha256:0c5359f23d48e3d8482c2e13c973f76ec314c0a11241186affaad0a7c8ed655d"},
     {file = "AlekSIS_Core-2.0a5.dev0+20210217123802.d23be3b6-py3-none-any.whl", hash = "sha256:381bb46e98b9dd6dfef638ade1cbfe837dd7c72779b6250819f99897c7050c6d"},
     {file = "AlekSIS_Core-2.0a5.dev0+20210221200356.d50b445b-py3-none-any.whl", hash = "sha256:9375fc896a88143afc986d6c7ab7f77a0bd778f4b72d3790f4f46b313ba7c03f"},
@@ -2906,25 +2892,6 @@ aleksis-core = [
     {file = "AlekSIS_Core-2.0a5.dev0+20210408202102.04a696db-py3-none-any.whl", hash = "sha256:3559ad1759c446012234b80d6d3569a8039bfc334040809e689b063523926f8e"},
     {file = "AlekSIS_Core-2.0a5.dev0+20210408203115.94c4c291-py3-none-any.whl", hash = "sha256:5fe2b7a821d51054b8772d258f11c8ce4c2bec32b11dc79b0427d05ba0f71e29"},
     {file = "AlekSIS_Core-2.0a5.dev0+20210408204951.30cdc3a0-py3-none-any.whl", hash = "sha256:d20155d5b0ead95c69edb14d171c720ad6c9b5019d9112072f632def8d0dc486"},
-    {file = "AlekSIS_Core-2.0a5.dev0+20210411154713.b03040bd-py3-none-any.whl", hash = "sha256:ba3e5331c9c8baf6a546ebc33b8d55bb94cc3c4fdb21a5db411ed4442dd84fe6"},
-    {file = "AlekSIS_Core-2.0a5.dev0+20210413120325.47d8e6c3-py3-none-any.whl", hash = "sha256:41d7dae47c1df34ff6ddaa41a9ede52e0d8fb41dc931ed2ca7ca25341e12c83f"},
-    {file = "AlekSIS_Core-2.0a5.dev0+20210413125407.466a6e29-py3-none-any.whl", hash = "sha256:c200be1445d85d1b015fa931538ccdc45f2d70ba3ebc069ec18dcb54f0ca02ff"},
-    {file = "AlekSIS_Core-2.0a5.dev0+20210413170223.83fc8097-py3-none-any.whl", hash = "sha256:80425453d0c5b38cef44891a69d49359882e1df60066a989d31bcb4f1185f9b5"},
-    {file = "AlekSIS_Core-2.0a5.dev0+20210413171814.97e442b6-py3-none-any.whl", hash = "sha256:d22595b02f64f09c1dccfbaad10cb1c58f6dd1c23a45213bd9c5235918c66119"},
-    {file = "AlekSIS_Core-2.0a5.dev0+20210413205314.a990b99b-py3-none-any.whl", hash = "sha256:284f1c77a1abf306e94835e6dc2be73bbd35f47f257a07a3c627d522d48a819a"},
-    {file = "AlekSIS_Core-2.0a5.dev0+20210414131048.3333d61a-py3-none-any.whl", hash = "sha256:d74d576aedbaece72128584989f2d1799566bca5fdf81e84af158c24fdfa368f"},
-    {file = "AlekSIS_Core-2.0a5.dev0+20210414162612.8251a782-py3-none-any.whl", hash = "sha256:fd44740f6fae596cffcdc90da4c79e46dc2fdfb297331539fcde29a38c2906ee"},
-    {file = "AlekSIS_Core-2.0a5.dev0+20210414173418.d859205b-py3-none-any.whl", hash = "sha256:c3fb99293dea28d2f39e045b69892e383f6012577b470d36a605df5ad624e68d"},
-    {file = "AlekSIS_Core-2.0a5.dev0+20210414185256.a52afb05-py3-none-any.whl", hash = "sha256:1e9d918ab216d210eb073a20669cb235129f4f8a1a64246b718107ed38158132"},
-    {file = "AlekSIS_Core-2.0a5.dev0+20210414210640.719faa35-py3-none-any.whl", hash = "sha256:de03d1ecd2637de7b271cb77fbbc0f65d803369e19eb52e100597a0806d49338"},
-    {file = "AlekSIS_Core-2.0a5.dev0+20210414211751.3bfcc9c2-py3-none-any.whl", hash = "sha256:3405db22c30a7b752d20bce3cd5067b17dade48b743877687c32fc47cf84f3e8"},
-    {file = "AlekSIS_Core-2.0a5.dev0+20210415075328.eb22ff04-py3-none-any.whl", hash = "sha256:d9959a8319267e642d49cdfeb773c6846190db8fdf68d0911a680f5d5c119dd9"},
-    {file = "AlekSIS_Core-2.0a5.dev0+20210415081501.ab7953bf-py3-none-any.whl", hash = "sha256:4e00bb9abf0238bbf8ecaaf2dd2d869ebcb3e4a2fd64c2772107e1c34c17fa2c"},
-    {file = "AlekSIS_Core-2.0a5.dev0+20210415193215.2a851f31-py3-none-any.whl", hash = "sha256:78bacd79cb3512fb09eff0ea90ff40f2508221bd34f951e39c1bf29819940aa4"},
-    {file = "AlekSIS_Core-2.0a5.dev0+20210415205640.e3bed4c2-py3-none-any.whl", hash = "sha256:39a56da60ef1b2649188257bc5a86b2f5b04f6f305e24ae9890f097fdb1827b7"},
-    {file = "AlekSIS_Core-2.0a5.dev0+20210415212302.b200ef3e-py3-none-any.whl", hash = "sha256:e3f5a534ebeb80c00dbed52621ab63b7825062617f0048fc3ae014472f56709c"},
-    {file = "AlekSIS_Core-2.0a5.dev0+20210415222556.37d73508-py3-none-any.whl", hash = "sha256:8312198c3f4a5832e4a6380f59262873419076206a9ded1a33073c6c2799ccf6"},
-    {file = "AlekSIS_Core-2.0a5.dev0+20210416094627.29e673dd-py3-none-any.whl", hash = "sha256:4b92638293b94cc74cdb992f1dd14aa1b63530e72622c403d94c47dd8d9d9059"},
 ]
 amqp = [
     {file = "amqp-5.0.6-py3-none-any.whl", hash = "sha256:493a2ac6788ce270a2f6a765b017299f60c1998f5a8617908ee9be082f7300fb"},
@@ -3148,10 +3115,6 @@ django-ckeditor = [
     {file = "django-ckeditor-6.0.0.tar.gz", hash = "sha256:29fd1a333cb9741ac2c3fd4e427a5c00115ed33a2389716a09af7656022dcdde"},
     {file = "django_ckeditor-6.0.0-py2.py3-none-any.whl", hash = "sha256:cc2d377f1bdcd4ca1540caeebe85f7e2cd006198d57328ef6c718d3eaa5a0846"},
 ]
-django-cleanup = [
-    {file = "django-cleanup-5.1.0.tar.gz", hash = "sha256:8976aec12a22913afb3d1fcb541b1aedde2f5ec243e4260c5ff78bb6aa75a089"},
-    {file = "django_cleanup-5.1.0-py2.py3-none-any.whl", hash = "sha256:71e098c7d9ac3f3da40b95cff9c0bc51218d40ef419261232f46ba3141c50acc"},
-]
 django-colorfield = [
     {file = "django-colorfield-0.4.1.tar.gz", hash = "sha256:63a542c417b72d0dac898a0f61a2a00aed3c9aabc2f5057c926efccf421f7887"},
     {file = "django_colorfield-0.4.1-py3-none-any.whl", hash = "sha256:e38f8b9dabbab48a6dab3d1eb5bd802decb92970d56a28128c9a70cdbf383e30"},
@@ -3243,8 +3206,8 @@ django-otp-yubikey = [
     {file = "django_otp_yubikey-1.0.0.post1-py2.py3-none-any.whl", hash = "sha256:613c96be211c1267400a5a78ae63f212c722f82dffb9daef3c8b1df370abb9be"},
 ]
 django-phonenumber-field = [
-    {file = "django-phonenumber-field-5.1.0.tar.gz", hash = "sha256:9eda963ac15b363393f677cc084efd45c3bd97bb5a0cdb4a06409ac99e05dd4b"},
-    {file = "django_phonenumber_field-5.1.0-py3-none-any.whl", hash = "sha256:48724ba235ee8248a474204faa0934c5baf9536f429859d05cb131fbd6b1c695"},
+    {file = "django-phonenumber-field-5.0.0.tar.gz", hash = "sha256:1eb7af3a108744665f7c3939d38aa15b3728c57d13d45d656b0a2aa11e8cdc3c"},
+    {file = "django_phonenumber_field-5.0.0-py3-none-any.whl", hash = "sha256:adb46905cc4ecb19d8494424e1c4352f24946bb472340a2a17257d44bf8228e6"},
 ]
 django-polymorphic = [
     {file = "django-polymorphic-3.0.0.tar.gz", hash = "sha256:9d886f19f031d26bb1391c055ed9be06fb226a04a4cec1842b372c58873b3caa"},
@@ -3369,7 +3332,12 @@ flake8-polyfill = [
     {file = "flake8_polyfill-1.0.2-py2.py3-none-any.whl", hash = "sha256:12be6a34ee3ab795b19ca73505e7b55826d5f6ad7230d31b18e106400169b9e9"},
 ]
 flake8-rst-docstrings = [
-    {file = "flake8-rst-docstrings-0.0.14.tar.gz", hash = "sha256:8f8bcb18f1408b506dd8ba2c99af3eac6128f6911d4bf6ff874b94caa70182a2"},
+    {file = "flake8-rst-docstrings-0.1.2.tar.gz", hash = "sha256:7d34d2175a0cd92aba0872ade74268b2f2c12582c7267d4a0e6ef1c32a828ce3"},
+    {file = "flake8_rst_docstrings-0.1.2-py3-none-any.whl", hash = "sha256:73b5db2fd9d4d7c7e6b7767931730c4570e5a89f34a1501b837afb3b6d31537a"},
+]
+freezegun = [
+    {file = "freezegun-1.1.0-py2.py3-none-any.whl", hash = "sha256:2ae695f7eb96c62529f03a038461afe3c692db3465e215355e1bb4b0ab408712"},
+    {file = "freezegun-1.1.0.tar.gz", hash = "sha256:177f9dd59861d871e27a484c3332f35a6e3f5d14626f2bf91be37891f18927f3"},
 ]
 gitdb = [
     {file = "gitdb-4.0.7-py3-none-any.whl", hash = "sha256:6c4cc71933456991da20917998acbe6cf4fb41eeaab7d6d67fbc05ecd4c865b0"},
