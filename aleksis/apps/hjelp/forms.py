@@ -1,5 +1,5 @@
 from django import forms
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 from django_select2.forms import ModelSelect2Widget
 
@@ -9,9 +9,7 @@ from .models import IssueCategory, FAQSection
 class FAQForm(forms.Form):
     """Form used to allow users to send in a question."""
 
-    question = forms.CharField(
-        widget=forms.Textarea(), label=_("Your question"), required=True
-    )
+    question = forms.CharField(widget=forms.Textarea(), label=_("Your question"), required=True)
 
 
 class FAQOrderFormSet(forms.modelformset_factory(FAQSection, can_order=True, extra=0, fields="__all__")):
@@ -55,16 +53,13 @@ class IssueForm(forms.Form):
         ),
     )
     free_text = forms.CharField(
-        label=_("Please specify the issue according to the chosen category."),
-        required=False,
+        label=_("Please specify the issue according to the chosen category."), required=False,
     )
     short_description = forms.CharField(
         label=_("Please describe the issue in one sentence."), required=True
     )
     long_description = forms.CharField(
-        widget=forms.Textarea,
-        label=_("Please describe the issue in more detail."),
-        required=False,
+        widget=forms.Textarea, label=_("Please describe the issue in more detail."), required=False,
     )
 
 
@@ -79,36 +74,23 @@ class FeedbackForm(forms.Form):
     )
 
     performance_rating = forms.ChoiceField(
-        label=_("Speed"),
-        choices=ratings,
-        widget=forms.RadioSelect(),
-        required=True,
+        label=_("Speed"), choices=ratings, widget=forms.RadioSelect(), required=True,
     )
 
     usability_rating = forms.ChoiceField(
-        label=_("User friendliness"),
-        choices=ratings,
-        widget=forms.RadioSelect(),
-        required=True,
+        label=_("User friendliness"), choices=ratings, widget=forms.RadioSelect(), required=True,
     )
 
     overall_rating = forms.ChoiceField(
-        label=_("AlekSIS in general"),
-        choices=ratings,
-        widget=forms.RadioSelect(),
-        required=True,
+        label=_("AlekSIS in general"), choices=ratings, widget=forms.RadioSelect(), required=True,
     )
 
     apps = forms.CharField(
-        label=_("What do you like? What would you change?"),
-        required=False,
-        widget=forms.Textarea,
+        label=_("What do you like? What would you change?"), required=False, widget=forms.Textarea,
     )
 
     more = forms.CharField(
-        label=_("What else do you want to tell us?"),
-        required=False,
-        widget=forms.Textarea,
+        label=_("What else do you want to tell us?"), required=False, widget=forms.Textarea,
     )
 
     ideas = forms.CharField(

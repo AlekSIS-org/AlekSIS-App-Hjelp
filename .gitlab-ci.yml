@@ -1,7 +1,15 @@
 include:
     - project: "AlekSIS/official/AlekSIS"
       file: /ci/general.yml
+#    - project: "AlekSIS/official/AlekSIS"
+#      file: /ci/test/test.yml
     - project: "AlekSIS/official/AlekSIS"
-      file: /ci/test.yml
+      file: /ci/test/lint.yml
     - project: "AlekSIS/official/AlekSIS"
-      file: /ci/build_dist.yml
+      file: /ci/test/security.yml
+    - project: "AlekSIS/official/AlekSIS"
+      file: /ci/build/dist.yml
+    - project: "AlekSIS/official/AlekSIS"
+      file: "/ci/deploy/trigger_dist.yml"
+    - project: "AlekSIS/official/AlekSIS"
+      file: /ci/publish/pypi.yml

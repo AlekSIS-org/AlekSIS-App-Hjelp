@@ -1,6 +1,7 @@
 from django.http import JsonResponse
 from django.shortcuts import render
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
+from django.views.decorators.cache import never_cache
 from django.views.generic import ListView, UpdateView, FormView
 from material import Layout, Row
 
@@ -54,6 +55,7 @@ class FAQOrder(PermissionRequiredMixin, FormView):
         return super().form_valid(form)
 
 
+@never_cache
 @permission_required("hjelp.ask_faq")
 def ask_faq(request):
     if request.method == "POST":
@@ -97,6 +99,7 @@ def add_arrows(array: list):
     return " → ".join([item for item in array if item != "" and item.lower() != "none"])
 
 
+@never_cache
 def issues_get_next_properties(request):
     category = request.GET.get("category", None)
     next_properties = {
@@ -108,6 +111,7 @@ def issues_get_next_properties(request):
     return JsonResponse(next_properties)
 
 
+@never_cache
 @permission_required("hjelp.report_issue")
 def report_issue(request):
     if request.method == "POST":
@@ -122,9 +126,7 @@ def report_issue(request):
             long_description = form.cleaned_data["long_description"]
 
             # Register activity
-            desc_categories = add_arrows(
-                [category_1, category_2, category_3, free_text,]
-            )
+            desc_categories = add_arrows([category_1, category_2, category_3, free_text,])
             desc_act = f"{desc_categories} | {short_description}"
             act = Activity(
                 title=_("You reported a problem."),
@@ -136,10 +138,12 @@ def report_issue(request):
 
             # Send mail
             context = {
-                "categories": add_arrows([category_1, category_2, category_3, free_text, ]),
-                "categories_single":
-                    (element for element in [category_1, category_2, category_3, free_text, ]
-                     if element and element != "None"),
+                "categories": add_arrows([category_1, category_2, category_3, free_text,]),
+                "categories_single": (
+                    element
+                    for element in [category_1, category_2, category_3, free_text,]
+                    if element and element != "None"
+                ),
                 "short_description": short_description,
                 "long_description": long_description,
                 "user": request.user,
@@ -151,9 +155,7 @@ def report_issue(request):
                     "Reply-To": request.user.person.mail_sender,
                     "Sender": request.user.person.mail_sender,
                 },
-                recipient_list=[
-                    get_site_preferences()["hjelp__issue_report_recipient"]
-                ],
+                recipient_list=[get_site_preferences()["hjelp__issue_report_recipient"]],
                 context=context,
             )
 
@@ -164,6 +166,7 @@ def report_issue(request):
     return render(request, "hjelp/issue_report.html", {"form": form})
 
 
+@never_cache
 @permission_required("hjelp.send_feedback")
 def feedback(request):
     if request.method == "POST":
@@ -181,9 +184,7 @@ def feedback(request):
             # Register activity
             act = Activity.objects.create(
                 title=_("You submitted feedback."),
-                description=_(
-                    f"You rated AlekSIS with {overall_rating} out of 5 stars."
-                ),
+                description=_(f"You rated AlekSIS with {overall_rating} out of 5 stars."),
                 app="Feedback",
                 user=request.user.person,
             )

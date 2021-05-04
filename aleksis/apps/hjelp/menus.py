@@ -1,17 +1,14 @@
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 MENUS = {
     "NAV_MENU_CORE": [
         {
             "name": _("Support"),
             "url": "#",
-            "icon": "help_circle",
+            "icon": "help",
             "root": True,
             "validators": [
-                (
-                    "aleksis.core.util.predicates.permission_validator",
-                    "hjelp.show_menu",
-                ),
+                ("aleksis.core.util.predicates.permission_validator", "hjelp.show_menu",),
             ],
             "submenu": [
                 {
@@ -41,10 +38,7 @@ MENUS = {
                     "url": "faq",
                     "icon": "question_answer",
                     "validators": [
-                        (
-                            "aleksis.core.util.predicates.permission_validator",
-                            "hjelp.view_faq",
-                        ),
+                        ("aleksis.core.util.predicates.permission_validator", "hjelp.view_faq",),
                     ],
                 },
 {
