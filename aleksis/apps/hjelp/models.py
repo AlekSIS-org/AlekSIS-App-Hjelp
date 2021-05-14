@@ -41,6 +41,10 @@ class FAQSection(ExtensibleModel):
         print(self, self.position)
         return super().save(*args, **kwargs)
 
+    @property
+    def visible_questions(self):
+        return self.questions.filter(show=True)
+
 
 class FAQQuestion(ExtensibleModel):
     question_text = models.TextField(verbose_name=_("Question"))
