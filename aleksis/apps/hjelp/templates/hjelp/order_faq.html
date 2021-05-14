@@ -11,11 +11,11 @@
 {% block content %}
     {#  Sections  #}
     <a href="{% url "create_faq_section" %}" class="btn primary-color">
-        <i class="material-icons left">create_new_folder</i> {% trans "Add FAQSection" %}
+        <i class="material-icons left">create_new_folder</i> {% trans "Add FAQ section" %}
     </a>
     {#  Questions  #}
     <a href="{% url "create_faq_question" %}" class="btn secondary-color">
-        <i class="material-icons left">playlist_add</i> {% trans "Add FAQQuestion" %}
+        <i class="material-icons left">playlist_add</i> {% trans "Add FAQ question" %}
     </a>
     <form method="post">
         {% csrf_token %}
