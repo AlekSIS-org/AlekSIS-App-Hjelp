@@ -13,7 +13,6 @@ urlpatterns = [
     path("faq/question/create/", views.CreateFAQQuestion.as_view(), name="create_faq_question"),
     path("faq/question/<pk>/update/", views.UpdateFAQQuestion.as_view(), name="update_faq_question"),
     path("faq/question/<pk>/delete/", views.DeleteFAQQuestion.as_view(), name="delete_faq_question"),
-
     path(
         "issues/get_next_properties/",
         views.issues_get_next_properties,
