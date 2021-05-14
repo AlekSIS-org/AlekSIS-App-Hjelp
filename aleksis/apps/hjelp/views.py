@@ -1,17 +1,17 @@
-from typing import Dict, Any
+from typing import Any, Dict
 
-from django.contrib.auth.mixins import PermissionRequiredMixin as GlobalPermissionRequiredMixin
 from django.contrib import messages
+from django.contrib.auth.mixins import PermissionRequiredMixin as GlobalPermissionRequiredMixin
 from django.forms.forms import BaseForm
-from django.http import JsonResponse, HttpResponse
-from django.shortcuts import render, redirect
+from django.http import HttpResponse, JsonResponse
+from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 from django.views.decorators.cache import never_cache
 from django.views.generic import FormView
-from material import Layout, Row
 
-from rules.contrib.views import permission_required, PermissionRequiredMixin
+from material import Layout, Row
+from rules.contrib.views import PermissionRequiredMixin, permission_required
 from templated_email import send_templated_mail
 
 from aleksis.core.mixins import AdvancedCreateView, AdvancedDeleteView, AdvancedEditView
@@ -52,8 +52,10 @@ class OrderFAQ(GlobalPermissionRequiredMixin, FormView):
             individual_form.instance.position = pos
             individual_form.instance.save()
 
-        questions_and_sections = zip(self.request.POST.getlist("question-ids[]"),
-                                     self.request.POST.getlist("question-sections[]"))
+        questions_and_sections = zip(
+            self.request.POST.getlist("question-ids[]"),
+            self.request.POST.getlist("question-sections[]"),
+        )
 
         for question, section in questions_and_sections:
             q = FAQQuestion.objects.get(pk=question)
@@ -103,7 +105,9 @@ class CreateFAQQuestion(AdvancedCreateView):
     def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
         context = super().get_context_data(**kwargs)
         context["title"] = _("Create FAQ question")
-        context["layout"] = Layout(Row("question_text"), Row("icon", "section"), Row("show"), Row("answer_text"))
+        context["layout"] = Layout(
+            Row("question_text"), Row("icon", "section"), Row("show"), Row("answer_text")
+        )
         return context
 
 
@@ -117,7 +121,9 @@ class UpdateFAQQuestion(AdvancedEditView):
     def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
         context = super().get_context_data(**kwargs)
         context["title"] = _("Edit FAQ question")
-        context["layout"] = Layout(Row("question_text"), Row("icon", "show", "section"), Row("answer_text"))
+        context["layout"] = Layout(
+            Row("question_text"), Row("icon", "show", "section"), Row("answer_text")
+        )
         return context
 
 

@@ -22,7 +22,7 @@ add_perm("hjelp.view_faq", view_faq_predicate)
 
 # Change FAQ
 change_faq_predicate = has_person & (
-            has_global_perm("hjelp.change_faqsection") | has_global_perm("hjelp.change_faqquestion")
+    has_global_perm("hjelp.change_faqsection") | has_global_perm("hjelp.change_faqquestion")
 )
 add_perm("hjelp.change_faq", change_faq_predicate)
 

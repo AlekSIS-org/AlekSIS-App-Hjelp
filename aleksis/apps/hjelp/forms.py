@@ -3,7 +3,7 @@ from django.utils.translation import gettext_lazy as _
 
 from django_select2.forms import ModelSelect2Widget
 
-from .models import IssueCategory, FAQSection, FAQQuestion
+from .models import FAQQuestion, FAQSection, IssueCategory
 
 
 class FAQForm(forms.Form):
@@ -12,9 +12,10 @@ class FAQForm(forms.Form):
     question = forms.CharField(widget=forms.Textarea(), label=_("Your question"), required=True)
 
 
-FAQOrderFormSet = forms.modelformset_factory(FAQSection, can_order=True, extra=0, fields="__all__") #noqa
+FAQOrderFormSet = forms.modelformset_factory(
+    FAQSection, can_order=True, extra=0, fields="__all__"
+)  # noqa
 FAQOrderFormSet.ordering_widget = forms.widgets.HiddenInput
-
 
 
 class FAQQuestionForm(forms.ModelForm):
