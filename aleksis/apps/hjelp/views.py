@@ -1,17 +1,23 @@
-from django.http import JsonResponse
-from django.shortcuts import render
+from typing import Dict, Any
+
+from django.contrib.auth.mixins import PermissionRequiredMixin as GlobalPermissionRequiredMixin
+from django.forms.forms import BaseForm
+from django.http import JsonResponse, HttpResponse
+from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 from django.views.decorators.cache import never_cache
-from django.views.generic import ListView, UpdateView, FormView
+from django.views.generic import FormView
 from material import Layout, Row
 
 from rules.contrib.views import permission_required, PermissionRequiredMixin
 from templated_email import send_templated_mail
 
+from aleksis.core.mixins import AdvancedCreateView, AdvancedDeleteView, AdvancedEditView
 from aleksis.core.models import Activity
 from aleksis.core.util.core_helpers import get_site_preferences
 
-from .forms import FAQForm, FAQOrderFormSet, FeedbackForm, IssueForm
+from .forms import FAQForm, FAQOrderFormSet, FAQQuestionForm, FeedbackForm, IssueForm
 from .models import FAQQuestion, FAQSection, IssueCategory
 
 
@@ -24,7 +30,7 @@ def faq(request):
     return render(request, "hjelp/faq.html", context)
 
 
-class FAQOrder(PermissionRequiredMixin, FormView):
+class OrderFAQ(GlobalPermissionRequiredMixin, FormView):
     queryset = FAQSection.objects.all()
     template_name = "hjelp/order_faq.html"
     form_class = FAQOrderFormSet
@@ -53,6 +59,69 @@ class FAQOrder(PermissionRequiredMixin, FormView):
             q.save()
 
         return super().form_valid(form)
+
+
+class CreateFAQSection(AdvancedCreateView):
+    model = FAQSection
+    template_name = "hjelp/hjelp_crud_views.html"
+    success_message = _("The FAQSection was created successfully!")
+    fields = ("name", "icon", "show")
+
+    def form_valid(self, form: BaseForm) -> HttpResponse:
+        super().form_valid(form)
+        messages.success(self.request, self.success_message)
+        return redirect("order_faq")
+
+    def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
+        context = super().get_context_data(**kwargs)
+        context["title"] = _("Create FAQSection")
+        context["layout"] = Layout(Row("name"), Row("icon", "show"))
+        return context
+
+
+class DeleteFAQSection(AdvancedDeleteView):
+    model = FAQSection
+    template_name = "core/pages/delete.html"
+    success_message = _("The FAQSection was deleted successfully!")
+    success_url = reverse_lazy("order_faq")
+
+
+class CreateFAQQuestion(AdvancedCreateView):
+    form_class = FAQQuestionForm
+    template_name = "hjelp/hjelp_crud_views.html"
+    success_message = _("The FAQQuestion was created successfully!")
+
+    def form_valid(self, form: BaseForm) -> HttpResponse:
+        super().form_valid(form)
+        messages.success(self.request, self.success_message)
+        return redirect("order_faq")
+
+    def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
+        context = super().get_context_data(**kwargs)
+        context["title"] = _("Create FAQQuestion")
+        context["layout"] = Layout(Row("question_text"), Row("icon", "show", "section"), Row("answer_text"))
+        return context
+
+
+class UpdateFAQQuestion(AdvancedEditView):
+    model = FAQQuestion
+    form_class = FAQQuestionForm
+    template_name = "hjelp/hjelp_crud_views.html"
+    success_message = _("The FAQQuestion was edited successfully!")
+    success_url = reverse_lazy("order_faq")
+
+    def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
+        context = super().get_context_data(**kwargs)
+        context["title"] = _("Edit FAQQuestion")
+        context["layout"] = Layout(Row("question_text"), Row("icon", "show", "section"), Row("answer_text"))
+        return context
+
+
+class DeleteFAQQuestion(AdvancedDeleteView):
+    model = FAQQuestion
+    template_name = "core/pages/delete.html"
+    success_message = _("The FAQQuestion was deleted successfully!")
+    success_url = reverse_lazy("order_faq")
 
 
 @never_cache
