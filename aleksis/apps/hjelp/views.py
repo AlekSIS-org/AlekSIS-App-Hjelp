@@ -79,7 +79,7 @@ class CreateFAQSection(AdvancedCreateView):
     def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
         context = super().get_context_data(**kwargs)
         context["title"] = _("Create FAQ section")
-        context["layout"] = Layout(Row("name"), Row("icon", "show"))
+        context["layout"] = Layout(Row("name"), Row("icon"), Row("show"))
         return context
 
 
@@ -103,7 +103,7 @@ class CreateFAQQuestion(AdvancedCreateView):
     def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
         context = super().get_context_data(**kwargs)
         context["title"] = _("Create FAQ question")
-        context["layout"] = Layout(Row("question_text"), Row("icon", "show", "section"), Row("answer_text"))
+        context["layout"] = Layout(Row("question_text"), Row("icon", "section"), Row("show"), Row("answer_text"))
         return context
 
 
