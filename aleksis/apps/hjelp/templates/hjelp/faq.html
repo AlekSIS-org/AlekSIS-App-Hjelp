@@ -7,10 +7,11 @@
 
 {% block content %}
     {% for section in sections %}
-        <section>
-            <h4>
-                <i class="material-icons {{ section.icon_color }}-text">{{ section.icon }}</i> {{ section.name }}
-            </h4>
+      <section>
+        <h4>
+          <i class="material-icons {% firstof  section.icon_color "black" %}-text">{{ section.icon }}</i>
+          {{ section.name }}
+        </h4>
 
         <ul class="collapsible">
           {% for question in section.visible_questions %}
