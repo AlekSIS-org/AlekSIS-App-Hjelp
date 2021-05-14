@@ -37,10 +37,6 @@ class FAQSection(ExtensibleModel):
         verbose_name_plural = _("FAQ sections")
         ordering = ["position"]
 
-    def save(self, *args, **kwargs):
-        print(self, self.position)
-        return super().save(*args, **kwargs)
-
     @property
     def visible_questions(self):
         return self.questions.filter(show=True)
