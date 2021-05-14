@@ -1,6 +1,7 @@
 from typing import Dict, Any
 
 from django.contrib.auth.mixins import PermissionRequiredMixin as GlobalPermissionRequiredMixin
+from django.contrib import messages
 from django.forms.forms import BaseForm
 from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render, redirect
@@ -36,6 +37,7 @@ class OrderFAQ(GlobalPermissionRequiredMixin, FormView):
     form_class = FAQOrderFormSet
     success_url = "#"
     permission_required = "hjelp.change_faq"
+    success_message = _("The FAQ was updated successfully!")
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -57,6 +59,8 @@ class OrderFAQ(GlobalPermissionRequiredMixin, FormView):
             q = FAQQuestion.objects.get(pk=question)
             q.section = FAQSection.objects.get(pk=section)
             q.save()
+
+        messages.success(self.request, self.success_message)
 
         return super().form_valid(form)
 
