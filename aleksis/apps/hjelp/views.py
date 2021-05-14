@@ -37,11 +37,11 @@ class OrderFAQ(GlobalPermissionRequiredMixin, FormView):
     form_class = FAQOrderFormSet
     success_url = "#"
     permission_required = "hjelp.change_faq"
-    success_message = _("The FAQ was updated successfully!")
+    success_message = _("The FAQ was updated successfully.")
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["layout"] = Layout(Row("name", "icon", "show"))  # , "ORDER"))
+        context["layout"] = Layout(Row("name", "icon", "show"))
 
         return context
 
@@ -68,7 +68,7 @@ class OrderFAQ(GlobalPermissionRequiredMixin, FormView):
 class CreateFAQSection(AdvancedCreateView):
     model = FAQSection
     template_name = "hjelp/hjelp_crud_views.html"
-    success_message = _("The FAQSection was created successfully!")
+    success_message = _("The FAQ section was created successfully!")
     fields = ("name", "icon", "show")
 
     def form_valid(self, form: BaseForm) -> HttpResponse:
@@ -78,7 +78,7 @@ class CreateFAQSection(AdvancedCreateView):
 
     def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
         context = super().get_context_data(**kwargs)
-        context["title"] = _("Create FAQSection")
+        context["title"] = _("Create FAQ section")
         context["layout"] = Layout(Row("name"), Row("icon", "show"))
         return context
 
@@ -86,14 +86,14 @@ class CreateFAQSection(AdvancedCreateView):
 class DeleteFAQSection(AdvancedDeleteView):
     model = FAQSection
     template_name = "core/pages/delete.html"
-    success_message = _("The FAQSection was deleted successfully!")
+    success_message = _("The FAQ section was deleted successfully.")
     success_url = reverse_lazy("order_faq")
 
 
 class CreateFAQQuestion(AdvancedCreateView):
     form_class = FAQQuestionForm
     template_name = "hjelp/hjelp_crud_views.html"
-    success_message = _("The FAQQuestion was created successfully!")
+    success_message = _("The FAQ question was created successfully.")
 
     def form_valid(self, form: BaseForm) -> HttpResponse:
         super().form_valid(form)
@@ -102,7 +102,7 @@ class CreateFAQQuestion(AdvancedCreateView):
 
     def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
         context = super().get_context_data(**kwargs)
-        context["title"] = _("Create FAQQuestion")
+        context["title"] = _("Create FAQ question")
         context["layout"] = Layout(Row("question_text"), Row("icon", "show", "section"), Row("answer_text"))
         return context
 
@@ -111,12 +111,12 @@ class UpdateFAQQuestion(AdvancedEditView):
     model = FAQQuestion
     form_class = FAQQuestionForm
     template_name = "hjelp/hjelp_crud_views.html"
-    success_message = _("The FAQQuestion was edited successfully!")
+    success_message = _("The FAQ question was edited successfully.")
     success_url = reverse_lazy("order_faq")
 
     def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
         context = super().get_context_data(**kwargs)
-        context["title"] = _("Edit FAQQuestion")
+        context["title"] = _("Edit FAQ question")
         context["layout"] = Layout(Row("question_text"), Row("icon", "show", "section"), Row("answer_text"))
         return context
 
@@ -124,7 +124,7 @@ class UpdateFAQQuestion(AdvancedEditView):
 class DeleteFAQQuestion(AdvancedDeleteView):
     model = FAQQuestion
     template_name = "core/pages/delete.html"
-    success_message = _("The FAQQuestion was deleted successfully!")
+    success_message = _("The FAQ question was deleted successfully.")
     success_url = reverse_lazy("order_faq")
 
 
