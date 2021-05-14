@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('hjelp', '0002_auto_20201221_1815'),
+        ('hjelp', '0002_change_max_length'),
     ]
 
     operations = [
@@ -14,5 +14,10 @@ class Migration(migrations.Migration):
             model_name='faqsection',
             name='position',
             field=models.PositiveIntegerField(default=1, verbose_name='Order'),
+        ),
+        migrations.AddField(
+            model_name='faqsection',
+            name='show',
+            field=models.BooleanField(default=False, verbose_name='Show'),
         ),
     ]
