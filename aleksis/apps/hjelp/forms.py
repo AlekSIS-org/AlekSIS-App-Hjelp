@@ -12,8 +12,9 @@ class FAQForm(forms.Form):
     question = forms.CharField(widget=forms.Textarea(), label=_("Your question"), required=True)
 
 
-class FAQOrderFormSet(forms.modelformset_factory(FAQSection, can_order=True, extra=0, fields="__all__")):
-    ordering_widget = forms.widgets.HiddenInput
+FAQOrderFormSet = forms.modelformset_factory(FAQSection, can_order=True, extra=0, fields="__all__") #noqa
+FAQOrderFormSet.ordering_widget = forms.widgets.HiddenInput
+
 
 
 class FAQQuestionForm(forms.ModelForm):
