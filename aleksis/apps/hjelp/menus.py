@@ -41,6 +41,14 @@ MENUS = {
                         ("aleksis.core.util.predicates.permission_validator", "hjelp.view_faq",),
                     ],
                 },
+                {
+                    "name": _("Manage FAQ"),
+                    "url": "order_faq",
+                    "icon": "low_priority",
+                    "validators": [
+                        ("aleksis.core.util.predicates.permission_validator", "hjelp.change_faq",),
+                    ],
+                },
             ],
         }
     ]

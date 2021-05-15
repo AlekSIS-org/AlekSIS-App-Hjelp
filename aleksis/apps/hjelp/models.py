@@ -25,12 +25,21 @@ class FAQSection(ExtensibleModel):
         max_length=50, blank=True, default="question_answer", choices=ICONS, verbose_name=_("Icon"),
     )
 
+    show = models.BooleanField(verbose_name=_("Show"), default=False)
+
+    position = models.PositiveIntegerField(verbose_name=_("Order"), default=1, blank=True)
+
     def __str__(self):
         return self.name
 
     class Meta:
         verbose_name = _("FAQ section")
         verbose_name_plural = _("FAQ sections")
+        ordering = ["position"]
+
+    @property
+    def visible_questions(self):
+        return self.questions.filter(show=True)
 
 
 class FAQQuestion(ExtensibleModel):

@@ -88,3 +88,48 @@
     align-items: center;
     justify-content: space-between;
 }
+
+.handle {
+    cursor: grab;
+    user-select: none;
+}
+
+.outer-handle {
+    vertical-align: middle;
+    height: 100%;
+    position: absolute;
+}
+
+.handle-container {
+    float: left;
+    position: relative;
+}
+
+.card-panel.disabled {
+    background-color: #e6e6e6;
+}
+
+.collection-item.disabled {
+    background-color: #aaaaaa61;
+    color: #888;
+}
+
+.question-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+}
+
+.start-icons {
+    display: inline;
+}
+
+.main-question {
+    display: inline;
+    flex-grow: 10;
+    padding-left: 10px;
+}
+
+.end-button {
+    display: inline;
+}

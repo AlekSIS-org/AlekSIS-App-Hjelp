@@ -1,15 +1,24 @@
-from django.http import JsonResponse
-from django.shortcuts import render
+from typing import Any, Dict
+
+from django.contrib import messages
+from django.contrib.auth.mixins import PermissionRequiredMixin as GlobalPermissionRequiredMixin
+from django.forms.forms import BaseForm
+from django.http import HttpResponse, JsonResponse
+from django.shortcuts import redirect, render
+from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 from django.views.decorators.cache import never_cache
+from django.views.generic import FormView
 
+from material import Layout, Row
 from rules.contrib.views import permission_required
 from templated_email import send_templated_mail
 
+from aleksis.core.mixins import AdvancedCreateView, AdvancedDeleteView, AdvancedEditView
 from aleksis.core.models import Activity
 from aleksis.core.util.core_helpers import get_site_preferences
 
-from .forms import FAQForm, FeedbackForm, IssueForm
+from .forms import FAQForm, FAQOrderFormSet, FAQQuestionForm, FeedbackForm, IssueForm
 from .models import FAQQuestion, FAQSection, IssueCategory
 
 
@@ -17,10 +26,117 @@ from .models import FAQQuestion, FAQSection, IssueCategory
 def faq(request):
     """Show the FAQ page."""
     context = {
-        "questions": FAQQuestion.objects.filter(show=True),
-        "sections": FAQSection.objects.all(),
+        "sections": FAQSection.objects.filter(show=True),
     }
     return render(request, "hjelp/faq.html", context)
+
+
+class OrderFAQ(GlobalPermissionRequiredMixin, FormView):
+    queryset = FAQSection.objects.all()
+    template_name = "hjelp/order_faq.html"
+    form_class = FAQOrderFormSet
+    success_url = "#"
+    permission_required = "hjelp.change_faq"
+    success_message = _("The FAQ was updated successfully.")
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["layout"] = Layout("name", "icon", "show")
+
+        return context
+
+    def form_valid(self, form):
+        for individual_form in form.forms:
+            pos = individual_form.cleaned_data["ORDER"]
+            individual_form.cleaned_data["position"] = pos
+            individual_form.instance.position = pos
+            individual_form.instance.save()
+
+        questions_and_sections = zip(
+            self.request.POST.getlist("question-ids[]"),
+            self.request.POST.getlist("question-sections[]"),
+        )
+
+        for question, section in questions_and_sections:
+            q = FAQQuestion.objects.get(pk=question)
+            q.section = FAQSection.objects.get(pk=section)
+            q.save()
+
+        messages.success(self.request, self.success_message)
+
+        return super().form_valid(form)
+
+
+class CreateFAQSection(GlobalPermissionRequiredMixin, AdvancedCreateView):
+    model = FAQSection
+    template_name = "hjelp/hjelp_crud_views.html"
+    success_message = _("The FAQ section was created successfully!")
+    fields = ("name", "icon", "show")
+    permission_required = "hjelp.change_faq"
+
+    def form_valid(self, form: BaseForm) -> HttpResponse:
+        super().form_valid(form)
+        messages.success(self.request, self.success_message)
+        return redirect("order_faq")
+
+    def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
+        context = super().get_context_data(**kwargs)
+        context["title"] = _("Create FAQ section")
+        context["layout"] = Layout(Row("name"), Row("icon"), Row("show"))
+        return context
+
+
+class DeleteFAQSection(GlobalPermissionRequiredMixin, AdvancedDeleteView):
+    model = FAQSection
+    template_name = "core/pages/delete.html"
+    success_message = _("The FAQ section was deleted successfully.")
+    success_url = reverse_lazy("order_faq")
+    permission_required = "hjelp.change_faq"
+
+
+class CreateFAQQuestion(GlobalPermissionRequiredMixin, AdvancedCreateView):
+    form_class = FAQQuestionForm
+    template_name = "hjelp/hjelp_crud_views.html"
+    success_message = _("The FAQ question was created successfully.")
+    permission_required = "hjelp.change_faq"
+
+    def form_valid(self, form: BaseForm) -> HttpResponse:
+        super().form_valid(form)
+        messages.success(self.request, self.success_message)
+        return redirect("order_faq")
+
+    def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
+        context = super().get_context_data(**kwargs)
+        context["title"] = _("Create FAQ question")
+        context["layout"] = Layout(
+            Row("question_text"), Row("icon", "section"), Row("show"), Row("answer_text")
+        )
+        return context
+
+
+class UpdateFAQQuestion(GlobalPermissionRequiredMixin, AdvancedEditView):
+    model = FAQQuestion
+    form_class = FAQQuestionForm
+    template_name = "hjelp/hjelp_crud_views.html"
+    success_message = _("The FAQ question was edited successfully.")
+    success_url = reverse_lazy("order_faq")
+    permission_required = "hjelp.change_faq"
+
+    def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
+        context = super().get_context_data(**kwargs)
+        context["title"] = _("Edit FAQ question")
+        context["layout"] = Layout(
+            Row("question_text"), Row("icon", "show", "section"), Row("answer_text")
+        )
+        return context
+
+
+class DeleteFAQQuestion(GlobalPermissionRequiredMixin, AdvancedDeleteView):
+    model = FAQQuestion
+    template_name = "core/pages/delete.html"
+    success_message = _("The FAQ question was deleted successfully.")
+    success_url = reverse_lazy("order_faq")
+    permission_required = "hjelp.change_faq"
 
 
 @never_cache

@@ -7,33 +7,34 @@
 
 {% block content %}
     {% for section in sections %}
-        <section>
-            <h4>
-                <i class="material-icons {{ section.icon_color }}-text">{{ section.icon }}</i> {{ section.name }}
-            </h4>
+      <section>
+        <h4>
+          <i class="material-icons {% firstof  section.icon_color "black" %}-text">{{ section.icon }}</i>
+          {{ section.name }}
+        </h4>
 
-            <ul class="collapsible">
-                {% for question in section.questions.all %}
-                    {% if question.show %}
-                        <li>
-                            <div class="collapsible-header">
-                                <i class="material-icons">
-                                    {% if question.icon %}
-                                        {{ question.icon }}
-                                    {% else %}
-                                        question_answer
-                                    {% endif %}
-                                </i>
-                                {{ question.question_text }}
-                            </div>
-                            <div class="collapsible-body">
-                                {{ question.answer_text|add_class_to_el:"ul, browser-default"|safe }}
-                            </div>
-                        </li>
-                    {% endif %}
-                {% endfor %}
-            </ul>
-        </section>
+        <ul class="collapsible">
+          {% for question in section.visible_questions %}
+            <li>
+              <div class="collapsible-header">
+                <i class="material-icons">
+                  {% firstof question.icon "question_answer" %}
+                </i>
+                {{ question.question_text }}
+              </div>
+              <div class="collapsible-body">
+                {{ question.answer_text|add_class_to_el:"ul, browser-default"|safe }}
+              </div>
+            </li>
+          {% empty %}
+            <li>
+              <div class="collapsible-header">
+                {% trans "There are no questions in this section." %}
+              </div>
+            </li>
+          {% endfor %}
+        </ul>
+      </section>
     {% endfor %}
 
 
