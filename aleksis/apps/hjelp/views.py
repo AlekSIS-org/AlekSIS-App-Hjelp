@@ -67,11 +67,12 @@ class OrderFAQ(GlobalPermissionRequiredMixin, FormView):
         return super().form_valid(form)
 
 
-class CreateFAQSection(AdvancedCreateView):
+class CreateFAQSection(GlobalPermissionRequiredMixin, AdvancedCreateView):
     model = FAQSection
     template_name = "hjelp/hjelp_crud_views.html"
     success_message = _("The FAQ section was created successfully!")
     fields = ("name", "icon", "show")
+    permission_required = "hjelp.change_faq"
 
     def form_valid(self, form: BaseForm) -> HttpResponse:
         super().form_valid(form)
@@ -85,17 +86,19 @@ class CreateFAQSection(AdvancedCreateView):
         return context
 
 
-class DeleteFAQSection(AdvancedDeleteView):
+class DeleteFAQSection(GlobalPermissionRequiredMixin, AdvancedDeleteView):
     model = FAQSection
     template_name = "core/pages/delete.html"
     success_message = _("The FAQ section was deleted successfully.")
     success_url = reverse_lazy("order_faq")
+    permission_required = "hjelp.change_faq"
 
 
-class CreateFAQQuestion(AdvancedCreateView):
+class CreateFAQQuestion(GlobalPermissionRequiredMixin, AdvancedCreateView):
     form_class = FAQQuestionForm
     template_name = "hjelp/hjelp_crud_views.html"
     success_message = _("The FAQ question was created successfully.")
+    permission_required = "hjelp.change_faq"
 
     def form_valid(self, form: BaseForm) -> HttpResponse:
         super().form_valid(form)
@@ -111,12 +114,13 @@ class CreateFAQQuestion(AdvancedCreateView):
         return context
 
 
-class UpdateFAQQuestion(AdvancedEditView):
+class UpdateFAQQuestion(GlobalPermissionRequiredMixin, AdvancedEditView):
     model = FAQQuestion
     form_class = FAQQuestionForm
     template_name = "hjelp/hjelp_crud_views.html"
     success_message = _("The FAQ question was edited successfully.")
     success_url = reverse_lazy("order_faq")
+    permission_required = "hjelp.change_faq"
 
     def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
         context = super().get_context_data(**kwargs)
@@ -127,11 +131,12 @@ class UpdateFAQQuestion(AdvancedEditView):
         return context
 
 
-class DeleteFAQQuestion(AdvancedDeleteView):
+class DeleteFAQQuestion(GlobalPermissionRequiredMixin, AdvancedDeleteView):
     model = FAQQuestion
     template_name = "core/pages/delete.html"
     success_message = _("The FAQ question was deleted successfully.")
     success_url = reverse_lazy("order_faq")
+    permission_required = "hjelp.change_faq"
 
 
 @never_cache
