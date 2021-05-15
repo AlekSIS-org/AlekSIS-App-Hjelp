@@ -11,7 +11,7 @@ from django.views.decorators.cache import never_cache
 from django.views.generic import FormView
 
 from material import Layout, Row
-from rules.contrib.views import PermissionRequiredMixin, permission_required
+from rules.contrib.views import permission_required
 from templated_email import send_templated_mail
 
 from aleksis.core.mixins import AdvancedCreateView, AdvancedDeleteView, AdvancedEditView
