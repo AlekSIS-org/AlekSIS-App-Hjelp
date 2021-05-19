@@ -22,7 +22,7 @@ from .forms import FAQForm, FAQOrderFormSet, FAQQuestionForm, FeedbackForm, Issu
 from .models import FAQQuestion, FAQSection, IssueCategory
 
 
-@permission_required("hjelp.view_faq")
+@permission_required("hjelp.view_faq_rule")
 def faq(request):
     """Show the FAQ page."""
     context = {
@@ -36,7 +36,7 @@ class OrderFAQ(GlobalPermissionRequiredMixin, FormView):
     template_name = "hjelp/order_faq.html"
     form_class = FAQOrderFormSet
     success_url = "#"
-    permission_required = "hjelp.change_faq"
+    permission_required = "hjelp.change_faq_rule"
     success_message = _("The FAQ was updated successfully.")
 
     def get_context_data(self, **kwargs):
@@ -72,7 +72,7 @@ class CreateFAQSection(GlobalPermissionRequiredMixin, AdvancedCreateView):
     template_name = "hjelp/hjelp_crud_views.html"
     success_message = _("The FAQ section was created successfully!")
     fields = ("name", "icon", "show")
-    permission_required = "hjelp.change_faq"
+    permission_required = "hjelp.change_faq_rule"
 
     def form_valid(self, form: BaseForm) -> HttpResponse:
         super().form_valid(form)
@@ -91,14 +91,14 @@ class DeleteFAQSection(GlobalPermissionRequiredMixin, AdvancedDeleteView):
     template_name = "core/pages/delete.html"
     success_message = _("The FAQ section was deleted successfully.")
     success_url = reverse_lazy("order_faq")
-    permission_required = "hjelp.change_faq"
+    permission_required = "hjelp.change_faq_rule"
 
 
 class CreateFAQQuestion(GlobalPermissionRequiredMixin, AdvancedCreateView):
     form_class = FAQQuestionForm
     template_name = "hjelp/hjelp_crud_views.html"
     success_message = _("The FAQ question was created successfully.")
-    permission_required = "hjelp.change_faq"
+    permission_required = "hjelp.change_faq_rule"
 
     def form_valid(self, form: BaseForm) -> HttpResponse:
         super().form_valid(form)
@@ -120,7 +120,7 @@ class UpdateFAQQuestion(GlobalPermissionRequiredMixin, AdvancedEditView):
     template_name = "hjelp/hjelp_crud_views.html"
     success_message = _("The FAQ question was edited successfully.")
     success_url = reverse_lazy("order_faq")
-    permission_required = "hjelp.change_faq"
+    permission_required = "hjelp.change_faq_rule"
 
     def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
         context = super().get_context_data(**kwargs)
@@ -136,11 +136,11 @@ class DeleteFAQQuestion(GlobalPermissionRequiredMixin, AdvancedDeleteView):
     template_name = "core/pages/delete.html"
     success_message = _("The FAQ question was deleted successfully.")
     success_url = reverse_lazy("order_faq")
-    permission_required = "hjelp.change_faq"
+    permission_required = "hjelp.change_faq_rule"
 
 
 @never_cache
-@permission_required("hjelp.ask_faq")
+@permission_required("hjelp.ask_faq_rule")
 def ask_faq(request):
     if request.method == "POST":
         form = FAQForm(request.POST)
@@ -196,7 +196,7 @@ def issues_get_next_properties(request):
 
 
 @never_cache
-@permission_required("hjelp.report_issue")
+@permission_required("hjelp.report_issue_rule")
 def report_issue(request):
     if request.method == "POST":
         form = IssueForm(request.POST)
@@ -251,7 +251,7 @@ def report_issue(request):
 
 
 @never_cache
-@permission_required("hjelp.send_feedback")
+@permission_required("hjelp.send_feedback_rule")
 def feedback(request):
     if request.method == "POST":
         form = FeedbackForm(request.POST)
