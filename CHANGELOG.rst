@@ -6,7 +6,7 @@ All notable changes to this project will be documented in this file.
 The format is based on `Keep a Changelog`_,
 and this project adheres to `Semantic Versioning`_.
 
-`[2.0b0]`_ - 2021-05-21
+`2.0b0`_ - 2021-05-21
 -----------------------
 
 Added
@@ -29,7 +29,7 @@ Fixed
 * Mail templates weren't translated and formatted correctly.
 * The Hjelp icon inside the menu changed it's name and was therefore displayed incorrectly.
 
-`[2.0a2]`_ - 2020-05-04
+`2.0a2`_ - 2020-05-04
 -----------------------
 
 Added
@@ -41,8 +41,8 @@ Added
 * Report issues
 
 ----------
-_`Keep a Changelog`: https://keepachangelog.com/en/1.0.0/
-_`Semantic Versioning`: https://semver.org/spec/v2.0.0.html
+_Keep a Changelog: https://keepachangelog.com/en/1.0.0/
+_Semantic Versioning: https://semver.org/spec/v2.0.0.html
 
-_`[2.0a2]`: https://edugit.org/AlekSIS/Official/AlekSIS-App-Hjelp/-/tags/2.0a2
-_`[2.0b0]`: https://edugit.org/AlekSIS/Official/AlekSIS-App-Hjelp/-/tags/2.0b0
+_2.0a2: https://edugit.org/AlekSIS/Official/AlekSIS-App-Hjelp/-/tags/2.0a2
+_2.0b0: https://edugit.org/AlekSIS/Official/AlekSIS-App-Hjelp/-/tags/2.0b0
