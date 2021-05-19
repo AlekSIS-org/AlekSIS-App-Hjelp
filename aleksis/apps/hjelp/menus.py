@@ -8,7 +8,7 @@ MENUS = {
             "icon": "help",
             "root": True,
             "validators": [
-                ("aleksis.core.util.predicates.permission_validator", "hjelp.show_menu",),
+                ("aleksis.core.util.predicates.permission_validator", "hjelp.show_menu_rule",),
             ],
             "submenu": [
                 {
@@ -18,7 +18,7 @@ MENUS = {
                     "validators": [
                         (
                             "aleksis.core.util.predicates.permission_validator",
-                            "hjelp.report_issue",
+                            "hjelp.report_issue_rule",
                         ),
                     ],
                 },
@@ -29,7 +29,7 @@ MENUS = {
                     "validators": [
                         (
                             "aleksis.core.util.predicates.permission_validator",
-                            "hjelp.send_feedback",
+                            "hjelp.send_feedback_rule",
                         ),
                     ],
                 },
@@ -38,7 +38,10 @@ MENUS = {
                     "url": "faq",
                     "icon": "question_answer",
                     "validators": [
-                        ("aleksis.core.util.predicates.permission_validator", "hjelp.view_faq",),
+                        (
+                            "aleksis.core.util.predicates.permission_validator",
+                            "hjelp.view_faq_rule",
+                        ),
                     ],
                 },
                 {
@@ -46,7 +49,10 @@ MENUS = {
                     "url": "order_faq",
                     "icon": "low_priority",
                     "validators": [
-                        ("aleksis.core.util.predicates.permission_validator", "hjelp.change_faq",),
+                        (
+                            "aleksis.core.util.predicates.permission_validator",
+                            "hjelp.change_faq_rule",
+                        ),
                     ],
                 },
             ],

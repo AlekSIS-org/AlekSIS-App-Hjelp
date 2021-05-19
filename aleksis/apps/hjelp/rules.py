@@ -12,28 +12,28 @@ show_hjelp_menu = is_site_preference_set("hjelp", "public_faq") | (
         | has_global_perm("hjelp.send_feedback")
     )
 )
-add_perm("hjelp.show_menu", show_hjelp_menu)
+add_perm("hjelp.show_menu_rule", show_hjelp_menu)
 
 # View FAQ
 view_faq_predicate = is_site_preference_set("hjelp", "public_faq") | (
     has_person & has_global_perm("hjelp.view_faq")
 )
-add_perm("hjelp.view_faq", view_faq_predicate)
+add_perm("hjelp.view_faq_rule", view_faq_predicate)
 
 # Change FAQ
 change_faq_predicate = has_person & (
     has_global_perm("hjelp.change_faqsection") | has_global_perm("hjelp.change_faqquestion")
 )
-add_perm("hjelp.change_faq", change_faq_predicate)
+add_perm("hjelp.change_faq_rule", change_faq_predicate)
 
 # Ask FAQ question
 ask_faq_predicate = has_person & has_global_perm("hjelp.ask_faq")
-add_perm("hjelp.ask_faq", ask_faq_predicate)
+add_perm("hjelp.ask_faq_rule", ask_faq_predicate)
 
 # Report issue
 report_issue_predicate = has_person & has_global_perm("hjelp.report_issue")
-add_perm("hjelp.report_issue", report_issue_predicate)
+add_perm("hjelp.report_issue_rule", report_issue_predicate)
 
 # Add feedback
 send_feedback_predicate = has_person & has_global_perm("hjelp.send_feedback")
-add_perm("hjelp.send_feedback", send_feedback_predicate)
+add_perm("hjelp.send_feedback_rule", send_feedback_predicate)
