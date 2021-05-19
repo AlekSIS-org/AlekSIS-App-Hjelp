@@ -20,7 +20,7 @@ Licence
 ::
 
   Copyright © 2019, 2020, 2021 Jonathan Weth <dev@jonathanweth.de>
-  Copyright © 2019, 2020 Julian Leucker <leuckeju@katharineum.de>
+  Copyright © 2019, 2020, 2021 Julian Leucker <leuckeju@katharineum.de>
   Copyright © 2019, 2020 Hangzhi Yu <yuha@katharineum.de>
   Copyright © 2019 Frank Poetzsch-Heffter <p-h@katharineum.de>
   Copyright © 2020 Dominik George <dominik.george@teckids.org>  
