@@ -20,7 +20,7 @@ Changed
 
 * Hjelp's menu items are now filtered with permissions.
 * Ratings now default to one star.
-* Forms aren't cached anymore.
+* Forms aren't cached by the PWA anymore.
 
 Fixed
 ~~~~~
