@@ -8,9 +8,10 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-20 21:06+0200\n"
-"PO-Revision-Date: 2021-03-14 12:00+0000\n"
-"Last-Translator: Jonathan Weth <teckids@jonathanweth.de>\n"
-"Language-Team: German <https://translate.edugit.org/projects/aleksis/aleksis-app-hjelp/de/>\n"
+"PO-Revision-Date: 2021-05-21 17:32+0000\n"
+"Last-Translator: Lloyd Meins <teckids@lloydmeins.de>\n"
+"Language-Team: German <https://translate.edugit.org/projects/aleksis/"
+"aleksis-app-hjelp/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -110,10 +111,8 @@ msgstr "FAQ"
 #: aleksis/apps/hjelp/menus.py:48
 #: aleksis/apps/hjelp/templates/hjelp/order_faq.html:4
 #: aleksis/apps/hjelp/templates/hjelp/order_faq.html:5
-#, fuzzy
-#| msgid "Can view FAQ"
 msgid "Manage FAQ"
-msgstr "Kann FAQ sehen"
+msgstr "Kann FAQ bearbeiten"
 
 #: aleksis/apps/hjelp/models.py:14
 msgid "Can view FAQ"
@@ -146,7 +145,7 @@ msgstr "Anzeigen"
 
 #: aleksis/apps/hjelp/models.py:30
 msgid "Order"
-msgstr ""
+msgstr "Reihenfolge"
 
 #: aleksis/apps/hjelp/models.py:36
 msgid "FAQ section"
@@ -241,7 +240,7 @@ msgstr "Häufig gestellte Fragen"
 #: aleksis/apps/hjelp/templates/hjelp/faq.html:32
 #: aleksis/apps/hjelp/templates/hjelp/order_faq.html:77
 msgid "There are no questions in this section."
-msgstr ""
+msgstr "Es gibt noch keine Fragen für diesen Abschnitt."
 
 #: aleksis/apps/hjelp/templates/hjelp/faq.html:42
 msgid ""
@@ -363,25 +362,21 @@ msgid "Submit another issue"
 msgstr "Weiteres Problem melden"
 
 #: aleksis/apps/hjelp/templates/hjelp/order_faq.html:14
-#, fuzzy
-#| msgid "FAQ section"
 msgid "Add FAQ section"
-msgstr "FAQ-Abschnitt"
+msgstr "FAQ-Abschnitt hinzufügen"
 
 #: aleksis/apps/hjelp/templates/hjelp/order_faq.html:18
-#, fuzzy
-#| msgid "FAQ question"
 msgid "Add FAQ question"
-msgstr "FAQ-Frage"
+msgstr "FAQ-Frage hinzufügen"
 
 #: aleksis/apps/hjelp/templates/hjelp/order_faq.html:39
 #: aleksis/apps/hjelp/templates/hjelp/order_faq.html:71
 msgid "Delete"
-msgstr ""
+msgstr "Löschen"
 
 #: aleksis/apps/hjelp/templates/hjelp/order_faq.html:66
 msgid "Edit"
-msgstr ""
+msgstr "Bearbeiten"
 
 #: aleksis/apps/hjelp/templates/hjelp/question_submitted.html:7
 msgid ""
@@ -540,69 +535,39 @@ msgstr ""
 
 #: aleksis/apps/hjelp/views.py:40
 msgid "The FAQ was updated successfully."
-msgstr ""
+msgstr "Das FAQ wurde erfolgreich aktualisiert."
 
 #: aleksis/apps/hjelp/views.py:73
 msgid "The FAQ section was created successfully!"
-msgstr ""
+msgstr "Der FAQ-Abschnitt wurde erfolgreich erstellt!"
 
 #: aleksis/apps/hjelp/views.py:84
-#, fuzzy
-#| msgid "FAQ section"
 msgid "Create FAQ section"
-msgstr "FAQ-Abschnitt"
+msgstr "FAQ-Abschnitt erstellen"
 
 #: aleksis/apps/hjelp/views.py:92
 msgid "The FAQ section was deleted successfully."
-msgstr ""
+msgstr "Der FAQ-Abschnitt wurde erfolgreich gelöscht."
 
 #: aleksis/apps/hjelp/views.py:100
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "    Question Submitted Successfully\n"
-#| "  "
 msgid "The FAQ question was created successfully."
-msgstr ""
-"\n"
-"    Frage erfolgreich abgesendet\n"
-"  "
+msgstr "Die FAQ-Frage wurde erfolgreich erstellt."
 
 #: aleksis/apps/hjelp/views.py:110
-#, fuzzy
-#| msgid "FAQ question"
 msgid "Create FAQ question"
-msgstr "FAQ-Frage"
+msgstr "FAQ-Frage erstellen"
 
 #: aleksis/apps/hjelp/views.py:121
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "    Question Submitted Successfully\n"
-#| "  "
 msgid "The FAQ question was edited successfully."
-msgstr ""
-"\n"
-"    Frage erfolgreich abgesendet\n"
-"  "
+msgstr "Die FAQ-Frage wurde erfolgreich aktualisiert."
 
 #: aleksis/apps/hjelp/views.py:127
-#, fuzzy
-#| msgid "FAQ question"
 msgid "Edit FAQ question"
-msgstr "FAQ-Frage"
+msgstr "FAQ-Frage bearbeiten"
 
 #: aleksis/apps/hjelp/views.py:137
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "    Question Submitted Successfully\n"
-#| "  "
 msgid "The FAQ question was deleted successfully."
-msgstr ""
-"\n"
-"    Frage erfolgreich abgesendet\n"
-"  "
+msgstr "Die FAQ-Frage wurde erfolgreich gelöscht."
 
 #: aleksis/apps/hjelp/views.py:152
 msgid "You have submitted a question."
