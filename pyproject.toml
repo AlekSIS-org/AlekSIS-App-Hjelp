@@ -1,22 +1,22 @@
 [tool.poetry]
 name = "AlekSIS-App-Hjelp"
-version = "2.0a3.dev0"
+version = "2.0b0"
 packages = [
     { include = "aleksis" }
 ]
 readme = "README.rst"
-include = ["CHANGELOG.rst", "LICENCE.rst", "aleksis/**/locale/*.mo"]
+include = ["CHANGELOG.rst", "LICENCE.rst", "aleksis/**/*.mo"]
 
 description = "AlekSIS (School Information System) — App Hjelp (FAQ, issue reporting and support)"
-authors = ["Julian Leucker <leuckeju@katharineum.de>", "Frank Poetzsch-Heffter <p-h@katharineum.de>", "Jonathan Weth <wethjo@katharineum.de>", "Hangzhi Yu <yuha@katharineum.de>", "Tom Teichler <tom.teichler@teckids.org>"]
-maintainers = ["Jonathan Weth <wethjo@katharineum.de>", "Dominik George <dominik.george@teckids.org>"]
+authors = ["Julian Leucker <leuckeju@katharineum.de>", "Frank Poetzsch-Heffter <p-h@katharineum.de>", "Jonathan Weth <dev@jonathanweth.de>", "Hangzhi Yu <yuha@katharineum.de>", "Tom Teichler <tom.teichler@teckids.org>"]
+maintainers = ["Jonathan Weth <dev@jonathanweth.de>", "Dominik George <dominik.george@teckids.org>"]
 license = "EUPL-1.2-or-later"
 homepage = "https://aleksis.org/"
 repository = "https://edugit.org/AlekSIS/official/AlekSIS-App-Hjelp"
 documentation = "https://aleksis.org/AlekSIS/docs/html/"
 keywords = ["SIS", "education", "school", "support", "feedback"]
 classifiers = [
-    "Development Status :: 3 - Alpha",
+    "Development Status :: 4 - Beta",
     "Environment :: Web Environment",
     "Framework :: Django :: 3.0",
     "Intended Audience :: Education",
@@ -30,8 +30,8 @@ url = "https://edugit.org/api/v4/projects/461/packages/pypi/simple"
 secondary = true
 
 [tool.poetry.dependencies]
-python = "^3.7"
-aleksis-core = "^2.0a3.dev0"
+python = "^3.9"
+aleksis-core = "^2.0b0"
 
 [tool.poetry.dev-dependencies]
 aleksis-builddeps = "*"
