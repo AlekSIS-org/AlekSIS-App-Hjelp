@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models import fields
 from django.utils.translation import gettext_lazy as _
 
 from ckeditor.fields import RichTextField
@@ -36,6 +37,10 @@ class FAQSection(ExtensibleModel):
         verbose_name = _("FAQ section")
         verbose_name_plural = _("FAQ sections")
         ordering = ["position"]
+
+        constraints = [
+            models.UniqueConstraint(fields=["site_id", "name"], name="unique_section_name_per_site")
+        ]
 
     @property
     def visible_questions(self):
@@ -95,3 +100,9 @@ class IssueCategory(ExtensibleModel):
     class Meta:
         verbose_name = _("Issue category")
         verbose_name_plural = _("Issue categories")
+
+        constraints = [
+            models.UniqueConstraint(
+                fields=["site_id", "name"], name="unique_category_name_per_site"
+            )
+        ]
