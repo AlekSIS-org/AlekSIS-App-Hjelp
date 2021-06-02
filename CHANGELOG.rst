@@ -6,6 +6,14 @@ All notable changes to this project will be documented in this file.
 The format is based on `Keep a Changelog`_,
 and this project adheres to `Semantic Versioning`_.
 
+Unreleased
+----------
+
+Changed
+~~~~~~~~
+* Ensure uniqueness per site of FAQ sections and categories.
+
+
 `2.0b0`_ - 2021-05-21
 ---------------------
 
