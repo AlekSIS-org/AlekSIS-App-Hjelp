@@ -37,6 +37,10 @@ class FAQSection(ExtensibleModel):
         verbose_name_plural = _("FAQ sections")
         ordering = ["position"]
 
+        constraints = [
+            models.UniqueConstraint(fields=["site_id", "name"], name="unique_section_name_per_site")
+        ]
+
     @property
     def visible_questions(self):
         return self.questions.filter(show=True)
@@ -95,3 +99,9 @@ class IssueCategory(ExtensibleModel):
     class Meta:
         verbose_name = _("Issue category")
         verbose_name_plural = _("Issue categories")
+
+        constraints = [
+            models.UniqueConstraint(
+                fields=["site_id", "name"], name="unique_category_name_per_site"
+            )
+        ]
