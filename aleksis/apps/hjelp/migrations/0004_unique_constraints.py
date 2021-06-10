@@ -44,6 +44,10 @@ class Migration(migrations.Migration):
         ),
         migrations.AddConstraint(
             model_name='issuecategory',
-            constraint=models.UniqueConstraint(fields=('site_id', 'name'), name='unique_category_name_per_site'),
+            constraint=models.UniqueConstraint(fields=('site_id', 'name'), condition=models.Q(parent='null'), name='unique_category_name_per_site_without_parent'),
+        ),
+        migrations.AddConstraint(
+            model_name='issuecategory',
+            constraint=models.UniqueConstraint(fields=('site_id', 'name', 'parent'), name='unique_category_name_per_site_with_parent'),
         ),
     ]

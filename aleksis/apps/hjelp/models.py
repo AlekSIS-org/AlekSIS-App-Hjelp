@@ -102,6 +102,12 @@ class IssueCategory(ExtensibleModel):
 
         constraints = [
             models.UniqueConstraint(
-                fields=["site_id", "name"], name="unique_category_name_per_site"
-            )
+                fields=["site_id", "name"],
+                condition=models.Q(parent="null"),
+                name="unique_category_name_per_site_without_parent",
+            ),
+            models.UniqueConstraint(
+                fields=["site_id", "name", "parent"],
+                name="unique_category_name_per_site_with_parent",
+            ),
         ]
