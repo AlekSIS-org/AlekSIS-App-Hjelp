@@ -12,7 +12,7 @@ and this project adheres to `Semantic Versioning`_.
 Changed
 ~~~~~~~~
 
-* Ensure uniqueness per site of FAQ sections and categories.
+* Ensure uniqueness per site of FAQ sections and categories with parents.
 
 
 `2.0b0`_ - 2021-05-21
