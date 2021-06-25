@@ -6,6 +6,14 @@ All notable changes to this project will be documented in this file.
 The format is based on `Keep a Changelog`_,
 and this project adheres to `Semantic Versioning`_.
 
+Unreleased
+----------
+
+Fixed
+~~~~~
+
+* Migration for uniqueness per site was broken due to wrong syntax.
+
 `2.0rc1`_ - 2021-06-23
 ----------------------
 
