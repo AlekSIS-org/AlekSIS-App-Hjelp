@@ -6,6 +6,14 @@ All notable changes to this project will be documented in this file.
 The format is based on `Keep a Changelog`_,
 and this project adheres to `Semantic Versioning`_.
 
+`2.0rc2`_ - 2021-06-26
+----------------------
+
+Fixed
+~~~~~
+
+* Migration for uniqueness per site was broken due to wrong syntax.
+
 `2.0rc1`_ - 2021-06-23
 ----------------------
 
@@ -66,3 +74,4 @@ Added
 .. _2.0b0: https://edugit.org/AlekSIS/Official/AlekSIS-App-Hjelp/-/tags/2.0b0
 .. _2.0b1: https://edugit.org/AlekSIS/Official/AlekSIS-App-Hjelp/-/tags/2.0b1
 .. _2.0rc1: https://edugit.org/AlekSIS/Official/AlekSIS-App-Hjelp/-/tags/2.0rc1
+.. _2.0rc2: https://edugit.org/AlekSIS/Official/AlekSIS-App-Hjelp/-/tags/2.0rc2
